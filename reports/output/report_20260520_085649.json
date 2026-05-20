@@ -1,0 +1,799 @@
+{
+  "nexus_ir_version": "1.0.0",
+  "session_id": "20260520_085649",
+  "investigation_complete": true,
+  "executive_summary": {
+    "threat_level": "HIGH",
+    "threat_score": 60,
+    "case_priority": "HIGH",
+    "total_files_analyzed": 3,
+    "attack_patterns_detected": 2,
+    "unique_ips_found": 2,
+    "findings_validated": 5,
+    "findings_rejected": 3,
+    "overall_confidence": "MEDIUM"
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "authentication failure",
+        "failed login"
+      ],
+      "description": "Multiple failed authentication events detected \u2014 consistent with brute force attack",
+      "mitre_technique": "T1110 - Brute Force",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-20T08:56:50.747263+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "PRIVILEGE_ESCALATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "root",
+        "sudo",
+        "unauthorized"
+      ],
+      "description": "Privilege escalation indicators detected across multiple log entries",
+      "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-20T08:56:50.747377+00:00",
+      "traceable": true
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "2026-05-01 03:12:44 Failed login attempt from 192.168.1.105",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "MEDIUM",
+      "description": "IP 2026-05-01 03:12:44 Failed login attempt from 192.168.1.105 appeared in 1 evidence source(s)",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-20T08:56:50.747018+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "MEDIUM",
+      "description": "IP 2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99 appeared in 1 evidence source(s)",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-20T08:56:50.747093+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-20T08:56:50.280805+00:00",
+      "artifact": "/data/data/com.termux/files/home/test_case/system.log"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-20T09:56:49.965112",
+      "artifact": "unknown"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-20T09:56:49.965264",
+      "artifact": "unknown"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-20T09:56:49.965392",
+      "artifact": "unknown"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/test_case/system.log",
+        "keywords_matched": [
+          "failed login",
+          "authentication failure",
+          "unauthorized",
+          "sudo",
+          "root"
+        ],
+        "total_hits": 5,
+        "artifact": "/data/data/com.termux/files/home/test_case/system.log",
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-20T08:56:50.280805+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: /data/data/com.termux/files/home/test_case/system.log",
+        "\u2705 File exists: /data/data/com.termux/files/home/test_case/system.log",
+        "\u2705 Keywords matched: ['failed login', 'authentication failure', 'unauthorized', 'sudo', 'root']",
+        "\u2705 Timestamp present"
+      ]
+    },
+    {
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "\u2705 Supported by 2 keywords: ['authentication failure', 'failed login']",
+        "\u2705 MITRE mapped: T1110 - Brute Force",
+        "\u2705 Description present"
+      ]
+    },
+    {
+      "pattern": "PRIVILEGE_ESCALATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "\u2705 Supported by 3 keywords: ['root', 'sudo', 'unauthorized']",
+        "\u2705 MITRE mapped: T1548 - Abuse Elevation Control Mechanism",
+        "\u2705 Description present"
+      ]
+    },
+    {
+      "ip": "2026-05-01 03:12:44 Failed login attempt from 192.168.1.105",
+      "valid": true,
+      "confidence": 80,
+      "issue": null
+    },
+    {
+      "ip": "2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99",
+      "valid": true,
+      "confidence": 80,
+      "issue": null
+    }
+  ],
+  "rejected_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "memory_dumps",
+        "count": 1,
+        "files": [
+          "/data/data/com.termux/files/home/test_case/memory.raw"
+        ],
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-20T09:56:49.965112"
+      },
+      "source_agent": "TriageAgent",
+      "valid": false,
+      "confidence": 10,
+      "issues": [
+        "Finding has no artifact reference \u2014 cannot verify"
+      ],
+      "verification_steps": [
+        "Finding has no artifact reference \u2014 cannot verify"
+      ]
+    },
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 1,
+        "files": [
+          "/data/data/com.termux/files/home/test_case/system.log"
+        ],
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-20T09:56:49.965264"
+      },
+      "source_agent": "TriageAgent",
+      "valid": false,
+      "confidence": 10,
+      "issues": [
+        "Finding has no artifact reference \u2014 cannot verify"
+      ],
+      "verification_steps": [
+        "Finding has no artifact reference \u2014 cannot verify"
+      ]
+    },
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "network_captures",
+        "count": 1,
+        "files": [
+          "/data/data/com.termux/files/home/test_case/network.pcap"
+        ],
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-20T09:56:49.965392"
+      },
+      "source_agent": "TriageAgent",
+      "valid": false,
+      "confidence": 10,
+      "issues": [
+        "Finding has no artifact reference \u2014 cannot verify"
+      ],
+      "verification_steps": [
+        "Finding has no artifact reference \u2014 cannot verify"
+      ]
+    }
+  ],
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-20T08:56:49.878803+00:00",
+      "level": "START",
+      "message": "Starting investigation: /data/data/com.termux/files/home/test_case"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:49.878883+00:00",
+      "level": "INFO",
+      "message": "Session ID: 20260520_085649"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:49.878971+00:00",
+      "level": "AGENT",
+      "message": "Phase 1: TRIAGE \u2014 Examining evidence..."
+    },
+    {
+      "iteration": 3,
+      "agent": "TriageAgent",
+      "status": "COMPLETE",
+      "findings": 3,
+      "timestamp": "2026-05-20T08:56:49.966282+00:00"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:49.966409+00:00",
+      "level": "DONE",
+      "message": "Triage complete \u2014 Priority: HIGH, Files: 3"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:49.966565+00:00",
+      "level": "AGENT",
+      "message": "Phase 2: LOG ANALYSIS \u2014 Hunting suspicious activity..."
+    },
+    {
+      "iteration": 6,
+      "agent": "LogAgent",
+      "status": "COMPLETE",
+      "findings": 1,
+      "timestamp": "2026-05-20T08:56:50.746358+00:00"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:50.746437+00:00",
+      "level": "DONE",
+      "message": "Log analysis complete \u2014 Suspicious files: 1"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:50.746513+00:00",
+      "level": "AGENT",
+      "message": "Phase 3: CORRELATION \u2014 Cross-referencing all findings..."
+    },
+    {
+      "iteration": 9,
+      "agent": "CorrelationAgent",
+      "status": "COMPLETE",
+      "findings": 4,
+      "timestamp": "2026-05-20T08:56:50.747737+00:00"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:50.747809+00:00",
+      "level": "DONE",
+      "message": "Correlation complete \u2014 Threat: HIGH (60/100)"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:50.747924+00:00",
+      "level": "AGENT",
+      "message": "Phase 4: SELF-CORRECTION \u2014 Validating all findings..."
+    },
+    {
+      "iteration": 12,
+      "agent": "CorrectionAgent",
+      "status": "COMPLETE",
+      "findings": 5,
+      "timestamp": "2026-05-20T08:56:50.785629+00:00"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:50.785688+00:00",
+      "level": "DONE",
+      "message": "Correction complete \u2014 62.5% accuracy, 5 validated"
+    },
+    {
+      "timestamp": "2026-05-20T08:56:50.785802+00:00",
+      "level": "DONE",
+      "message": "Total investigation time: 0.9 seconds"
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/test_case",
+      "priority": "HIGH",
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [
+          "/data/data/com.termux/files/home/test_case/memory.raw"
+        ],
+        "log_files": [
+          "/data/data/com.termux/files/home/test_case/system.log"
+        ],
+        "network_captures": [
+          "/data/data/com.termux/files/home/test_case/network.pcap"
+        ],
+        "registry_files": [],
+        "unknown": []
+      },
+      "total_files": 3,
+      "investigation_plan": [
+        {
+          "agent": "MemoryAgent",
+          "reason": "Memory dump detected",
+          "priority": 2
+        },
+        {
+          "agent": "LogAgent",
+          "reason": "Log files detected",
+          "priority": 3
+        },
+        {
+          "agent": "NetworkAgent",
+          "reason": "Network capture detected",
+          "priority": 4
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs to cross-reference findings",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs to validate and self-correct",
+          "priority": 6
+        }
+      ],
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "memory_dumps",
+          "count": 1,
+          "files": [
+            "/data/data/com.termux/files/home/test_case/memory.raw"
+          ],
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T09:56:49.965112"
+        },
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 1,
+          "files": [
+            "/data/data/com.termux/files/home/test_case/system.log"
+          ],
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T09:56:49.965264"
+        },
+        {
+          "type": "evidence_detected",
+          "category": "network_captures",
+          "count": 1,
+          "files": [
+            "/data/data/com.termux/files/home/test_case/network.pcap"
+          ],
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T09:56:49.965392"
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-20T09:56:49.966138"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 1,
+      "suspicious_files": 1,
+      "hits": {
+        "/data/data/com.termux/files/home/test_case/system.log": {
+          "failed login": {
+            "matches": [
+              "2026-05-01 03:12:44 Failed login attempt from 192.168.1.105"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/test_case/system.log",
+            "tool_used": "grep",
+            "command_hash": "3c66d46128024f99"
+          },
+          "authentication failure": {
+            "matches": [
+              "2026-05-01 03:12:45 Authentication failure for root"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/test_case/system.log",
+            "tool_used": "grep",
+            "command_hash": "3b6d93c87bcc577c"
+          },
+          "unauthorized": {
+            "matches": [
+              "2026-05-01 03:13:01 Unauthorized access attempt detected"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/test_case/system.log",
+            "tool_used": "grep",
+            "command_hash": "ed97e21837d876d5"
+          },
+          "sudo": {
+            "matches": [
+              "2026-05-01 03:12:50 sudo command executed by unknown user"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/test_case/system.log",
+            "tool_used": "grep",
+            "command_hash": "642bc264dde8e336"
+          },
+          "root": {
+            "matches": [
+              "2026-05-01 03:12:45 Authentication failure for root"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/test_case/system.log",
+            "tool_used": "grep",
+            "command_hash": "4df4d1a51858eb95"
+          }
+        }
+      },
+      "unique_ips": [
+        "2026-05-01 03:12:44 Failed login attempt from 192.168.1.105",
+        "2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99"
+      ],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/test_case/system.log",
+          "keywords_matched": [
+            "failed login",
+            "authentication failure",
+            "unauthorized",
+            "sudo",
+            "root"
+          ],
+          "total_hits": 5,
+          "artifact": "/data/data/com.termux/files/home/test_case/system.log",
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.280805+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-20T08:56:50.746302+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 2,
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "2026-05-01 03:12:44 Failed login attempt from 192.168.1.105",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "MEDIUM",
+          "description": "IP 2026-05-01 03:12:44 Failed login attempt from 192.168.1.105 appeared in 1 evidence source(s)",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.747018+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "MEDIUM",
+          "description": "IP 2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99 appeared in 1 evidence source(s)",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.747093+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "authentication failure",
+            "failed login"
+          ],
+          "description": "Multiple failed authentication events detected \u2014 consistent with brute force attack",
+          "mitre_technique": "T1110 - Brute Force",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.747263+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "root",
+            "sudo",
+            "unauthorized"
+          ],
+          "description": "Privilege escalation indicators detected across multiple log entries",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.747377+00:00",
+          "traceable": true
+        }
+      ],
+      "timeline": [
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-20T08:56:50.280805+00:00",
+          "artifact": "/data/data/com.termux/files/home/test_case/system.log"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-20T09:56:49.965112",
+          "artifact": "unknown"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-20T09:56:49.965264",
+          "artifact": "unknown"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-20T09:56:49.965392",
+          "artifact": "unknown"
+        }
+      ],
+      "threat_assessment": {
+        "score": 60,
+        "level": "HIGH",
+        "reasons": [
+          "HIGH pattern: BRUTE_FORCE_ATTACK",
+          "HIGH pattern: PRIVILEGE_ESCALATION"
+        ]
+      },
+      "findings": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "2026-05-01 03:12:44 Failed login attempt from 192.168.1.105",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "MEDIUM",
+          "description": "IP 2026-05-01 03:12:44 Failed login attempt from 192.168.1.105 appeared in 1 evidence source(s)",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.747018+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "MEDIUM",
+          "description": "IP 2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99 appeared in 1 evidence source(s)",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.747093+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "authentication failure",
+            "failed login"
+          ],
+          "description": "Multiple failed authentication events detected \u2014 consistent with brute force attack",
+          "mitre_technique": "T1110 - Brute Force",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.747263+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "root",
+            "sudo",
+            "unauthorized"
+          ],
+          "description": "Privilege escalation indicators detected across multiple log entries",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T08:56:50.747377+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-20T08:56:50.747704+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/test_case/system.log",
+            "keywords_matched": [
+              "failed login",
+              "authentication failure",
+              "unauthorized",
+              "sudo",
+              "root"
+            ],
+            "total_hits": 5,
+            "artifact": "/data/data/com.termux/files/home/test_case/system.log",
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-20T08:56:50.280805+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: /data/data/com.termux/files/home/test_case/system.log",
+            "\u2705 File exists: /data/data/com.termux/files/home/test_case/system.log",
+            "\u2705 Keywords matched: ['failed login', 'authentication failure', 'unauthorized', 'sudo', 'root']",
+            "\u2705 Timestamp present"
+          ]
+        },
+        {
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "\u2705 Supported by 2 keywords: ['authentication failure', 'failed login']",
+            "\u2705 MITRE mapped: T1110 - Brute Force",
+            "\u2705 Description present"
+          ]
+        },
+        {
+          "pattern": "PRIVILEGE_ESCALATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "\u2705 Supported by 3 keywords: ['root', 'sudo', 'unauthorized']",
+            "\u2705 MITRE mapped: T1548 - Abuse Elevation Control Mechanism",
+            "\u2705 Description present"
+          ]
+        },
+        {
+          "ip": "2026-05-01 03:12:44 Failed login attempt from 192.168.1.105",
+          "valid": true,
+          "confidence": 80,
+          "issue": null
+        },
+        {
+          "ip": "2026-05-01 03:13:10 Reverse shell connection from 10.0.0.99",
+          "valid": true,
+          "confidence": 80,
+          "issue": null
+        }
+      ],
+      "rejected_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "memory_dumps",
+            "count": 1,
+            "files": [
+              "/data/data/com.termux/files/home/test_case/memory.raw"
+            ],
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-20T09:56:49.965112"
+          },
+          "source_agent": "TriageAgent",
+          "valid": false,
+          "confidence": 10,
+          "issues": [
+            "Finding has no artifact reference \u2014 cannot verify"
+          ],
+          "verification_steps": [
+            "Finding has no artifact reference \u2014 cannot verify"
+          ]
+        },
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 1,
+            "files": [
+              "/data/data/com.termux/files/home/test_case/system.log"
+            ],
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-20T09:56:49.965264"
+          },
+          "source_agent": "TriageAgent",
+          "valid": false,
+          "confidence": 10,
+          "issues": [
+            "Finding has no artifact reference \u2014 cannot verify"
+          ],
+          "verification_steps": [
+            "Finding has no artifact reference \u2014 cannot verify"
+          ]
+        },
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "network_captures",
+            "count": 1,
+            "files": [
+              "/data/data/com.termux/files/home/test_case/network.pcap"
+            ],
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-20T09:56:49.965392"
+          },
+          "source_agent": "TriageAgent",
+          "valid": false,
+          "confidence": 10,
+          "issues": [
+            "Finding has no artifact reference \u2014 cannot verify"
+          ],
+          "verification_steps": [
+            "Finding has no artifact reference \u2014 cannot verify"
+          ]
+        }
+      ],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 8,
+        "validated": 5,
+        "rejected": 3,
+        "warnings": 0,
+        "accuracy_rate": 62.5,
+        "overall_confidence": "MEDIUM"
+      },
+      "errors": [],
+      "timestamp": "2026-05-20T08:56:50.785595+00:00"
+    }
+  },
+  "timestamp": "2026-05-20T08:56:50.785728+00:00",
+  "duration_seconds": 0.91
+}
