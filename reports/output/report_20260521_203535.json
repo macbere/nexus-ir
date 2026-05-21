@@ -1,0 +1,840 @@
+{
+  "nexus_ir_version": "1.0.0",
+  "session_id": "20260521_203535",
+  "investigation_complete": true,
+  "executive_summary": {
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "case_priority": "CRITICAL",
+    "total_files_analyzed": 3,
+    "attack_patterns_detected": 1,
+    "unique_ips_found": 2,
+    "findings_validated": 7,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH"
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "PROCESS_INJECTION",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "0x1FFFFF"
+      ],
+      "description": "Process injection confirmed via GrantedAccess=0x1FFFFF",
+      "mitre_technique": "T1055 - Process Injection",
+      "base_score": 97,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-21T20:35:36.168600+00:00",
+      "traceable": true
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "104.21.55.12",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 104.21.55.12",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-21T20:35:36.168803+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "192.168.1.105",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 192.168.1.105",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-21T20:35:36.168827+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-21T20:35:35.262684+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "dynamic_priority_escalation",
+      "timestamp": "2026-05-21T20:35:35.263924+00:00",
+      "artifact": "triage_scan"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 3,
+        "files": [
+          "sysmon_execution.log",
+          "sysmon_injection.log",
+          "zeek_network.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-21T20:35:35.262684+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_execution.log",
+        "File on disk: sysmon_execution.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "dynamic_priority_escalation",
+        "reason": "Critical keywords found in evidence",
+        "keywords": [
+          "windowstyle hidden",
+          "powershell",
+          "0x1fffff",
+          "base64",
+          "executionpolicy bypass"
+        ],
+        "artifact": "triage_scan",
+        "priority_set": "CRITICAL",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-21T20:35:35.263924+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Triage-level finding \u2014 acceptable",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "PROCESS_INJECTION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['0x1FFFFF']",
+        "MITRE: T1055 - Process Injection"
+      ]
+    },
+    {
+      "ip": "104.21.55.12",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "192.168.1.105",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "PROCESS_ALL_ACCESS on system process \u2014 definitive process injection",
+      "mitre": "T1055 - Process Injection",
+      "score": 95,
+      "valid": true,
+      "confidence": 95
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "A heavily obfuscated PowerShell command was executed on A1B2C3D4-E5F6 (ProcessID 1128) using ExecutionPolicy Bypass and WindowStyle Hidden flags, indicating a fileless malware execution technique designed to evade endpoint detection. The malicious process injected shellcode into a legitimate system process (GrantedAccess=0x1FFFFF) \u2014 this is PROCESS_ALL_ACCESS, a definitive indicator of process injection used to achieve execution within a trusted process and bypass security monitoring. High-signal forensic indicators confirm this is an active intrusion: PROCESS_ALL_ACCESS on system process \u2014 definitive process injection",
+  "containment_actions": [
+    "BLOCK IP 104.21.55.12 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 192.168.1.105 at perimeter firewall and all internal segment boundaries",
+    "ISOLATE host A1B2C3D4-E5F6 immediately \u2014 disconnect from all network segments",
+    "ISOLATE host DESKTOP-DEV immediately \u2014 disconnect from all network segments",
+    "ISOLATE host DESKTOP-DEV-99A immediately \u2014 disconnect from all network segments",
+    "KILL all suspicious process trees \u2014 terminate injected processes",
+    "DUMP memory of svchost.exe instances for forensic analysis",
+    "DEPLOY EDR memory scanning across all endpoints immediately",
+    "ENABLE Windows Credential Guard to prevent credential extraction",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [
+      "104.21.55.12",
+      "192.168.1.105"
+    ],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [
+      "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0..."
+    ],
+    "decoded_payloads": [],
+    "file_paths": [],
+    "hostnames": [
+      "A1B2C3D4-E5F6",
+      "DESKTOP-DEV",
+      "DESKTOP-DEV-99A"
+    ],
+    "usernames": [],
+    "process_ids": [
+      "1128",
+      "4192",
+      "912"
+    ],
+    "granted_access": [
+      "0x1FFFFF"
+    ],
+    "domains": []
+  },
+  "temporal_sequences": [
+    {
+      "type": "temporal_sequence",
+      "pattern": "FULL_INJECTION_CHAIN",
+      "confidence": "CRITICAL",
+      "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+      "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+      "events": [
+        "EventID:1 Process Execution",
+        "EventID:10 Process Access",
+        "EventID:8 Remote Thread Creation",
+        "Network C2 Beacon"
+      ],
+      "base_score": 97,
+      "multiplier": 3.5,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-21T20:35:36.168751+00:00",
+      "traceable": true
+    }
+  ],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": {
+      "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+      "timestamp": "2026-05-21T20:35:35.304714+00:00",
+      "size_bytes": 914
+    },
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": {
+      "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+      "timestamp": "2026-05-21T20:35:35.608379+00:00",
+      "size_bytes": 915
+    },
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": {
+      "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+      "timestamp": "2026-05-21T20:35:35.881335+00:00",
+      "size_bytes": 1188
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-21T20:35:35.258447+00:00",
+      "level": "START",
+      "message": "Starting investigation: /data/data/com.termux/files/home/cases/obfuscated_malware"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:35.258553+00:00",
+      "level": "INFO",
+      "message": "Session ID: 20260521_203535"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:35.259562+00:00",
+      "level": "AGENT",
+      "message": "Phase 1: TRIAGE \u2014 Examining evidence..."
+    },
+    {
+      "iteration": 3,
+      "agent": "TriageAgent",
+      "status": "COMPLETE",
+      "findings": 2,
+      "timestamp": "2026-05-21T20:35:35.264596+00:00"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:35.264726+00:00",
+      "level": "DONE",
+      "message": "Triage complete \u2014 Priority: CRITICAL, Files: 3"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:35.264861+00:00",
+      "level": "AGENT",
+      "message": "Phase 2: LOG ANALYSIS \u2014 Hunting suspicious activity..."
+    },
+    {
+      "iteration": 6,
+      "agent": "LogAgent",
+      "status": "COMPLETE",
+      "findings": 0,
+      "timestamp": "2026-05-21T20:35:36.163630+00:00"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:36.163766+00:00",
+      "level": "DONE",
+      "message": "Log analysis complete \u2014 Suspicious files: 0"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:36.163909+00:00",
+      "level": "AGENT",
+      "message": "Phase 3: CORRELATION \u2014 Cross-referencing all findings..."
+    },
+    {
+      "iteration": 9,
+      "agent": "CorrelationAgent",
+      "status": "COMPLETE",
+      "findings": 4,
+      "timestamp": "2026-05-21T20:35:36.169810+00:00"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:36.169942+00:00",
+      "level": "DONE",
+      "message": "Correlation complete \u2014 Threat: CRITICAL (100/100)"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:36.170117+00:00",
+      "level": "AGENT",
+      "message": "Phase 4: SELF-CORRECTION \u2014 Validating all findings..."
+    },
+    {
+      "iteration": 12,
+      "agent": "CorrectionAgent",
+      "status": "COMPLETE",
+      "findings": 7,
+      "timestamp": "2026-05-21T20:35:36.204616+00:00"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:36.204773+00:00",
+      "level": "DONE",
+      "message": "Correction complete \u2014 100.0% accuracy, 7 validated"
+    },
+    {
+      "timestamp": "2026-05-21T20:35:36.205120+00:00",
+      "level": "DONE",
+      "message": "Total investigation time: 0.9 seconds"
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/obfuscated_malware",
+      "priority": "CRITICAL",
+      "keyword_hits": {
+        "critical_keywords_found": [
+          "windowstyle hidden",
+          "powershell",
+          "0x1fffff",
+          "base64",
+          "executionpolicy bypass"
+        ],
+        "high_keywords_found": [
+          "wmi",
+          "svchost"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log",
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 3,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "3 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 3,
+          "files": [
+            "sysmon_execution.log",
+            "sysmon_injection.log",
+            "zeek_network.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:35.262684+00:00",
+          "traceable": true
+        },
+        {
+          "type": "dynamic_priority_escalation",
+          "reason": "Critical keywords found in evidence",
+          "keywords": [
+            "windowstyle hidden",
+            "powershell",
+            "0x1fffff",
+            "base64",
+            "executionpolicy bypass"
+          ],
+          "artifact": "triage_scan",
+          "priority_set": "CRITICAL",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:35.263924+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-21T20:35:35.264528+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 3,
+      "suspicious_files": 0,
+      "hits": {},
+      "extracted_iocs": {
+        "ipv4_addresses": [
+          "104.21.55.12",
+          "192.168.1.105"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [
+          "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0..."
+        ],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [
+          "A1B2C3D4-E5F6",
+          "DESKTOP-DEV",
+          "DESKTOP-DEV-99A"
+        ],
+        "usernames": [],
+        "process_ids": [
+          "1128",
+          "4192",
+          "912"
+        ],
+        "granted_access": [
+          "0x1FFFFF"
+        ]
+      },
+      "unique_ips": [
+        "104.21.55.12",
+        "192.168.1.105"
+      ],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-21T20:35:35.304714+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-21T20:35:35.608379+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-21T20:35:35.881335+00:00",
+          "size_bytes": 1188
+        }
+      },
+      "decoded_payloads": [
+        {
+          "original": "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWr...",
+          "decoded_text": "+\ufffd\ufffdH\ufffd-\ufffdI\ufffdK\ufffd\ufffd\ufffd\ufffdILN\ufffd\ufffd,I\ufffdKI\ufffdK\ufffdOIM\ufffd\ufffdM\ufffd\ufffd\ufffd\ufffdJ\ufffd+M-I\u056b\ufffd\ufffdM\ufffdK\ufffd\ufffd\ufffd+\ufffd\ufffdM\ufffd+O,I\ufffdK\ufffd\ufffd\ufffd+\ufffd\ufffd%\ufffd\ufffd^\u0000",
+          "is_compressed": false,
+          "extracted_strings": [],
+          "suspicious_indicators": []
+        }
+      ],
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-21T20:35:36.163559+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 2,
+      "extracted_entities": {
+        "ipv4_addresses": [
+          "104.21.55.12",
+          "192.168.1.105"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [
+          "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0..."
+        ],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [
+          "A1B2C3D4-E5F6",
+          "DESKTOP-DEV",
+          "DESKTOP-DEV-99A"
+        ],
+        "usernames": [],
+        "process_ids": [
+          "1128",
+          "4192",
+          "912"
+        ],
+        "granted_access": [
+          "0x1FFFFF"
+        ],
+        "domains": []
+      },
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "104.21.55.12",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 104.21.55.12",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:36.168803+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "192.168.1.105",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 192.168.1.105",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:36.168827+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "PROCESS_INJECTION",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "0x1FFFFF"
+          ],
+          "description": "Process injection confirmed via GrantedAccess=0x1FFFFF",
+          "mitre_technique": "T1055 - Process Injection",
+          "base_score": 97,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:36.168600+00:00",
+          "traceable": true
+        }
+      ],
+      "temporal_sequences": [
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:36.168751+00:00",
+          "traceable": true
+        }
+      ],
+      "high_signal_signatures": [
+        {
+          "values": [
+            "0x1fffff",
+            "0x1FFFFF"
+          ],
+          "description": "PROCESS_ALL_ACCESS on system process \u2014 definitive process injection",
+          "mitre": "T1055 - Process Injection",
+          "score": 95,
+          "triggered_by": "GrantedAccess=0x1FFFFF"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.log"
+        }
+      ],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-21T20:35:35.262684+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "dynamic_priority_escalation",
+          "timestamp": "2026-05-21T20:35:35.263924+00:00",
+          "artifact": "triage_scan"
+        }
+      ],
+      "threat_assessment": {
+        "score": 100,
+        "level": "CRITICAL",
+        "reasons": [
+          "Base pattern score: 97",
+          "Temporal chain multiplier x3.5: 97 -> 100",
+          "Correlated IPs (+5)"
+        ]
+      },
+      "attack_narrative": "A heavily obfuscated PowerShell command was executed on A1B2C3D4-E5F6 (ProcessID 1128) using ExecutionPolicy Bypass and WindowStyle Hidden flags, indicating a fileless malware execution technique designed to evade endpoint detection. The malicious process injected shellcode into a legitimate system process (GrantedAccess=0x1FFFFF) \u2014 this is PROCESS_ALL_ACCESS, a definitive indicator of process injection used to achieve execution within a trusted process and bypass security monitoring. High-signal forensic indicators confirm this is an active intrusion: PROCESS_ALL_ACCESS on system process \u2014 definitive process injection",
+      "containment_actions": [
+        "BLOCK IP 104.21.55.12 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 192.168.1.105 at perimeter firewall and all internal segment boundaries",
+        "ISOLATE host A1B2C3D4-E5F6 immediately \u2014 disconnect from all network segments",
+        "ISOLATE host DESKTOP-DEV immediately \u2014 disconnect from all network segments",
+        "ISOLATE host DESKTOP-DEV-99A immediately \u2014 disconnect from all network segments",
+        "KILL all suspicious process trees \u2014 terminate injected processes",
+        "DUMP memory of svchost.exe instances for forensic analysis",
+        "DEPLOY EDR memory scanning across all endpoints immediately",
+        "ENABLE Windows Credential Guard to prevent credential extraction",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "PROCESS_INJECTION",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "0x1FFFFF"
+          ],
+          "description": "Process injection confirmed via GrantedAccess=0x1FFFFF",
+          "mitre_technique": "T1055 - Process Injection",
+          "base_score": 97,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:36.168600+00:00",
+          "traceable": true
+        },
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:36.168751+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "104.21.55.12",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 104.21.55.12",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:36.168803+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "192.168.1.105",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 192.168.1.105",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:35:36.168827+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-21T20:35:36.169763+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 3,
+            "files": [
+              "sysmon_execution.log",
+              "sysmon_injection.log",
+              "zeek_network.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-21T20:35:35.262684+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_execution.log",
+            "File on disk: sysmon_execution.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "dynamic_priority_escalation",
+            "reason": "Critical keywords found in evidence",
+            "keywords": [
+              "windowstyle hidden",
+              "powershell",
+              "0x1fffff",
+              "base64",
+              "executionpolicy bypass"
+            ],
+            "artifact": "triage_scan",
+            "priority_set": "CRITICAL",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-21T20:35:35.263924+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Triage-level finding \u2014 acceptable",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "PROCESS_INJECTION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['0x1FFFFF']",
+            "MITRE: T1055 - Process Injection"
+          ]
+        },
+        {
+          "ip": "104.21.55.12",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "192.168.1.105",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "PROCESS_ALL_ACCESS on system process \u2014 definitive process injection",
+          "mitre": "T1055 - Process Injection",
+          "score": 95,
+          "valid": true,
+          "confidence": 95
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 7,
+        "validated": 7,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [
+          "PowerShell stealth keywords in triage but POWERSHELL_OBFUSCATION not detected"
+        ],
+        "devil_advocate_suggestions": [
+          "Force re-run correlation with PowerShell keyword context"
+        ],
+        "forced_reeval": false
+      },
+      "errors": [],
+      "timestamp": "2026-05-21T20:35:36.204546+00:00"
+    }
+  },
+  "timestamp": "2026-05-21T20:35:36.204938+00:00",
+  "duration_seconds": 0.95
+}

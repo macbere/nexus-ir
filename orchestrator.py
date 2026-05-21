@@ -91,11 +91,11 @@ class NexusOrchestrator:
         self._log(f"Correlation complete — Threat: {threat['level']} ({threat['score']}/100)", "DONE")
         return report
 
-    def _run_correction(self, correlation_report: dict) -> dict:
+    def _run_correction(self, correlation_report: dict, triage_report: dict = None) -> dict:
         """Phase 4 — Self-Correction."""
         self._log("Phase 4: SELF-CORRECTION — Validating all findings...", "AGENT")
         agent = CorrectionAgent()
-        report = agent.run(self.all_reports, correlation_report)
+        report = agent.run(self.all_reports, correlation_report, triage_report)
         self._record_iteration("CorrectionAgent", report["status"], report["summary"]["validated"])
         summary = report["summary"]
         self._log(f"Correction complete — {summary['accuracy_rate']}% accuracy, {summary['validated']} validated", "DONE")
@@ -192,7 +192,7 @@ class NexusOrchestrator:
         triage = self._run_triage(case_path)
         log = self._run_log_analysis(case_path)
         correlation = self._run_correlation()
-        correction = self._run_correction(correlation)
+        correction = self._run_correction(correlation, triage)
 
         # Build final report
         final_report = self._generate_final_report(triage, log, correlation, correction)

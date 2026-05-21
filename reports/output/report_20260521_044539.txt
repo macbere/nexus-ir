@@ -1,0 +1,121 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260521_044538
+  Generated    : 2026-05-21 04:45:39 UTC
+  Duration     : 1.13s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : LOW (5/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 3
+  Attack Patterns  : 0
+  IPs Identified   : 2
+  Findings Valid   : 4
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : sysmon_injection.log
+  SHA256 : 670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00
+  Size   : 915 bytes
+  Hashed : 2026-05-21T04:45:38.139368+00:00
+
+  File   : zeek_network.log
+  SHA256 : a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1
+  Size   : 1188 bytes
+  Hashed : 2026-05-21T04:45:38.439413+00:00
+
+  File   : sysmon_execution.log
+  SHA256 : 619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786
+  Size   : 914 bytes
+  Hashed : 2026-05-21T04:45:38.729538+00:00
+
+-----------------------------------------------------------------
+  ATTACK NARRATIVE -- KILL CHAIN SUMMARY
+-----------------------------------------------------------------
+  The attack originated from 104.21.55.12, which gained initial
+  access to the target system through exploitation of a known
+  vulnerability.
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  No attack patterns detected.
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  IPV4 ADDRESSES:
+    - 104.21.55.12
+    - 192.168.1.105
+  BASE64 STRINGS:
+    - K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0...
+  USERNAMES:
+    - tes
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  -> 104.21.55.12
+     Significance : HIGH
+     Description  : Verified IoC (regex) — IP 104.21.55.12 found in evidence
+
+  -> 192.168.1.105
+     Significance : HIGH
+     Description  : Verified IoC (regex) — IP 192.168.1.105 found in evidence
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-21T04:45:38
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: sysmon_injection.log
+
+  2026-05-21T04:45:38
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: obfuscated_malware
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.log
+
+  [2] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : obfuscated_malware
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] BLOCK IP 104.21.55.12 on all perimeter firewalls and WAF rules immediately
+  [02] BLOCK IP 192.168.1.105 on all perimeter firewalls and WAF rules immediately
+  [03] DISABLE account 'tes' and reset all associated credentials
+  [04] DECODE and analyse base64 payload: K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1U...
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================
