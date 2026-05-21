@@ -1,0 +1,235 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260521_043405
+  Generated    : 2026-05-21 04:34:07 UTC
+  Duration     : 1.36s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : CRITICAL (100/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 4
+  Attack Patterns  : 4
+  IPs Identified   : 3
+  Findings Valid   : 13
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : perimeter_firewall.log
+  SHA256 : 610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2
+  Size   : 955 bytes
+  Hashed : 2026-05-21T04:34:05.880525+00:00
+
+  File   : domain_controller.log
+  SHA256 : 700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5
+  Size   : 1458 bytes
+  Hashed : 2026-05-21T04:34:06.158347+00:00
+
+  File   : endpoint_security.log
+  SHA256 : 4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622
+  Size   : 1252 bytes
+  Hashed : 2026-05-21T04:34:06.428512+00:00
+
+  File   : database_audit.log
+  SHA256 : eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07
+  Size   : 1062 bytes
+  Hashed : 2026-05-21T04:34:06.678441+00:00
+
+-----------------------------------------------------------------
+  ATTACK NARRATIVE -- KILL CHAIN SUMMARY
+-----------------------------------------------------------------
+  The attack originated from 185.220.101.47, which conducted a
+  brute force credential attack against FINSERV-DB01,
+  ultimately compromising the account 'Administrator' after
+  multiple failed authentication attempts. Following initial
+  access, the threat actor escalated privileges on
+  FINSERV-DB01, gaining administrative or root-level control
+  over the compromised system. A base64-encoded PowerShell
+  payload was executed on the host, delivering a backdoor and
+  establishing persistent command-and-control communication
+  with the attacker infrastructure. The threat actor moved
+  laterally to FINSERV-DC01, deployed ransomware, and
+  exfiltrated data to 91.108.56.130 before triggering mass file
+  encryption.
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  [1] BRUTE_FORCE_ATTACK
+      Confidence : HIGH
+      MITRE      : T1110 - Brute Force
+      Description: Multiple failed authentication events detected
+      Evidence   : failed password
+
+  [2] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation indicators detected
+      Evidence   : unauthorized, privilege escalation
+
+  [3] LATERAL_MOVEMENT_OR_C2
+      Confidence : CRITICAL
+      MITRE      : T1021 - Remote Services / T1059 - Command Interpreter
+      Description: C2 or lateral movement indicators detected
+      Evidence   : exploit
+
+  [4] RANSOMWARE_OR_MALWARE
+      Confidence : CRITICAL
+      MITRE      : T1486 - Data Encrypted for Impact
+      Description: Ransomware or malware execution indicators detected
+      Evidence   : malware, ransomware
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  IPV4 ADDRESSES:
+    - 185.220.101.47
+    - 203.45.67.89
+    - 91.108.56.130
+  BASE64 STRINGS:
+    - SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoA
+    - WindowsDefenderUpdate
+    - e3b0c44298fc1c149afb
+  FILE PATHS:
+    - C:\Windows\System32\lsass.exe
+  HOSTNAMES:
+    - FINSERV-DB01
+    - FINSERV-DC01
+  USERNAMES:
+    - Administrator
+    - PID
+    - krbtgt
+    - mimikatz
+    - persistence
+    - single
+    - svc_backup
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  -> 185.220.101.47
+     Significance : HIGH
+     Description  : Verified IoC (regex) — IP 185.220.101.47 found in evidence
+
+  -> 203.45.67.89
+     Significance : HIGH
+     Description  : Verified IoC (regex) — IP 203.45.67.89 found in evidence
+
+  -> 91.108.56.130
+     Significance : HIGH
+     Description  : Verified IoC (regex) — IP 91.108.56.130 found in evidence
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-21T04:34:05
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: perimeter_firewall.log
+
+  2026-05-21T04:34:05
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: financial_breach
+
+  2026-05-21T04:34:06
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: perimeter_firewall.log
+
+  2026-05-21T04:34:06
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: domain_controller.log
+
+  2026-05-21T04:34:06
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: endpoint_security.log
+
+  2026-05-21T04:34:06
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: database_audit.log
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+
+  [2] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : financial_breach
+
+  [3] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d58df2f4e5035fa8cf...
+      Keywords   : exploit
+
+  [4] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : domain_controller.log
+      File Hash  : 700e089eb1381d13b853dcdf294c41a6...
+      Keywords   : failed password, unauthorized
+
+  [5] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : endpoint_security.log
+      File Hash  : 4486d05cdf3fa16322c4f1d40c37e2a4...
+      Keywords   : unauthorized, exploit, malware, ransomware
+
+  [6] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : database_audit.log
+      File Hash  : eeeba11a1eb0d6fb5fe6c9daef6a22b8...
+      Keywords   : unauthorized, privilege escalation
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] BLOCK IP 185.220.101.47 on all perimeter firewalls and WAF rules immediately
+  [02] BLOCK IP 203.45.67.89 on all perimeter firewalls and WAF rules immediately
+  [03] BLOCK IP 91.108.56.130 on all perimeter firewalls and WAF rules immediately
+  [04] ISOLATE host FINSERV-DB01 from network — disconnect from all VLANs
+  [05] ISOLATE host FINSERV-DC01 from network — disconnect from all VLANs
+  [06] DISABLE account 'krbtgt' and reset all associated credentials
+  [07] DISABLE account 'mimikatz' and reset all associated credentials
+  [08] DISABLE account 'svc_backup' and reset all associated credentials
+  [09] RESET all Domain Administrator and service account passwords immediately
+  [10] QUARANTINE file C:\Windows\System32\lsass.exe — submit to threat intelligence platform
+  [11] DECODE and analyse base64 payload: SQBFAFgAIAAoAE4AZQB3AC0ATwBiAG...
+  [12] ACTIVATE incident response retainer — engage forensic team for full disk imaging
+  [13] RESTORE affected systems from last known clean backup after full forensic capture
+  [14] SCAN entire network for persistence mechanisms: scheduled tasks, registry run keys, new services
+  [15] REVOKE all active VPN and remote access sessions pending investigation
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================

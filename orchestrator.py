@@ -127,6 +127,11 @@ class NexusOrchestrator:
             "timeline": correlation.get("timeline", []),
             "validated_findings": correction.get("validated_findings", []),
             "rejected_findings": correction.get("rejected_findings", []),
+            "attack_narrative": correlation.get("attack_narrative", ""),
+            "containment_actions": correlation.get("containment_actions", []),
+            "extracted_entities": correlation.get("extracted_entities", {}),
+            "temporal_sequences": correlation.get("temporal_sequences", []),
+            "chain_of_custody": self._collect_chain_of_custody(),
             "execution_trace": self.iteration_log,
             "agent_reports": {
                 "triage": triage,
@@ -161,6 +166,13 @@ class NexusOrchestrator:
         else:
             print("   No attack patterns detected.")
         print("="*55 + "\n")
+
+    def _collect_chain_of_custody(self) -> dict:
+        coc = {}
+        for agent_name, report in self.all_reports.items():
+            if isinstance(report, dict):
+                coc.update(report.get("chain_of_custody", {}))
+        return coc
 
     def investigate(self, case_path: str) -> dict:
         """
