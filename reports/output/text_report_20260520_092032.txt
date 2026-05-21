@@ -1,0 +1,87 @@
+============================================================
+       NEXUS-IR INCIDENT RESPONSE REPORT
+       Find Evil! Hackathon — SANS Institute 2026
+============================================================
+  Session ID   : 20260520_092031
+  Generated    : 2026-05-20 09:20:32 UTC
+  Duration     : 0.99s
+  Agent        : NEXUS-IR v1.0.0
+
+────────────────────────────────────────────────────────────
+  EXECUTIVE SUMMARY
+────────────────────────────────────────────────────────────
+  Threat Level     : MEDIUM (45/100)
+  Case Priority    : LOW
+  Files Scanned    : 1
+  Attack Patterns  : 1
+  IPs Identified   : 4
+  Findings Valid   : 7
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+────────────────────────────────────────────────────────────
+  ATTACK PATTERNS DETECTED
+────────────────────────────────────────────────────────────
+  [1] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation indicators detected across multiple log entries
+      Evidence   : unauthorized, root, sudo
+
+────────────────────────────────────────────────────────────
+  IP ADDRESS CORRELATIONS
+────────────────────────────────────────────────────────────
+  → May 20 03:12:05 server sshd: Failed password for admin from 45.33.32.156
+    Significance : MEDIUM
+    Seen by      : LogAgent
+
+  → May 20 03:12:01 server sshd: Failed password for root from 45.33.32.156
+    Significance : MEDIUM
+    Seen by      : LogAgent
+
+  → May 20 03:12:03 server sshd: Failed password for root from 45.33.32.156
+    Significance : MEDIUM
+    Seen by      : LogAgent
+
+  → May 20 03:12:07 server sshd: Accepted password for root from 45.33.32.156
+    Significance : MEDIUM
+    Seen by      : LogAgent
+
+────────────────────────────────────────────────────────────
+  INVESTIGATION TIMELINE
+────────────────────────────────────────────────────────────
+  2026-05-20T09:20:31
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/brute_force/auth.log
+
+  2026-05-20T10:20:31
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: /data/data/com.termux/files/home/cases/brute_force/auth.log
+
+────────────────────────────────────────────────────────────
+  VALIDATED FINDINGS
+────────────────────────────────────────────────────────────
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : /data/data/com.termux/files/home/cases/brute_force/auth.log
+      Keywords   : 
+
+  [2] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/brute_force/auth.log
+      Keywords   : unauthorized, sudo, root
+
+────────────────────────────────────────────────────────────
+  REJECTED / UNVERIFIABLE FINDINGS
+────────────────────────────────────────────────────────────
+  No rejected findings.
+
+============================================================
+  NEXUS-IR — Autonomous Incident Response
+  All findings traceable to specific artifacts.
+  Self-corrected. Zero human intervention.
+============================================================

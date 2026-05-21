@@ -1,0 +1,512 @@
+{
+  "nexus_ir_version": "1.0.0",
+  "session_id": "20260520_092054",
+  "investigation_complete": true,
+  "executive_summary": {
+    "threat_level": "MEDIUM",
+    "threat_score": 30,
+    "case_priority": "LOW",
+    "total_files_analyzed": 1,
+    "attack_patterns_detected": 1,
+    "unique_ips_found": 1,
+    "findings_validated": 4,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH"
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "PRIVILEGE_ESCALATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "sudo",
+        "unauthorized",
+        "privilege escalation"
+      ],
+      "description": "Privilege escalation indicators detected across multiple log entries",
+      "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-20T09:20:54.894412+00:00",
+      "traceable": true
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "MEDIUM",
+      "description": "IP 2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99 appeared in 1 evidence source(s)",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-20T09:20:54.894135+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-20T09:20:54.807180+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-20T10:20:54.502839",
+      "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 1,
+        "files": [
+          "/data/data/com.termux/files/home/cases/insider/access.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-20T10:20:54.502839"
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [
+        "No keywords matched recorded"
+      ],
+      "verification_steps": [
+        "Artifact verified: /data/data/com.termux/files/home/cases/insider/access.log",
+        "\u2705 File exists: /data/data/com.termux/files/home/cases/insider/access.log",
+        "\u2705 Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/insider/access.log",
+        "keywords_matched": [
+          "unauthorized",
+          "privilege escalation",
+          "sudo"
+        ],
+        "total_hits": 3,
+        "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-20T09:20:54.807180+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: /data/data/com.termux/files/home/cases/insider/access.log",
+        "\u2705 File exists: /data/data/com.termux/files/home/cases/insider/access.log",
+        "\u2705 Keywords matched: ['unauthorized', 'privilege escalation', 'sudo']",
+        "\u2705 Timestamp present"
+      ]
+    },
+    {
+      "pattern": "PRIVILEGE_ESCALATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "\u2705 Supported by 3 keywords: ['sudo', 'unauthorized', 'privilege escalation']",
+        "\u2705 MITRE mapped: T1548 - Abuse Elevation Control Mechanism",
+        "\u2705 Description present"
+      ]
+    },
+    {
+      "ip": "2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99",
+      "valid": true,
+      "confidence": 80,
+      "issue": null
+    }
+  ],
+  "rejected_findings": [],
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-20T09:20:54.423022+00:00",
+      "level": "START",
+      "message": "Starting investigation: /data/data/com.termux/files/home/cases/insider"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.423099+00:00",
+      "level": "INFO",
+      "message": "Session ID: 20260520_092054"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.423223+00:00",
+      "level": "AGENT",
+      "message": "Phase 1: TRIAGE \u2014 Examining evidence..."
+    },
+    {
+      "iteration": 3,
+      "agent": "TriageAgent",
+      "status": "COMPLETE",
+      "findings": 1,
+      "timestamp": "2026-05-20T09:20:54.503178+00:00"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.503241+00:00",
+      "level": "DONE",
+      "message": "Triage complete \u2014 Priority: LOW, Files: 1"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.503320+00:00",
+      "level": "AGENT",
+      "message": "Phase 2: LOG ANALYSIS \u2014 Hunting suspicious activity..."
+    },
+    {
+      "iteration": 6,
+      "agent": "LogAgent",
+      "status": "COMPLETE",
+      "findings": 1,
+      "timestamp": "2026-05-20T09:20:54.893523+00:00"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.893600+00:00",
+      "level": "DONE",
+      "message": "Log analysis complete \u2014 Suspicious files: 1"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.893672+00:00",
+      "level": "AGENT",
+      "message": "Phase 3: CORRELATION \u2014 Cross-referencing all findings..."
+    },
+    {
+      "iteration": 9,
+      "agent": "CorrelationAgent",
+      "status": "COMPLETE",
+      "findings": 2,
+      "timestamp": "2026-05-20T09:20:54.894647+00:00"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.894707+00:00",
+      "level": "DONE",
+      "message": "Correlation complete \u2014 Threat: MEDIUM (30/100)"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.894768+00:00",
+      "level": "AGENT",
+      "message": "Phase 4: SELF-CORRECTION \u2014 Validating all findings..."
+    },
+    {
+      "iteration": 12,
+      "agent": "CorrectionAgent",
+      "status": "COMPLETE",
+      "findings": 4,
+      "timestamp": "2026-05-20T09:20:54.942849+00:00"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.942911+00:00",
+      "level": "DONE",
+      "message": "Correction complete \u2014 100.0% accuracy, 4 validated"
+    },
+    {
+      "timestamp": "2026-05-20T09:20:54.943033+00:00",
+      "level": "DONE",
+      "message": "Total investigation time: 0.5 seconds"
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/insider",
+      "priority": "LOW",
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/insider/access.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "unknown": []
+      },
+      "total_files": 1,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "Log files detected",
+          "priority": 3
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs to cross-reference findings",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs to validate and self-correct",
+          "priority": 6
+        }
+      ],
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 1,
+          "files": [
+            "/data/data/com.termux/files/home/cases/insider/access.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T10:20:54.502839"
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-20T10:20:54.503109"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 1,
+      "suspicious_files": 1,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/insider/access.log": {
+          "unauthorized": {
+            "matches": [
+              "2026-05-20 23:45:01 Unauthorized access to /etc/passwd by user john"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "tool_used": "grep",
+            "command_hash": "a844b4356681c10f"
+          },
+          "privilege escalation": {
+            "matches": [
+              "2026-05-20 23:45:10 Privilege escalation attempt by john"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "tool_used": "grep",
+            "command_hash": "996f3d72f4fb05f7"
+          },
+          "sudo": {
+            "matches": [
+              "2026-05-20 23:45:15 sudo -s executed outside business hours"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "tool_used": "grep",
+            "command_hash": "e9e2a2c7fd0508f2"
+          }
+        }
+      },
+      "unique_ips": [
+        "2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99"
+      ],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/insider/access.log",
+          "keywords_matched": [
+            "unauthorized",
+            "privilege escalation",
+            "sudo"
+          ],
+          "total_hits": 3,
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T09:20:54.807180+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-20T09:20:54.893469+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 2,
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "MEDIUM",
+          "description": "IP 2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99 appeared in 1 evidence source(s)",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T09:20:54.894135+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "sudo",
+            "unauthorized",
+            "privilege escalation"
+          ],
+          "description": "Privilege escalation indicators detected across multiple log entries",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T09:20:54.894412+00:00",
+          "traceable": true
+        }
+      ],
+      "timeline": [
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-20T09:20:54.807180+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-20T10:20:54.502839",
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+        }
+      ],
+      "threat_assessment": {
+        "score": 30,
+        "level": "MEDIUM",
+        "reasons": [
+          "HIGH pattern: PRIVILEGE_ESCALATION"
+        ]
+      },
+      "findings": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "MEDIUM",
+          "description": "IP 2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99 appeared in 1 evidence source(s)",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T09:20:54.894135+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "sudo",
+            "unauthorized",
+            "privilege escalation"
+          ],
+          "description": "Privilege escalation indicators detected across multiple log entries",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-20T09:20:54.894412+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-20T09:20:54.894618+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 1,
+            "files": [
+              "/data/data/com.termux/files/home/cases/insider/access.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-20T10:20:54.502839"
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [
+            "No keywords matched recorded"
+          ],
+          "verification_steps": [
+            "Artifact verified: /data/data/com.termux/files/home/cases/insider/access.log",
+            "\u2705 File exists: /data/data/com.termux/files/home/cases/insider/access.log",
+            "\u2705 Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "keywords_matched": [
+              "unauthorized",
+              "privilege escalation",
+              "sudo"
+            ],
+            "total_hits": 3,
+            "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-20T09:20:54.807180+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: /data/data/com.termux/files/home/cases/insider/access.log",
+            "\u2705 File exists: /data/data/com.termux/files/home/cases/insider/access.log",
+            "\u2705 Keywords matched: ['unauthorized', 'privilege escalation', 'sudo']",
+            "\u2705 Timestamp present"
+          ]
+        },
+        {
+          "pattern": "PRIVILEGE_ESCALATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "\u2705 Supported by 3 keywords: ['sudo', 'unauthorized', 'privilege escalation']",
+            "\u2705 MITRE mapped: T1548 - Abuse Elevation Control Mechanism",
+            "\u2705 Description present"
+          ]
+        },
+        {
+          "ip": "2026-05-20 23:45:20 Large data transfer to external IP 203.0.113.99",
+          "valid": true,
+          "confidence": 80,
+          "issue": null
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 4,
+        "validated": 4,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH"
+      },
+      "errors": [],
+      "timestamp": "2026-05-20T09:20:54.942817+00:00"
+    }
+  },
+  "timestamp": "2026-05-20T09:20:54.942951+00:00",
+  "duration_seconds": 0.52
+}

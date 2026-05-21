@@ -1,0 +1,139 @@
+============================================================
+       NEXUS-IR INCIDENT RESPONSE REPORT
+       Find Evil! Hackathon — SANS Institute 2026
+============================================================
+  Session ID   : 20260520_192549
+  Generated    : 2026-05-20 19:25:51 UTC
+  Duration     : 1.39s
+  Agent        : NEXUS-IR v1.0.0
+
+────────────────────────────────────────────────────────────
+  EXECUTIVE SUMMARY
+────────────────────────────────────────────────────────────
+  Threat Level     : CRITICAL (100/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 4
+  Attack Patterns  : 3
+  IPs Identified   : 3
+  Findings Valid   : 12
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+────────────────────────────────────────────────────────────
+  ATTACK PATTERNS DETECTED
+────────────────────────────────────────────────────────────
+  [1] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation indicators detected
+      Evidence   : privilege escalation, unauthorized
+
+  [2] LATERAL_MOVEMENT_OR_C2
+      Confidence : CRITICAL
+      MITRE      : T1021 - Remote Services / T1059 - Command Interpreter
+      Description: C2 or lateral movement indicators detected
+      Evidence   : exploit
+
+  [3] RANSOMWARE_OR_MALWARE
+      Confidence : CRITICAL
+      MITRE      : T1486 - Data Encrypted for Impact
+      Description: Ransomware or malware execution indicators detected
+      Evidence   : malware
+
+────────────────────────────────────────────────────────────
+  IP ADDRESS CORRELATIONS
+────────────────────────────────────────────────────────────
+  → 185.220.101.47
+    Significance : HIGH
+    Seen by      : LogAgent
+
+  → 203.45.67.89
+    Significance : HIGH
+    Seen by      : LogAgent
+
+  → 91.108.56.130
+    Significance : HIGH
+    Seen by      : LogAgent
+
+────────────────────────────────────────────────────────────
+  INVESTIGATION TIMELINE
+────────────────────────────────────────────────────────────
+  2026-05-20T19:25:49
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: /data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log
+
+  2026-05-20T19:25:49
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: /data/data/com.termux/files/home/cases/financial_breach
+
+  2026-05-20T19:25:50
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log
+
+  2026-05-20T19:25:50
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/financial_breach/domain_controller.log
+
+  2026-05-20T19:25:50
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log
+
+  2026-05-20T19:25:51
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/financial_breach/database_audit.log
+
+────────────────────────────────────────────────────────────
+  VALIDATED FINDINGS
+────────────────────────────────────────────────────────────
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : /data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log
+      Keywords   : 
+
+  [2] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : /data/data/com.termux/files/home/cases/financial_breach
+      Keywords   : 
+
+  [3] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log
+      Keywords   : exploit
+
+  [4] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/financial_breach/domain_controller.log
+      Keywords   : failed password, unauthorized
+
+  [5] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log
+      Keywords   : unauthorized, exploit, malware
+
+  [6] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/financial_breach/database_audit.log
+      Keywords   : unauthorized, privilege escalation
+
+────────────────────────────────────────────────────────────
+  REJECTED / UNVERIFIABLE FINDINGS
+────────────────────────────────────────────────────────────
+  No rejected findings.
+
+============================================================
+  NEXUS-IR — Autonomous Incident Response
+  All findings traceable to specific artifacts.
+  Self-corrected. Zero human intervention.
+============================================================

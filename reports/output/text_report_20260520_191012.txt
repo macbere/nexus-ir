@@ -1,0 +1,92 @@
+============================================================
+       NEXUS-IR INCIDENT RESPONSE REPORT
+       Find Evil! Hackathon — SANS Institute 2026
+============================================================
+  Session ID   : 20260520_191012
+  Generated    : 2026-05-20 19:10:12 UTC
+  Duration     : 0.45s
+  Agent        : NEXUS-IR v1.0.0
+
+────────────────────────────────────────────────────────────
+  EXECUTIVE SUMMARY
+────────────────────────────────────────────────────────────
+  Threat Level     : CRITICAL (100/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 1
+  Attack Patterns  : 2
+  IPs Identified   : 1
+  Findings Valid   : 6
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+────────────────────────────────────────────────────────────
+  ATTACK PATTERNS DETECTED
+────────────────────────────────────────────────────────────
+  [1] LATERAL_MOVEMENT_OR_C2
+      Confidence : CRITICAL
+      MITRE      : T1021 - Remote Services / T1059 - Command Interpreter
+      Description: C2 or lateral movement indicators detected
+      Evidence   : exploit, backdoor
+
+  [2] RANSOMWARE_OR_MALWARE
+      Confidence : CRITICAL
+      MITRE      : T1486 - Data Encrypted for Impact
+      Description: Ransomware or malware execution indicators detected
+      Evidence   : ransomware
+
+────────────────────────────────────────────────────────────
+  IP ADDRESS CORRELATIONS
+────────────────────────────────────────────────────────────
+  → 185.220.101.45
+    Significance : HIGH
+    Seen by      : LogAgent
+
+────────────────────────────────────────────────────────────
+  INVESTIGATION TIMELINE
+────────────────────────────────────────────────────────────
+  2026-05-20T19:10:12
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: /data/data/com.termux/files/home/cases/ransomware/system.log
+
+  2026-05-20T19:10:12
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: /data/data/com.termux/files/home/cases/ransomware
+
+  2026-05-20T19:10:12
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/ransomware/system.log
+
+────────────────────────────────────────────────────────────
+  VALIDATED FINDINGS
+────────────────────────────────────────────────────────────
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : /data/data/com.termux/files/home/cases/ransomware/system.log
+      Keywords   : 
+
+  [2] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : /data/data/com.termux/files/home/cases/ransomware
+      Keywords   : 
+
+  [3] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/ransomware/system.log
+      Keywords   : exploit, ransomware, backdoor
+
+────────────────────────────────────────────────────────────
+  REJECTED / UNVERIFIABLE FINDINGS
+────────────────────────────────────────────────────────────
+  No rejected findings.
+
+============================================================
+  NEXUS-IR — Autonomous Incident Response
+  All findings traceable to specific artifacts.
+  Self-corrected. Zero human intervention.
+============================================================

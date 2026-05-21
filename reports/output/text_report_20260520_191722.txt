@@ -1,0 +1,143 @@
+============================================================
+       NEXUS-IR INCIDENT RESPONSE REPORT
+       Find Evil! Hackathon — SANS Institute 2026
+============================================================
+  Session ID   : 20260520_191720
+  Generated    : 2026-05-20 19:17:22 UTC
+  Duration     : 1.45s
+  Agent        : NEXUS-IR v1.0.0
+
+────────────────────────────────────────────────────────────
+  EXECUTIVE SUMMARY
+────────────────────────────────────────────────────────────
+  Threat Level     : CRITICAL (100/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 4
+  Attack Patterns  : 3
+  IPs Identified   : 4
+  Findings Valid   : 13
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+────────────────────────────────────────────────────────────
+  ATTACK PATTERNS DETECTED
+────────────────────────────────────────────────────────────
+  [1] BRUTE_FORCE_ATTACK
+      Confidence : HIGH
+      MITRE      : T1110 - Brute Force
+      Description: Multiple failed authentication events — brute force attack
+      Evidence   : account lockout, failed password
+
+  [2] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation indicators detected
+      Evidence   : privilege escalation, sudo, root, unauthorized
+
+  [3] LATERAL_MOVEMENT_OR_C2
+      Confidence : CRITICAL
+      MITRE      : T1021 - Remote Services / T1059 - Command Interpreter
+      Description: C2 or lateral movement indicators detected
+      Evidence   : exploit
+
+────────────────────────────────────────────────────────────
+  IP ADDRESS CORRELATIONS
+────────────────────────────────────────────────────────────
+  → 10.0.0.12
+    Significance : HIGH
+    Seen by      : LogAgent
+
+  → 10.0.0.5
+    Significance : HIGH
+    Seen by      : LogAgent
+
+  → 185.220.101.47
+    Significance : HIGH
+    Seen by      : LogAgent
+
+  → 45.142.212.100
+    Significance : HIGH
+    Seen by      : LogAgent
+
+────────────────────────────────────────────────────────────
+  INVESTIGATION TIMELINE
+────────────────────────────────────────────────────────────
+  2026-05-20T19:17:20
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: /data/data/com.termux/files/home/cases/apt_attack/firewall.log
+
+  2026-05-20T19:17:20
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: /data/data/com.termux/files/home/cases/apt_attack
+
+  2026-05-20T19:17:21
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/apt_attack/firewall.log
+
+  2026-05-20T19:17:21
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/apt_attack/auth.log
+
+  2026-05-20T19:17:21
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/apt_attack/system.log
+
+  2026-05-20T19:17:22
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/apt_attack/windows_event.log
+
+────────────────────────────────────────────────────────────
+  VALIDATED FINDINGS
+────────────────────────────────────────────────────────────
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : /data/data/com.termux/files/home/cases/apt_attack/firewall.log
+      Keywords   : 
+
+  [2] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : /data/data/com.termux/files/home/cases/apt_attack
+      Keywords   : 
+
+  [3] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/apt_attack/firewall.log
+      Keywords   : exploit
+
+  [4] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/apt_attack/auth.log
+      Keywords   : failed password, unauthorized, privilege escalation, sudo, root
+
+  [5] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/apt_attack/system.log
+      Keywords   : exploit
+
+  [6] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/apt_attack/windows_event.log
+      Keywords   : account lockout, unauthorized
+
+────────────────────────────────────────────────────────────
+  REJECTED / UNVERIFIABLE FINDINGS
+────────────────────────────────────────────────────────────
+  No rejected findings.
+
+============================================================
+  NEXUS-IR — Autonomous Incident Response
+  All findings traceable to specific artifacts.
+  Self-corrected. Zero human intervention.
+============================================================

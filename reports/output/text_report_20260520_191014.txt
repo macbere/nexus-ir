@@ -1,0 +1,75 @@
+============================================================
+       NEXUS-IR INCIDENT RESPONSE REPORT
+       Find Evil! Hackathon — SANS Institute 2026
+============================================================
+  Session ID   : 20260520_191014
+  Generated    : 2026-05-20 19:10:14 UTC
+  Duration     : 0.46s
+  Agent        : NEXUS-IR v1.0.0
+
+────────────────────────────────────────────────────────────
+  EXECUTIVE SUMMARY
+────────────────────────────────────────────────────────────
+  Threat Level     : HIGH (80/100)
+  Case Priority    : HIGH
+  Files Scanned    : 1
+  Attack Patterns  : 1
+  IPs Identified   : 1
+  Findings Valid   : 4
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+────────────────────────────────────────────────────────────
+  ATTACK PATTERNS DETECTED
+────────────────────────────────────────────────────────────
+  [1] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation indicators detected
+      Evidence   : unauthorized, sudo, privilege escalation
+
+────────────────────────────────────────────────────────────
+  IP ADDRESS CORRELATIONS
+────────────────────────────────────────────────────────────
+  → 203.0.113.99
+    Significance : HIGH
+    Seen by      : LogAgent
+
+────────────────────────────────────────────────────────────
+  INVESTIGATION TIMELINE
+────────────────────────────────────────────────────────────
+  2026-05-20T19:10:14
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: /data/data/com.termux/files/home/cases/insider/access.log
+
+  2026-05-20T19:10:14
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: /data/data/com.termux/files/home/cases/insider/access.log
+
+────────────────────────────────────────────────────────────
+  VALIDATED FINDINGS
+────────────────────────────────────────────────────────────
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : /data/data/com.termux/files/home/cases/insider/access.log
+      Keywords   : 
+
+  [2] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : /data/data/com.termux/files/home/cases/insider/access.log
+      Keywords   : unauthorized, privilege escalation, sudo
+
+────────────────────────────────────────────────────────────
+  REJECTED / UNVERIFIABLE FINDINGS
+────────────────────────────────────────────────────────────
+  No rejected findings.
+
+============================================================
+  NEXUS-IR — Autonomous Incident Response
+  All findings traceable to specific artifacts.
+  Self-corrected. Zero human intervention.
+============================================================
