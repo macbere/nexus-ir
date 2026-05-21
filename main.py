@@ -1,6 +1,11 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from orchestrator import NexusOrchestrator
+try:
+    from langgraph_orchestrator import LangGraphOrchestrator
+    USE_LANGGRAPH = True
+except ImportError:
+    USE_LANGGRAPH = False
 from reports.generator import ReportGenerator
 
 def main():
@@ -16,7 +21,10 @@ def main():
             f.write("Reverse shell connection from 10.0.0.99\n")
     else:
         case_path = sys.argv[1]
-    orchestrator = NexusOrchestrator()
+    if USE_LANGGRAPH:
+        orchestrator = LangGraphOrchestrator()
+    else:
+        orchestrator = NexusOrchestrator()
     final_report = orchestrator.investigate(case_path)
     generator = ReportGenerator()
     generator.generate_text_report(final_report)
