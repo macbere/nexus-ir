@@ -213,6 +213,80 @@ class CorrectionAgent:
             'forced_reeval': self.forced_reeval
         }
 
+
+    def _auto_remediate(self, issues, triage_report, correlation_report):
+        """
+        When devil advocate finds contradictions, inject missing patterns
+        and fix the threat score automatically — no human needed.
+        """
+        if not correlation_report:
+            return [], 0
+
+        injected = []
+        score_boost = 0
+
+        critical_found = triage_report.get('keyword_hits', {}).get('critical_keywords_found', []) if triage_report else []
+        pattern_names = [p.get('pattern', '') for p in correlation_report.get('attack_patterns', [])]
+        all_iocs = correlation_report.get('extracted_entities', {})
+        granted_access = str(all_iocs.get('granted_access', []))
+        current_score = correlation_report.get('threat_assessment', {}).get('score', 0)
+
+        # Fix 1: Inject POWERSHELL_OBFUSCATION if PowerShell keywords found but pattern missing
+        ps_indicators = {'powershell', 'executionpolicy', 'windowstyle', 'bypass', 'hidden', 'base64', 'encoded'}
+        critical_str = str(critical_found).lower()
+        if any(k in critical_str for k in ps_indicators):
+            if 'POWERSHELL_OBFUSCATION' not in pattern_names:
+                matched_kw = [k for k in ps_indicators if k in critical_str]
+                injected.append({
+                    'pattern': 'POWERSHELL_OBFUSCATION',
+                    'confidence': 'HIGH',
+                    'evidence_keywords': matched_kw,
+                    'description': 'PowerShell obfuscation — injected by CorrectionAgent after triage-correlation mismatch',
+                    'mitre_technique': 'T1059.001 - PowerShell / T1027 - Obfuscation',
+                    'base_score': 85,
+                    'injected_by': 'devil_advocate_auto_remediation'
+                })
+                score_boost = max(score_boost, 85)
+                self._log('AUTO-FIX: Injected POWERSHELL_OBFUSCATION pattern', 'FIX')
+
+        # Fix 2: Inject PROCESS_INJECTION if 0x1FFFFF found but pattern missing
+        if ('0x1FFFFF' in granted_access or '0x1fffff' in granted_access):
+            if 'PROCESS_INJECTION' not in pattern_names:
+                injected.append({
+                    'pattern': 'PROCESS_INJECTION',
+                    'confidence': 'CRITICAL',
+                    'evidence_keywords': ['0x1FFFFF', 'GrantedAccess', 'PROCESS_ALL_ACCESS'],
+                    'description': 'Process injection via PROCESS_ALL_ACCESS — injected by CorrectionAgent',
+                    'mitre_technique': 'T1055 - Process Injection',
+                    'base_score': 97,
+                    'injected_by': 'devil_advocate_auto_remediation'
+                })
+                score_boost = max(score_boost, 97)
+                self._log('AUTO-FIX: Injected PROCESS_INJECTION pattern (0x1FFFFF evidence)', 'FIX')
+
+        # Fix 3: Force threat score to CRITICAL if high-signal signatures exist but score is too low
+        signatures = correlation_report.get('high_signal_signatures', [])
+        if signatures and current_score < 85:
+            score_boost = max(score_boost, 90)
+            self._log(f'AUTO-FIX: Score boosted to {score_boost} — {len(signatures)} high-signal signatures demand CRITICAL', 'FIX')
+
+        # Apply injected patterns into correlation_report in place
+        if injected:
+            if 'attack_patterns' not in correlation_report:
+                correlation_report['attack_patterns'] = []
+            correlation_report['attack_patterns'].extend(injected)
+            self._log(f'AUTO-FIX: {len(injected)} pattern(s) injected into correlation report', 'FIX')
+
+        # Apply score boost
+        if score_boost > current_score:
+            old_score = current_score
+            correlation_report['threat_assessment']['score'] = score_boost
+            correlation_report['threat_assessment']['level'] = 'CRITICAL'
+            correlation_report['threat_assessment']['auto_corrected'] = True
+            self._log(f'AUTO-FIX: Threat score corrected {old_score} → {score_boost} (CRITICAL)', 'FIX')
+
+        return injected, score_boost
+
     def run(self, all_reports, correlation_report=None, triage_report=None):
         self._log('Starting self-correction and devil advocate pass...')
         self.iteration += 1
@@ -226,6 +300,15 @@ class CorrectionAgent:
                 self._log(f'  Issue: {issue}', 'WARN')
             for sug in suggestions:
                 self._log(f'  Fix: {sug}', 'FIX')
+            # AUTO-REMEDIATION: fix the problems instead of just flagging them
+            self._log('Phase 0b: Auto-remediation — injecting missing patterns...', 'FIX')
+            injected_patterns, score_applied = self._auto_remediate(
+                issues, triage_report, correlation_report
+            )
+            if injected_patterns:
+                self._log(f'Auto-remediation complete: {len(injected_patterns)} fix(es) applied', 'FIX')
+            else:
+                self._log('Auto-remediation: no additional fixes needed', 'FIX')
         else:
             self._log('No contradictions detected — findings are internally consistent', 'PASS')
 
@@ -287,7 +370,14 @@ class CorrectionAgent:
             self._log('WARNING: Nothing validated — pipeline may have failed', 'WARN')
             self.errors.append('Zero findings reviewed')
 
+        # Collect all auto-remediated patterns for summary
+        auto_fixed = [
+            p for p in (correlation_report.get('attack_patterns', []) if correlation_report else [])
+            if p.get('injected_by') == 'devil_advocate_auto_remediation'
+        ]
         summary = self._generate_correction_summary(issues, suggestions)
+        summary['auto_remediated_patterns'] = [p['pattern'] for p in auto_fixed]
+        summary['auto_remediation_count'] = len(auto_fixed)
         self._log(f'Accuracy: {summary["accuracy_rate"]}% — Confidence: {summary["overall_confidence"]}', 'PASS')
         if self.forced_reeval:
             self._log('FORCED RE-EVALUATION flagged — review devil advocate issues above', 'CRIT')

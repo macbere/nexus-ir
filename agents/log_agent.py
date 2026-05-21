@@ -279,6 +279,55 @@ class LogAgent:
                     self._log(f'  ALERT: {keyword!r} x{len(output.split(chr(10)))}', 'FIND')
         return hits
 
+
+    def _flatten_json_values(self, obj, depth=0):
+        """Recursively extract all string values from a JSON object."""
+        if depth > 10:
+            return ''
+        result = []
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                result.append(str(k))
+                result.append(self._flatten_json_values(v, depth + 1))
+        elif isinstance(obj, list):
+            for item in obj:
+                result.append(self._flatten_json_values(item, depth + 1))
+        elif isinstance(obj, str):
+            result.append(obj)
+        elif obj is not None:
+            result.append(str(obj))
+        return '\n'.join(filter(None, result))
+
+    def _keyword_scan_json(self, filepath, file_hash):
+        """JSON-aware keyword scanner — extracts keywords from inside JSON values."""
+        hits = {}
+        try:
+            with open(filepath, 'r', errors='ignore') as f:
+                data = json.load(f)
+            flat_text = self._flatten_json_values(data)
+            flat_lower = flat_text.lower()
+            for keyword in self.SUSPICIOUS_KEYWORDS:
+                kw_lower = keyword.lower()
+                if kw_lower in flat_lower:
+                    matches = [
+                        line.strip() for line in flat_text.split('\n')
+                        if kw_lower in line.lower() and line.strip()
+                    ]
+                    if matches:
+                        hits[keyword] = {
+                            'matches': matches[:5],
+                            'count': len(matches),
+                            'source_file': filepath,
+                            'file_hash': file_hash[:16],
+                            'tool_used': 'json_parser',
+                        }
+                        self._log(f'  JSON-ALERT: {keyword!r} x{len(matches)}', 'FIND')
+        except json.JSONDecodeError:
+            self._log(f'  JSON parse failed for {os.path.basename(filepath)} — falling back to grep', 'WARN')
+        except Exception as e:
+            self._log(f'  JSON scan error: {e}', 'WARN')
+        return hits
+
     def _analyze_file(self, filepath):
         self._log(f'Analyzing: {os.path.basename(filepath)}')
 
@@ -298,7 +347,18 @@ class LogAgent:
             return {}
 
         self._extract_iocs(raw_text, filepath)
-        hits = self._keyword_scan(filepath, file_hash)
+
+        # Use JSON-aware scanner for .json files, grep for everything else
+        ext = os.path.splitext(filepath)[1].lower()
+        if ext == '.json':
+            hits = self._keyword_scan_json(filepath, file_hash)
+            # Also run grep scan and merge results
+            grep_hits = self._keyword_scan(filepath, file_hash)
+            for kw, val in grep_hits.items():
+                if kw not in hits:
+                    hits[kw] = val
+        else:
+            hits = self._keyword_scan(filepath, file_hash)
         return hits
 
     def run(self, case_path, file_list=None):
@@ -338,6 +398,17 @@ class LogAgent:
                     'total_hits': sum(v['count'] for v in hits.values())
                 })
 
+        # Count files as suspicious if ANY IoC was extracted from them
+        files_with_iocs = set()
+        for finding in self.findings:
+            if finding.get('type') in ('malicious_base64_payload', 'ioc_extracted'):
+                src = finding.get('artifact', '')
+                if src:
+                    files_with_iocs.add(src)
+        # Merge with all_hits keys
+        all_suspicious_files = set(all_hits.keys()) | files_with_iocs
+        suspicious_count = len(all_suspicious_files)
+
         clean_iocs = {k: sorted(list(v)) for k, v in self.extracted_iocs.items()}
         total_iocs = sum(len(v) for v in clean_iocs.values())
         self._log(f'Total verified IoCs: {total_iocs} (regex-only)', 'FIND')
@@ -352,7 +423,7 @@ class LogAgent:
             'status': 'COMPLETE',
             'agent': self.name,
             'log_files_analyzed': len(files),
-            'suspicious_files': len(all_hits),
+            'suspicious_files': suspicious_count,
             'hits': all_hits,
             'extracted_iocs': clean_iocs,
             'unique_ips': clean_iocs['ipv4_addresses'],
