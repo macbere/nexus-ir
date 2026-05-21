@@ -7,6 +7,11 @@ try:
 except ImportError:
     USE_LANGGRAPH = False
 from reports.generator import ReportGenerator
+try:
+    from reports.pdf_generator import PDFReportGenerator
+    HAS_PDF = True
+except ImportError:
+    HAS_PDF = False
 
 def main():
     print("NEXUS-IR Find Evil Hackathon Submission")
@@ -28,6 +33,9 @@ def main():
     final_report = orchestrator.investigate(case_path)
     generator = ReportGenerator()
     generator.generate_text_report(final_report)
+    if HAS_PDF:
+        pdf_gen = PDFReportGenerator()
+        pdf_gen.generate_pdf_report(final_report)
     es = final_report.get("executive_summary", {})
     print("Investigation complete!")
     print("Threat: " + es.get("threat_level", "?"))
