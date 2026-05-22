@@ -91,14 +91,12 @@ class CorrectionAgent:
 
         # Check 3: PowerShell keywords found but no POWERSHELL_OBFUSCATION
         ps_keywords = {'executionpolicy', 'windowstyle', 'hidden', 'bypass', 'powershell'}
-        hit_keys = set()
-        for agent_name, report in {}.items():
-            pass
         if critical_found and any(k in str(critical_found).lower() for k in ps_keywords):
             if 'POWERSHELL_OBFUSCATION' not in pattern_names:
                 issues.append('PowerShell stealth keywords in triage but POWERSHELL_OBFUSCATION not detected')
                 suggestions.append('Force re-run correlation with PowerShell keyword context')
                 self._log('DEVIL ADVOCATE: PowerShell obfuscation missed!', 'DEVIL')
+                self.forced_reeval = True
 
         # Check 4: Signatures triggered but score too low
         if signatures and threat_score < 85:
