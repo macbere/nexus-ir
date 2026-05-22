@@ -13,6 +13,9 @@ from agents.triage_agent import TriageAgent
 from agents.log_agent import LogAgent
 from agents.correlation_agent import CorrelationAgent
 from agents.correction_agent import CorrectionAgent
+from agents.disk_agent import DiskAgent
+from agents.memory_agent import MemoryAgent
+from agents.network_agent import NetworkAgent
 
 
 class NexusOrchestrator:
@@ -69,6 +72,33 @@ class NexusOrchestrator:
         self.all_reports["TriageAgent"] = report
         self._record_iteration("TriageAgent", report["status"], len(report["findings"]))
         self._log(f"Triage complete — Priority: {report['priority']}, Files: {report['total_files']}", "DONE")
+        return report
+
+    def _run_disk_analysis(self, case_path: str) -> dict:
+        self._log("Phase 2b: DISK ANALYSIS -- scanning file system artifacts...", "AGENT")
+        agent = DiskAgent()
+        report = agent.run(case_path)
+        self.all_reports["DiskAgent"] = report
+        self._record_iteration("DiskAgent", report["status"], len(report["findings"]))
+        self._log(f"Disk analysis complete -- {report['total_hits']} hit(s), priority: {report['priority']}", "DONE")
+        return report
+
+    def _run_memory_analysis(self, case_path: str) -> dict:
+        self._log("Phase 2c: MEMORY ANALYSIS -- hunting injection and credential dumps...", "AGENT")
+        agent = MemoryAgent()
+        report = agent.run(case_path)
+        self.all_reports["MemoryAgent"] = report
+        self._record_iteration("MemoryAgent", report["status"], len(report["findings"]))
+        self._log(f"Memory analysis complete -- {report['total_hits']} hit(s), priority: {report['priority']}", "DONE")
+        return report
+
+    def _run_network_analysis(self, case_path: str) -> dict:
+        self._log("Phase 2d: NETWORK ANALYSIS -- detecting C2, exfil, tunneling...", "AGENT")
+        agent = NetworkAgent()
+        report = agent.run(case_path)
+        self.all_reports["NetworkAgent"] = report
+        self._record_iteration("NetworkAgent", report["status"], len(report["findings"]))
+        self._log(f"Network analysis complete -- {report['total_hits']} hit(s), priority: {report['priority']}", "DONE")
         return report
 
     def _run_log_analysis(self, case_path: str) -> dict:
@@ -191,11 +221,17 @@ class NexusOrchestrator:
         # Run all phases
         triage = self._run_triage(case_path)
         log = self._run_log_analysis(case_path)
+        disk = self._run_disk_analysis(case_path)
+        memory = self._run_memory_analysis(case_path)
+        network = self._run_network_analysis(case_path)
         correlation = self._run_correlation()
         correction = self._run_correction(correlation, triage)
 
         # Build final report
         final_report = self._generate_final_report(triage, log, correlation, correction)
+        final_report['agent_reports']['disk_analysis'] = disk
+        final_report['agent_reports']['memory_analysis'] = memory
+        final_report['agent_reports']['network_analysis'] = network
 
         # Calculate duration
         duration = (datetime.now(timezone.utc) - start_time).total_seconds()

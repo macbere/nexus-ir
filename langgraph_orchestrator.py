@@ -17,6 +17,9 @@ from agents.triage_agent import TriageAgent
 from agents.log_agent import LogAgent
 from agents.correlation_agent import CorrelationAgent
 from agents.correction_agent import CorrectionAgent
+from agents.disk_agent import DiskAgent
+from agents.memory_agent import MemoryAgent
+from agents.network_agent import NetworkAgent
 
 
 # ─────────────────────────────────────────────
@@ -37,6 +40,9 @@ class NexusState(TypedDict):
     reeval_reason: str
     iteration_log: list
     final_report: dict
+    disk_analysis: dict
+    memory_analysis: dict
+    network_analysis: dict
 
 
 # ─────────────────────────────────────────────
@@ -101,6 +107,51 @@ def node_log_analysis(state: NexusState) -> NexusState:
         "all_reports": all_reports,
         "iteration_log": log
     }
+
+
+# ─────────────────────────────────────────────
+# NODE: DISK ANALYSIS
+# ─────────────────────────────────────────────
+
+def node_disk_analysis(state: NexusState) -> NexusState:
+    log = _log(state, "NODE: Disk Analysis -- scanning file system artifacts...", "AGENT")
+    agent = DiskAgent()
+    report = agent.run(state["case_path"])
+    log = _log({"iteration_log": log, "iteration": state.get("iteration", 0)},
+               f"Disk analysis done -- {report['total_hits']} hit(s), priority: {report['priority']}", "DONE")
+    all_reports = dict(state.get("all_reports", {}))
+    all_reports["DiskAgent"] = report
+    return {**state, "disk_analysis": report, "all_reports": all_reports, "iteration_log": log}
+
+
+# ─────────────────────────────────────────────
+# NODE: MEMORY ANALYSIS
+# ─────────────────────────────────────────────
+
+def node_memory_analysis(state: NexusState) -> NexusState:
+    log = _log(state, "NODE: Memory Analysis -- hunting injection and credential dumps...", "AGENT")
+    agent = MemoryAgent()
+    report = agent.run(state["case_path"])
+    log = _log({"iteration_log": log, "iteration": state.get("iteration", 0)},
+               f"Memory analysis done -- {report['total_hits']} hit(s), priority: {report['priority']}", "DONE")
+    all_reports = dict(state.get("all_reports", {}))
+    all_reports["MemoryAgent"] = report
+    return {**state, "memory_analysis": report, "all_reports": all_reports, "iteration_log": log}
+
+
+# ─────────────────────────────────────────────
+# NODE: NETWORK ANALYSIS
+# ─────────────────────────────────────────────
+
+def node_network_analysis(state: NexusState) -> NexusState:
+    log = _log(state, "NODE: Network Analysis -- detecting C2, exfil, tunneling...", "AGENT")
+    agent = NetworkAgent()
+    report = agent.run(state["case_path"])
+    log = _log({"iteration_log": log, "iteration": state.get("iteration", 0)},
+               f"Network analysis done -- {report['total_hits']} hit(s), priority: {report['priority']}", "DONE")
+    all_reports = dict(state.get("all_reports", {}))
+    all_reports["NetworkAgent"] = report
+    return {**state, "network_analysis": report, "all_reports": all_reports, "iteration_log": log}
 
 
 # ─────────────────────────────────────────────
@@ -257,6 +308,9 @@ def node_report(state: NexusState) -> NexusState:
         "agent_reports": {
             "triage": triage,
             "log_analysis": log_analysis,
+            "disk_analysis": state.get("disk_analysis", {}),
+            "memory_analysis": state.get("memory_analysis", {}),
+            "network_analysis": state.get("network_analysis", {}),
             "correlation": correlation,
             "correction": correction
         },
@@ -283,6 +337,9 @@ def build_graph():
     # Add all nodes
     graph.add_node("triage", node_triage)
     graph.add_node("log_analysis", node_log_analysis)
+    graph.add_node("disk_analysis", node_disk_analysis)
+    graph.add_node("memory_analysis", node_memory_analysis)
+    graph.add_node("network_analysis", node_network_analysis)
     graph.add_node("correlation", node_correlation)
     graph.add_node("correction", node_correction)
     graph.add_node("increment", node_increment)
@@ -291,7 +348,10 @@ def build_graph():
     # Linear flow
     graph.set_entry_point("triage")
     graph.add_edge("triage", "log_analysis")
-    graph.add_edge("log_analysis", "correlation")
+    graph.add_edge("log_analysis", "disk_analysis")
+    graph.add_edge("disk_analysis", "memory_analysis")
+    graph.add_edge("memory_analysis", "network_analysis")
+    graph.add_edge("network_analysis", "correlation")
     graph.add_edge("correlation", "correction")
 
     # Decision point — loop or exit
@@ -387,7 +447,10 @@ class LangGraphOrchestrator:
             "should_reeval": False,
             "reeval_reason": "",
             "iteration_log": [],
-            "final_report": {}
+            "final_report": {},
+            "disk_analysis": {},
+            "memory_analysis": {},
+            "network_analysis": {}
         }
 
         final_state = app.invoke(initial_state)
