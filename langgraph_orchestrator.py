@@ -38,6 +38,7 @@ class NexusState(TypedDict):
     iteration: int
     should_reeval: bool
     reeval_reason: str
+    injected_patterns: list
     iteration_log: list
     final_report: dict
     disk_analysis: dict
@@ -167,6 +168,18 @@ def node_correlation(state: NexusState) -> NexusState:
 
     agent = CorrelationAgent()
     report = agent.run(state["all_reports"])
+
+    # Re-apply patterns injected by CorrectionAgent in previous iterations
+    # Prevents state drift: injected fixes are lost when CorrelationAgent rebuilds from all_reports
+    previously_injected = state.get("injected_patterns", [])
+    if previously_injected:
+        existing_names = [p.get("pattern", "") for p in report.get("attack_patterns", [])]
+        for pat in previously_injected:
+            if pat.get("pattern") not in existing_names:
+                report.setdefault("attack_patterns", []).append(pat)
+                log = _log({"iteration_log": log, "iteration": iteration},
+                           f"State-retained: {pat.get('pattern')} re-applied from previous iteration", "LOOP")
+
     threat = report["threat_assessment"]
     log = _log({"iteration_log": log, "iteration": iteration},
                f"Correlation done — Threat: {threat['level']} ({threat['score']}/100)", "DONE")
@@ -205,13 +218,22 @@ def node_correction(state: NexusState) -> NexusState:
         log = _log({"iteration_log": log, "iteration": iteration},
                    f"Correction done — {summary['accuracy_rate']}% accuracy, {summary['validated']} validated", "DONE")
 
+    # Persist injected patterns in state so loop-back carries them forward
+    all_injected = list(state.get("injected_patterns", []))
+    current_corr_patterns = state.get("correlation", {}).get("attack_patterns", [])
+    for p in current_corr_patterns:
+        if (p.get("injected_by") == "devil_advocate_auto_remediation"
+                and p not in all_injected):
+            all_injected.append(p)
+
     return {
         **state,
         "correction": report,
         "should_reeval": forced,
         "reeval_reason": reeval_reason,
         "iteration": iteration,
-        "iteration_log": log
+        "iteration_log": log,
+        "injected_patterns": all_injected
     }
 
 

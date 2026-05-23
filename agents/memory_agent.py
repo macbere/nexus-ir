@@ -14,11 +14,30 @@ class MemoryAgent:
     """
 
     INJECTION_INDICATORS = [
+        # Windows API injection calls
         'virtualalloc', 'virtualallocex', 'writeprocessmemory',
         'createremotethread', 'ntcreatethreaded', 'queueuserapc',
         'setwindowshookex', 'reflectivedllinjection', 'process hollowing',
         'process herpaderping', 'process doppelganging',
-        'mapviewofsection', 'ntmapviewofsection', 'remotethreadcreation'
+        'mapviewofsection', 'ntmapviewofsection', 'remotethreadcreation',
+        'setthreadcontext', 'ntcreatethread', 'zwcreatethread',
+        # Sysmon EventID 8 and 10 text signatures
+        'eventid 8', 'eventid: 8', '"eventid": 8',
+        'eventid 10', 'eventid: 10', '"eventid": 10',
+        'createremotethread detected', 'targetimage',
+        'sourceprocessid', 'targetprocessid',
+        # Text-log injection phrases (covers apt_attack text logs)
+        'process injection', 'process spawned', 'remote thread',
+        'suspicious process', 'anomaly process', 'injected into',
+        'dll injection', 'shellcode inject', 'code injection',
+        # LOLBIN-assisted injection vectors
+        'rundll32', 'regsvr32', 'mshta', 'certutil',
+        'comsvcs.dll', 'minidump', 'procdump'
+    ]
+
+    # GrantedAccess hex values consistent with process injection
+    INJECTION_ACCESS_VALUES = [
+        '0x1fffff', '0x143a', '0x1f3fff', '0x1410', '0x1f0fff'
     ]
 
     CREDENTIAL_DUMPING = [
@@ -193,6 +212,29 @@ class MemoryAgent:
                         'indicator': indicator,
                         'evidence': matches[:3],
                         'severity': 'HIGH',
+                        'mitre': 'T1055 - Process Injection'
+                    })
+
+        # Check GrantedAccess hex values for injection signatures
+        for access_val in self.INJECTION_ACCESS_VALUES:
+            if access_val.lower() in text_lower:
+                matches = self._get_matching_lines(text, access_val)
+                if matches:
+                    self.extracted_iocs['injection_techniques'].add(
+                        f'GrantedAccess:{access_val}'
+                    )
+                    self._log(
+                        f'  INJECTION ACCESS: {access_val} in {os.path.basename(source_file)}',
+                        'FIND'
+                    )
+                    hits += 1
+                    self._record_finding({
+                        'type': 'process_injection',
+                        'artifact': source_file,
+                        'file_hash': file_hash[:16],
+                        'indicator': f'GrantedAccess {access_val}',
+                        'evidence': matches[:3],
+                        'severity': 'CRITICAL',
                         'mitre': 'T1055 - Process Injection'
                     })
 

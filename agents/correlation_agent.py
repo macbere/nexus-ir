@@ -487,6 +487,49 @@ class CorrelationAgent:
                 self._log(f'  {ioc_type}: {ioc_list}', 'FIND')
 
         keyword_map = self._extract_all_keywords(all_reports)
+
+        # Inject MemoryAgent + DiskAgent findings as pseudo-keywords into keyword_map
+        # This allows PROCESS_INJECTION and CERTUTIL patterns to fire from memory/disk findings
+        FINDING_KW_MAP = {
+            'process_injection':      ['process injection', 'createremotethread', 'targetimage',
+                                       'sourceprocessid', 'rundll32', 'comsvcs', 'minidump'],
+            'credential_dumping':     ['lsass', 'minidump', 'comsvcs'],
+            'suspicious_process_tree':['process injection', 'suspicious process'],
+            'malware_drop_zone':      ['suspicious process'],
+            'malicious_filename':     [],
+            'c2_communication':       ['exfiltration'],
+            'data_exfiltration':      ['exfiltration'],
+        }
+        for agent_name, report in all_reports.items():
+            if not isinstance(report, dict):
+                continue
+            for finding in report.get('findings', []):
+                if not isinstance(finding, dict):
+                    continue
+                ftype = finding.get('type', '')
+                artifact = finding.get('artifact', finding.get('file', 'unknown'))
+                # Add indicator string as keyword
+                indicator = str(finding.get('indicator', '')).lower().strip()
+                if indicator:
+                    if indicator not in keyword_map:
+                        keyword_map[indicator] = []
+                    keyword_map[indicator].append({'agent': agent_name, 'file': artifact})
+                # Add mapped pseudo-keywords for this finding type
+                for kw in FINDING_KW_MAP.get(ftype, []):
+                    if kw not in keyword_map:
+                        keyword_map[kw] = []
+                    keyword_map[kw].append({'agent': agent_name, 'file': artifact})
+                # Also scan evidence lines for known keywords
+                for ev in finding.get('evidence', [])[:3]:
+                    ev_lower = str(ev).lower()
+                    for kw in ['rundll32', 'comsvcs', 'minidump', 'lsass', 'certutil',
+                               'createremotethread', 'targetimage', 'sourceprocessid',
+                               'process injection', 'anomaly process', 'suspicious process',
+                               'remote thread', 'shellcode', 'regsvr32', 'scrobj', 'decode']:
+                        if kw in ev_lower:
+                            if kw not in keyword_map:
+                                keyword_map[kw] = []
+                            keyword_map[kw].append({'agent': agent_name, 'file': artifact})
         self._log(f'Keywords: {len(keyword_map)} found', 'FIND')
 
         # Phase 1: High-signal signature detection

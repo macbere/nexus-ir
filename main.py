@@ -43,6 +43,47 @@ def _apply_behavioral_overrides(final_report, case_path):
     patterns = final_report.get('attack_patterns', [])
     triggered = False
 
+    # T1055 - Process Injection via text-log signatures (apt_attack style)
+    apt_injection_signals = (
+        ('anomaly process' in raw or 'process injection' in raw or
+         'createremotethread' in raw or 'injected' in raw) and
+        ('lsass' in raw or 'mimikatz' in raw or 'credential dump' in raw or
+         'reverse shell' in raw or 'lateral movement' in raw)
+    )
+    if apt_injection_signals and not any(
+        p.get('pattern') == 'PROCESS_INJECTION' for p in patterns
+    ):
+        print('[BEHAVIORAL OVERRIDE] T1055 - APT Process Injection via text signatures -> CRITICAL (88)')
+        es['threat_level'] = 'CRITICAL'
+        es['threat_score'] = max(es.get('threat_score', 0), 88)
+        patterns.append({
+            'pattern': 'PROCESS_INJECTION',
+            'confidence': 'CRITICAL',
+            'mitre_technique': 'T1055 - Process Injection',
+            'evidence_keywords': ['anomaly process', 'lsass', 'lateral movement'],
+            'description': 'APT process injection confirmed via text-log signatures',
+            'injected_by': 'behavioral_override'
+        })
+        triggered = True
+
+    # T1055 - Process Injection via certutil + GrantedAccess
+    certutil_signals = ('certutil' in raw or 'certutil.exe' in raw)
+    injection_signals = ('0x143a' in raw or '0x1f3fff' in raw or
+                         'targetprocessid' in raw or 'sourceprocessid' in raw)
+    if certutil_signals and injection_signals:
+        print('[BEHAVIORAL OVERRIDE] T1055 - Certutil Staging + Process Injection -> CRITICAL (88)')
+        es['threat_level'] = 'CRITICAL'
+        es['threat_score'] = max(es.get('threat_score', 0), 88)
+        patterns.append({
+            'pattern': 'PROCESS_INJECTION',
+            'confidence': 'CRITICAL',
+            'mitre_technique': 'T1055 - Process Injection / T1140 - Certutil Staging',
+            'evidence_keywords': ['certutil', '0x143A', 'targetprocessid'],
+            'description': 'Certutil decoded payload injected into process via GrantedAccess',
+            'injected_by': 'behavioral_override'
+        })
+        triggered = True
+
     # T1218.010 - Regsvr32 Malicious Callback
     if 'regsvr32.exe' in raw and '/i:http' in raw:
         print('[BEHAVIORAL OVERRIDE] T1218.010 - Regsvr32 Malicious Callback -> CRITICAL (85)')
