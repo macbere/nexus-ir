@@ -1,0 +1,186 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260524_063927
+  Generated    : 2026-05-24 06:39:28 UTC
+  Duration     : 0.7s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : CRITICAL (90/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 1
+  Attack Patterns  : 2
+  IPs Identified   : 0
+  Findings Valid   : 10
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : sysmon_blinding.json
+  SHA256 : f9363d427be7f425c38101b3db2157215b2ec576afc4487973f7d60d77a721fc
+  Size   : 958 bytes
+  Hashed : 2026-05-24T06:39:28.242322+00:00
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  [1] CREDENTIAL_DUMPING
+      Confidence : CRITICAL
+      MITRE      : T1003 - OS Credential Dumping
+      Description: Credential dumping detected
+      Evidence   : lsass
+
+  [2] DEFENSE_EVASION_LOG_CLEAR
+      Confidence : CRITICAL
+      MITRE      : T1070.001 - Clear Windows Event Logs
+      Description: Event logs cleared using wevtutil — attacker covering tracks
+      Evidence   : wevtutil.exe, cl
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  HOSTNAMES:
+    - DESKTOP-DEV
+    - DESKTOP-DEV-99A
+  PROCESS IDS:
+    - 11412
+    - 11500
+    - 5540
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  No IP correlations found.
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-24T06:39:27
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: sysmon_blinding.json
+
+  2026-05-24T06:39:27
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: triage_scan
+
+  2026-05-24T06:39:28
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: sysmon_blinding.json
+
+  2026-05-24T06:39:28
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_blinding.json
+
+  2026-05-24T06:39:28
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_blinding.json
+
+  2026-05-24T06:39:28
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_blinding.json
+
+  2026-05-24T06:39:28
+    Agent   : MemoryAgent
+    Event   : credential_dumping
+    Artifact: sysmon_blinding.json
+
+  2026-05-24T06:39:28
+    Agent   : MemoryAgent
+    Event   : credential_dumping
+    Artifact: sysmon_blinding.json
+
+  2026-05-24T06:39:28
+    Agent   : MemoryAgent
+    Event   : credential_dumping
+    Artifact: sysmon_blinding.json
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : sysmon_blinding.json
+
+  [2] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : triage_scan
+
+  [3] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : sysmon_blinding.json
+      File Hash  : f9363d427be7f425c38101b3db215721...
+      Keywords   : lsass, rundll32
+
+  [4] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_blinding.json
+      File Hash  : f9363d427be7f425...
+
+  [5] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_blinding.json
+      File Hash  : f9363d427be7f425...
+
+  [6] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_blinding.json
+      File Hash  : f9363d427be7f425...
+
+  [7] Type       : credential_dumping
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_blinding.json
+      File Hash  : f9363d427be7f425...
+
+  [8] Type       : credential_dumping
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_blinding.json
+      File Hash  : f9363d427be7f425...
+
+  [9] Type       : credential_dumping
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_blinding.json
+      File Hash  : f9363d427be7f425...
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] ISOLATE host DESKTOP-DEV immediately — disconnect from all network segments
+  [02] ISOLATE host DESKTOP-DEV-99A immediately — disconnect from all network segments
+  [03] PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings
+  [04] NOTIFY CISO and legal team — assess breach notification obligations
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================

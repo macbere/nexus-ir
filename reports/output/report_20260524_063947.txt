@@ -1,0 +1,123 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260524_063947
+  Generated    : 2026-05-24 06:39:47 UTC
+  Duration     : 0.58s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : HIGH (80/100)
+  Case Priority    : HIGH
+  Files Scanned    : 1
+  Attack Patterns  : 1
+  IPs Identified   : 1
+  Findings Valid   : 5
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : access.log
+  SHA256 : 6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76
+  Size   : 318 bytes
+  Hashed : 2026-05-24T06:39:47.758933+00:00
+
+-----------------------------------------------------------------
+  ATTACK NARRATIVE -- KILL CHAIN SUMMARY
+-----------------------------------------------------------------
+  The attack originated from 203.0.113.99 targeting the target,
+  gaining initial foothold through exploitation of a
+  network-accessible service.
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  [1] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation detected
+      Evidence   : unauthorized, sudo, privilege escalation
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  IPV4 ADDRESSES:
+    - 203.0.113.99
+  FILE PATHS:
+    - /etc/passwd
+  USERNAMES:
+    - john
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  -> 203.0.113.99
+     Significance : HIGH
+     Description  : Regex-verified IoC: 203.0.113.99
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-24T06:39:47
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: access.log
+
+  2026-05-24T06:39:47
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: access.log
+
+  2026-05-24T06:39:47
+    Agent   : DiskAgent
+    Event   : malware_drop_zone
+    Artifact: access.log
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : access.log
+
+  [2] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : access.log
+      File Hash  : 6a6a8f82685d612a9aa39307b4b0c0bc...
+      Keywords   : unauthorized, privilege escalation, sudo
+
+  [3] Type       : malware_drop_zone
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : access.log
+      File Hash  : 6a6a8f82685d612a...
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] BLOCK IP 203.0.113.99 at perimeter firewall and all internal segment boundaries
+  [02] SUSPEND account 'john' and invalidate all active sessions
+  [03] PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings
+  [04] NOTIFY CISO and legal team — assess breach notification obligations
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================

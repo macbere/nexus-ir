@@ -1,0 +1,227 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260524_063940
+  Generated    : 2026-05-24 06:39:42 UTC
+  Duration     : 1.38s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : CRITICAL (88/100)
+  Case Priority    : HIGH
+  Files Scanned    : 2
+  Attack Patterns  : 1
+  IPs Identified   : 2
+  Findings Valid   : 11
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : sysmon_evasion.json
+  SHA256 : 615493078afea7088ec15131f427b705ad567dd69ae811b67506f1a3eef154e8
+  Size   : 974 bytes
+  Hashed : 2026-05-24T06:39:41.767401+00:00
+
+  File   : zeek_encrypted.json
+  SHA256 : b78c6fbeec171657acf6841c291691048b30c0e84de10312835dfb92eae954dc
+  Size   : 542 bytes
+  Hashed : 2026-05-24T06:39:41.768629+00:00
+
+-----------------------------------------------------------------
+  ATTACK NARRATIVE -- KILL CHAIN SUMMARY
+-----------------------------------------------------------------
+  A heavily obfuscated PowerShell command was executed on
+  DESKTOP-DEV (ProcessID 1440) using ExecutionPolicy Bypass and
+  WindowStyle Hidden flags, indicating a fileless malware
+  execution technique designed to evade endpoint detection.
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  [1] PROCESS_INJECTION
+      Confidence : CRITICAL
+      MITRE      : T1055 - Process Injection / T1140 - Certutil Staging
+      Description: Certutil decoded payload injected into process via GrantedAccess
+      Evidence   : certutil, 0x143A, targetprocessid
+
+-----------------------------------------------------------------
+  TEMPORAL ATTACK SEQUENCES
+-----------------------------------------------------------------
+  [1] FULL_INJECTION_CHAIN [CRITICAL]
+      MITRE : T1055 - Process Injection / T1071 - C2 Communication
+      Detail: Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window
+
+  [2] FULL_INJECTION_CHAIN [CRITICAL]
+      MITRE : T1055 - Process Injection / T1071 - C2 Communication
+      Detail: Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window
+
+  [3] FULL_INJECTION_CHAIN [CRITICAL]
+      MITRE : T1055 - Process Injection / T1071 - C2 Communication
+      Detail: Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window
+
+  [4] FULL_INJECTION_CHAIN [CRITICAL]
+      MITRE : T1055 - Process Injection / T1071 - C2 Communication
+      Detail: Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  IPV4 ADDRESSES:
+    - 185.220.101.5
+    - 192.168.1.105
+  HOSTNAMES:
+    - DESKTOP-DEV
+    - DESKTOP-DEV-99A
+  PROCESS IDS:
+    - 1440
+    - 3012
+    - 7104
+    - 8220
+  GRANTED ACCESS:
+    - 0x143A
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  -> 185.220.101.5
+     Significance : HIGH
+     Description  : Regex-verified IoC: 185.220.101.5
+
+  -> 192.168.1.105
+     Significance : HIGH
+     Description  : Regex-verified IoC: 192.168.1.105
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-24T06:39:40
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: sysmon_evasion.json
+
+  2026-05-24T06:39:41
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: sysmon_evasion.json
+
+  2026-05-24T06:39:41
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: zeek_encrypted.json
+
+  2026-05-24T06:39:41
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_evasion.json
+
+  2026-05-24T06:39:41
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_evasion.json
+
+  2026-05-24T06:39:41
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_evasion.json
+
+  2026-05-24T06:39:41
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_evasion.json
+
+  2026-05-24T06:39:41
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_evasion.json
+
+  2026-05-24T06:39:41
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_evasion.json
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : sysmon_evasion.json
+
+  [2] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : sysmon_evasion.json
+      File Hash  : 615493078afea7088ec15131f427b705...
+      Keywords   : certutil
+
+  [3] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : zeek_encrypted.json
+      File Hash  : b78c6fbeec171657...
+
+  [4] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_evasion.json
+      File Hash  : 615493078afea708...
+
+  [5] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_evasion.json
+      File Hash  : 615493078afea708...
+
+  [6] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_evasion.json
+      File Hash  : 615493078afea708...
+
+  [7] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_evasion.json
+      File Hash  : 615493078afea708...
+
+  [8] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_evasion.json
+      File Hash  : 615493078afea708...
+
+  [9] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_evasion.json
+      File Hash  : 615493078afea708...
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] BLOCK IP 185.220.101.5 at perimeter firewall and all internal segment boundaries
+  [02] BLOCK IP 192.168.1.105 at perimeter firewall and all internal segment boundaries
+  [03] ISOLATE host DESKTOP-DEV immediately — disconnect from all network segments
+  [04] ISOLATE host DESKTOP-DEV-99A immediately — disconnect from all network segments
+  [05] PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings
+  [06] NOTIFY CISO and legal team — assess breach notification obligations
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================

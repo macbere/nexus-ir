@@ -1,0 +1,2484 @@
+{
+  "nexus_ir_version": "4.0.0-langgraph",
+  "session_id": "20260523_142408",
+  "investigation_complete": true,
+  "langgraph_iterations": 2,
+  "executive_summary": {
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "case_priority": "CRITICAL",
+    "total_files_analyzed": 1,
+    "attack_patterns_detected": 7,
+    "unique_ips_found": 4,
+    "findings_validated": 27,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH",
+    "auto_remediated": 1
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "failed password"
+      ],
+      "description": "Credential brute force detected",
+      "mitre_technique": "T1110 - Brute Force",
+      "base_score": 70,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860442+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "PRIVILEGE_ESCALATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "sudo",
+        "root"
+      ],
+      "description": "Privilege escalation detected",
+      "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+      "base_score": 75,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860525+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "LATERAL_MOVEMENT_OR_C2",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "reverse shell"
+      ],
+      "description": "C2 or lateral movement detected",
+      "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+      "base_score": 85,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860583+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "ransomware"
+      ],
+      "description": "Malware or ransomware execution detected",
+      "mitre_technique": "T1486 - Data Encrypted for Impact",
+      "base_score": 90,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860634+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "CREDENTIAL_DUMPING",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "mimikatz",
+        "lsass"
+      ],
+      "description": "Credential dumping detected",
+      "mitre_technique": "T1003 - OS Credential Dumping",
+      "base_score": 88,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860684+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "DATA_EXFILTRATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "exfiltration"
+      ],
+      "description": "Data exfiltration detected",
+      "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+      "base_score": 80,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860733+00:00",
+      "traceable": true
+    },
+    {
+      "pattern": "POWERSHELL_OBFUSCATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "hidden",
+        "bypass",
+        "windowstyle",
+        "encoded",
+        "executionpolicy",
+        "powershell",
+        "base64"
+      ],
+      "description": "PowerShell obfuscation \u2014 injected by CorrectionAgent after triage-correlation mismatch",
+      "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+      "base_score": 85,
+      "injected_by": "devil_advocate_auto_remediation"
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "10.0.0.12",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 10.0.0.12",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860757+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "185.220.101.45",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 185.220.101.45",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860767+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "45.142.212.100",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 45.142.212.100",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860776+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "45.33.22.11",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 45.33.22.11",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:24:08.860783+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-23T14:24:08.190240+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "dynamic_priority_escalation",
+      "timestamp": "2026-05-23T14:24:08.190594+00:00",
+      "artifact": "triage_scan"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T14:24:08.488366+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T14:24:08.492132+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T14:24:08.492261+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T14:24:08.492334+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "process_injection",
+      "timestamp": "2026-05-23T14:24:08.496056+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "process_injection",
+      "timestamp": "2026-05-23T14:24:08.496144+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "process_injection",
+      "timestamp": "2026-05-23T14:24:08.496222+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "process_injection",
+      "timestamp": "2026-05-23T14:24:08.496334+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T14:24:08.496427+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T14:24:08.496521+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "c2_communication",
+      "timestamp": "2026-05-23T14:24:08.499994+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "data_exfiltration",
+      "timestamp": "2026-05-23T14:24:08.500267+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "data_exfiltration",
+      "timestamp": "2026-05-23T14:24:08.500345+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "suspicious_port",
+      "timestamp": "2026-05-23T14:24:08.501061+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 1,
+        "files": [
+          "chaotic_kill_chain.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.190240+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "dynamic_priority_escalation",
+        "reason": "Critical keywords found in evidence",
+        "keywords": [
+          "virtualalloc",
+          "lsass",
+          "windowstyle hidden",
+          "reverse shell",
+          "powershell",
+          "base64",
+          "ransomware",
+          "backdoor",
+          "mimikatz",
+          "exfiltration",
+          "lateral movement",
+          "executionpolicy bypass",
+          "encoded"
+        ],
+        "artifact": "triage_scan",
+        "priority_set": "CRITICAL",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.190594+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Triage-level finding \u2014 acceptable",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b",
+        "keywords_matched": [
+          "failed password",
+          "sudo",
+          "root",
+          "ransomware"
+        ],
+        "total_hits": 8,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.488366+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Keywords: ['failed password', 'sudo', 'root', 'ransomware']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "filename_pattern": "mimikatz",
+        "evidence": [
+          "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.492132+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "filename_pattern": "payload",
+        "evidence": [
+          "2026-05-22 08:31:05 [POWERSHELL] ScriptBlock Text = FromBase64String(\"ZXhwbG9pdA==\") encoded payload triggered",
+          "2026-05-22 08:32:00 [NETWORK] ICMP Tunneling detected: payload length 1450 bytes entropy 7.91 exfiltration to 45.33.22.11"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.492261+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "filename_pattern": "ransomware",
+        "evidence": [
+          "2026-05-22 08:32:25 [SECURITY] Ransomware signature detected: .locked extension mass file encryption"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.492334+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "process_injection",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "virtualalloc",
+        "evidence": [
+          "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1055 - Process Injection",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.496056+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "process_injection",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "virtualallocex",
+        "evidence": [
+          "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1055 - Process Injection",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.496144+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "process_injection",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "writeprocessmemory",
+        "evidence": [
+          "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1055 - Process Injection",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.496222+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "process_injection",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "anomaly process",
+        "evidence": [
+          "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1055 - Process Injection",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.496334+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "lsass",
+        "evidence": [
+          "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory",
+          "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.496427+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "mimikatz",
+        "evidence": [
+          "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.496521+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "c2_communication",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "reverse shell",
+        "evidence": [
+          "2026-05-22 08:32:05 [NETWORK] Reverse shell established to 185.220.101.45 port 4444"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1071 - Application Layer Protocol",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.499994+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "data_exfiltration",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "data exfil",
+        "evidence": [
+          "2026-05-22 08:32:10 [NETWORK] Data exfiltration detected: 850MB outbound to 45.142.212.100"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1041 - Exfiltration Over C2 Channel",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.500267+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "data_exfiltration",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "indicator": "exfiltration",
+        "evidence": [
+          "2026-05-22 08:32:00 [NETWORK] ICMP Tunneling detected: payload length 1450 bytes entropy 7.91 exfiltration to 45.33.22.11",
+          "2026-05-22 08:32:10 [NETWORK] Data exfiltration detected: 850MB outbound to 45.142.212.100"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1041 - Exfiltration Over C2 Channel",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.500345+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_port",
+        "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+        "file_hash": "765674e8b4cdae65",
+        "port": "4444",
+        "severity": "HIGH",
+        "mitre": "T1571 - Non-Standard Port",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:24:08.501061+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: chaotic_kill_chain.log",
+        "File on disk: chaotic_kill_chain.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['failed password']",
+        "MITRE: T1110 - Brute Force"
+      ]
+    },
+    {
+      "pattern": "PRIVILEGE_ESCALATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['sudo', 'root']",
+        "MITRE: T1548 - Abuse Elevation Control Mechanism"
+      ]
+    },
+    {
+      "pattern": "LATERAL_MOVEMENT_OR_C2",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['reverse shell']",
+        "MITRE: T1021 / T1059 - Remote Services / Command Interpreter"
+      ]
+    },
+    {
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['ransomware']",
+        "MITRE: T1486 - Data Encrypted for Impact"
+      ]
+    },
+    {
+      "pattern": "CREDENTIAL_DUMPING",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['mimikatz', 'lsass']",
+        "MITRE: T1003 - OS Credential Dumping"
+      ]
+    },
+    {
+      "pattern": "DATA_EXFILTRATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['exfiltration']",
+        "MITRE: T1041 - Exfiltration Over C2 Channel"
+      ]
+    },
+    {
+      "pattern": "POWERSHELL_OBFUSCATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['hidden', 'bypass', 'windowstyle', 'encoded', 'executionpolicy', 'powershell', 'base64']",
+        "MITRE: T1059.001 - PowerShell / T1027 - Obfuscation"
+      ]
+    },
+    {
+      "ip": "10.0.0.12",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "185.220.101.45",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "45.142.212.100",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "45.33.22.11",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "The attack originated from 10.0.0.12 targeting the target, gaining initial foothold through exploitation of a network-accessible service. Following injection, the compromised process established a covert C2 communication channel to 45.33.22.11 over HTTPS, with the TLS certificate issued by an unexpected authority \u2014 a hallmark of attacker-controlled infrastructure masquerading as legitimate services. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+  "containment_actions": [
+    "BLOCK IP 10.0.0.12 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 185.220.101.45 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 45.142.212.100 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 45.33.22.11 at perimeter firewall and all internal segment boundaries",
+    "SUSPEND account 'admin' and invalidate all active sessions",
+    "SUSPEND account 'root' and invalidate all active sessions",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [
+      "10.0.0.12",
+      "185.220.101.45",
+      "45.142.212.100",
+      "45.33.22.11"
+    ],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [],
+    "decoded_payloads": [],
+    "file_paths": [
+      "C:\\Users\\Public\\svchost_update.exe"
+    ],
+    "hostnames": [],
+    "usernames": [
+      "admin",
+      "root"
+    ],
+    "process_ids": [],
+    "granted_access": [],
+    "domains": []
+  },
+  "temporal_sequences": [],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log": {
+      "sha256": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b",
+      "timestamp": "2026-05-23T14:24:08.499327+00:00",
+      "size_bytes": 1551
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-23T14:24:08.189373+00:00",
+      "level": "AGENT",
+      "message": "NODE: Triage \u2014 examining evidence...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.190831+00:00",
+      "level": "DONE",
+      "message": "Triage done \u2014 Priority: CRITICAL, Files: 1",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.193316+00:00",
+      "level": "AGENT",
+      "message": "NODE: Log Analysis \u2014 hunting IoCs...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.488651+00:00",
+      "level": "DONE",
+      "message": "Log analysis done \u2014 1 findings",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.491100+00:00",
+      "level": "AGENT",
+      "message": "NODE: Disk Analysis -- scanning file system artifacts...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.492962+00:00",
+      "level": "DONE",
+      "message": "Disk analysis done -- 3 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.495219+00:00",
+      "level": "AGENT",
+      "message": "NODE: Memory Analysis -- hunting injection and credential dumps...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.496758+00:00",
+      "level": "DONE",
+      "message": "Memory analysis done -- 6 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.498814+00:00",
+      "level": "AGENT",
+      "message": "NODE: Network Analysis -- detecting C2, exfil, tunneling...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.501237+00:00",
+      "level": "DONE",
+      "message": "Network analysis done -- 4 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.503560+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correlation \u2014 cross-referencing findings...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.507458+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: CRITICAL (100/100)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.509332+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 0)...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.852477+00:00",
+      "level": "LOOP",
+      "message": "Devil advocate flagged issues \u2014 re-evaluation needed (iteration 0)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.856321+00:00",
+      "level": "LOOP",
+      "message": "Incrementing to iteration 1 \u2014 re-running correlation with fixed data",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.858467+00:00",
+      "level": "LOOP",
+      "message": "NODE: Correlation (re-run #1) \u2014 applying fixes...",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.861216+00:00",
+      "level": "LOOP",
+      "message": "State-retained: POWERSHELL_OBFUSCATION re-applied from previous iteration",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.861258+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: CRITICAL (100/100)",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T14:24:08.863278+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 1)...",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T14:24:09.232342+00:00",
+      "level": "DONE",
+      "message": "Correction done \u2014 100.0% accuracy, 27 validated",
+      "iteration": 1
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/stress_volume_run",
+      "priority": "CRITICAL",
+      "keyword_hits": {
+        "critical_keywords_found": [
+          "virtualalloc",
+          "lsass",
+          "windowstyle hidden",
+          "reverse shell",
+          "powershell",
+          "base64",
+          "ransomware",
+          "backdoor",
+          "mimikatz",
+          "exfiltration",
+          "lateral movement",
+          "executionpolicy bypass",
+          "encoded"
+        ],
+        "high_keywords_found": [
+          "sudo",
+          "failed password",
+          "svchost",
+          "anomaly",
+          "scheduled task",
+          "persistence",
+          "root"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 1,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "1 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 1,
+          "files": [
+            "chaotic_kill_chain.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.190240+00:00",
+          "traceable": true
+        },
+        {
+          "type": "dynamic_priority_escalation",
+          "reason": "Critical keywords found in evidence",
+          "keywords": [
+            "virtualalloc",
+            "lsass",
+            "windowstyle hidden",
+            "reverse shell",
+            "powershell",
+            "base64",
+            "ransomware",
+            "backdoor",
+            "mimikatz",
+            "exfiltration",
+            "lateral movement",
+            "executionpolicy bypass",
+            "encoded"
+          ],
+          "artifact": "triage_scan",
+          "priority_set": "CRITICAL",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.190594+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:24:08.190778+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 1,
+      "suspicious_files": 1,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log": {
+          "failed password": {
+            "matches": [
+              "2026-05-22 08:30:01 [AUTH] Failed password for invalid user admin from 185.220.101.45 port 49221 ssh2",
+              "2026-05-22 08:30:03 [AUTH] Failed password for root from 185.220.101.45 port 49222 ssh2"
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "tool_used": "grep+regex",
+            "command_hash": "796198ff5c7be8eb"
+          },
+          "sudo": {
+            "matches": [
+              "2026-05-22 08:30:10 [AUTH] sudo command executed by root outside business hours"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "tool_used": "grep+regex",
+            "command_hash": "d4ae7d5d798ff98f"
+          },
+          "root": {
+            "matches": [
+              "2026-05-22 08:30:03 [AUTH] Failed password for root from 185.220.101.45 port 49222 ssh2",
+              "2026-05-22 08:30:05 [AUTH] Accepted password for root from 185.220.101.45 port 49221 ssh2",
+              "2026-05-22 08:30:10 [AUTH] sudo command executed by root outside business hours",
+              "2026-05-22 08:32:15 [SECURITY] Audit log cleared by user root via wevtutil cl System"
+            ],
+            "count": 4,
+            "source_file": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "tool_used": "grep+regex",
+            "command_hash": "7d010922ff5cdf18"
+          },
+          "ransomware": {
+            "matches": [
+              "2026-05-22 08:32:25 [SECURITY] Ransomware signature detected: .locked extension mass file encryption"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "tool_used": "grep+regex",
+            "command_hash": "aea578e1181c1056"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [
+          "10.0.0.12",
+          "185.220.101.45",
+          "45.142.212.100",
+          "45.33.22.11"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [
+          "C:\\Users\\Public\\svchost_update.exe"
+        ],
+        "hostnames": [],
+        "usernames": [
+          "admin",
+          "root"
+        ],
+        "process_ids": [],
+        "granted_access": []
+      },
+      "unique_ips": [
+        "10.0.0.12",
+        "185.220.101.45",
+        "45.142.212.100",
+        "45.33.22.11"
+      ],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log": {
+          "sha256": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b",
+          "timestamp": "2026-05-23T14:24:08.220431+00:00",
+          "size_bytes": 1551
+        }
+      },
+      "decoded_payloads": [],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b",
+          "keywords_matched": [
+            "failed password",
+            "sudo",
+            "root",
+            "ransomware"
+          ],
+          "total_hits": 8,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.488366+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:24:08.488589+00:00"
+    },
+    "disk_analysis": {
+      "status": "COMPLETE",
+      "agent": "DiskAgent",
+      "files_analyzed": 1,
+      "total_hits": 3,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "suspicious_executables": [
+          "C:\\Users\\Public\\svchost_update.exe"
+        ],
+        "drop_zone_paths": [],
+        "persistence_paths": [],
+        "double_extension_files": [],
+        "malicious_filenames": [
+          "mimikatz",
+          "payload",
+          "ransomware"
+        ]
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log": {
+          "sha256": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b",
+          "timestamp": "2026-05-23T14:24:08.491694+00:00",
+          "size_bytes": 1551
+        }
+      },
+      "findings": [
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "filename_pattern": "mimikatz",
+          "evidence": [
+            "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.492132+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "filename_pattern": "payload",
+          "evidence": [
+            "2026-05-22 08:31:05 [POWERSHELL] ScriptBlock Text = FromBase64String(\"ZXhwbG9pdA==\") encoded payload triggered",
+            "2026-05-22 08:32:00 [NETWORK] ICMP Tunneling detected: payload length 1450 bytes entropy 7.91 exfiltration to 45.33.22.11"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.492261+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "filename_pattern": "ransomware",
+          "evidence": [
+            "2026-05-22 08:32:25 [SECURITY] Ransomware signature detected: .locked extension mass file encryption"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.492334+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:24:08.492905+00:00"
+    },
+    "memory_analysis": {
+      "status": "COMPLETE",
+      "agent": "MemoryAgent",
+      "files_analyzed": 1,
+      "total_hits": 6,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "injection_techniques": [
+          "anomaly process",
+          "virtualalloc",
+          "virtualallocex",
+          "writeprocessmemory"
+        ],
+        "credential_dump_indicators": [
+          "lsass",
+          "mimikatz"
+        ],
+        "suspicious_process_pairs": [],
+        "hollowing_indicators": [],
+        "memory_anomalies": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log": {
+          "sha256": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b",
+          "timestamp": "2026-05-23T14:24:08.495729+00:00",
+          "size_bytes": 1551
+        }
+      },
+      "findings": [
+        {
+          "type": "process_injection",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "virtualalloc",
+          "evidence": [
+            "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1055 - Process Injection",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.496056+00:00",
+          "traceable": true
+        },
+        {
+          "type": "process_injection",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "virtualallocex",
+          "evidence": [
+            "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1055 - Process Injection",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.496144+00:00",
+          "traceable": true
+        },
+        {
+          "type": "process_injection",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "writeprocessmemory",
+          "evidence": [
+            "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1055 - Process Injection",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.496222+00:00",
+          "traceable": true
+        },
+        {
+          "type": "process_injection",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "anomaly process",
+          "evidence": [
+            "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1055 - Process Injection",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.496334+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "lsass",
+          "evidence": [
+            "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory",
+            "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.496427+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "mimikatz",
+          "evidence": [
+            "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.496521+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:24:08.496713+00:00"
+    },
+    "network_analysis": {
+      "status": "COMPLETE",
+      "agent": "NetworkAgent",
+      "files_analyzed": 1,
+      "total_hits": 4,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "c2_indicators": [
+          "reverse shell"
+        ],
+        "suspicious_ips": [],
+        "suspicious_ports": [
+          "4444"
+        ],
+        "dns_tunnel_indicators": [],
+        "exfil_indicators": [
+          "data exfil",
+          "exfiltration"
+        ],
+        "scan_indicators": [],
+        "tls_anomalies": [],
+        "long_subdomains": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log": {
+          "sha256": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b",
+          "timestamp": "2026-05-23T14:24:08.499327+00:00",
+          "size_bytes": 1551
+        }
+      },
+      "findings": [
+        {
+          "type": "c2_communication",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "reverse shell",
+          "evidence": [
+            "2026-05-22 08:32:05 [NETWORK] Reverse shell established to 185.220.101.45 port 4444"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1071 - Application Layer Protocol",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.499994+00:00",
+          "traceable": true
+        },
+        {
+          "type": "data_exfiltration",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "data exfil",
+          "evidence": [
+            "2026-05-22 08:32:10 [NETWORK] Data exfiltration detected: 850MB outbound to 45.142.212.100"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1041 - Exfiltration Over C2 Channel",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.500267+00:00",
+          "traceable": true
+        },
+        {
+          "type": "data_exfiltration",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "indicator": "exfiltration",
+          "evidence": [
+            "2026-05-22 08:32:00 [NETWORK] ICMP Tunneling detected: payload length 1450 bytes entropy 7.91 exfiltration to 45.33.22.11",
+            "2026-05-22 08:32:10 [NETWORK] Data exfiltration detected: 850MB outbound to 45.142.212.100"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1041 - Exfiltration Over C2 Channel",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.500345+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_port",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+          "file_hash": "765674e8b4cdae65",
+          "port": "4444",
+          "severity": "HIGH",
+          "mitre": "T1571 - Non-Standard Port",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.501061+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:24:08.501193+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 5,
+      "extracted_entities": {
+        "ipv4_addresses": [
+          "10.0.0.12",
+          "185.220.101.45",
+          "45.142.212.100",
+          "45.33.22.11"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [
+          "C:\\Users\\Public\\svchost_update.exe"
+        ],
+        "hostnames": [],
+        "usernames": [
+          "admin",
+          "root"
+        ],
+        "process_ids": [],
+        "granted_access": [],
+        "domains": []
+      },
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "10.0.0.12",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 10.0.0.12",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860757+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "185.220.101.45",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 185.220.101.45",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860767+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "45.142.212.100",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 45.142.212.100",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860776+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "45.33.22.11",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 45.33.22.11",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860783+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "failed password"
+          ],
+          "description": "Credential brute force detected",
+          "mitre_technique": "T1110 - Brute Force",
+          "base_score": 70,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860442+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "sudo",
+            "root"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860525+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "reverse shell"
+          ],
+          "description": "C2 or lateral movement detected",
+          "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+          "base_score": 85,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860583+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "ransomware"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860634+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "CREDENTIAL_DUMPING",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "mimikatz",
+            "lsass"
+          ],
+          "description": "Credential dumping detected",
+          "mitre_technique": "T1003 - OS Credential Dumping",
+          "base_score": 88,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860684+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "DATA_EXFILTRATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "exfiltration"
+          ],
+          "description": "Data exfiltration detected",
+          "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+          "base_score": 80,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860733+00:00",
+          "traceable": true
+        },
+        {
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "hidden",
+            "bypass",
+            "windowstyle",
+            "encoded",
+            "executionpolicy",
+            "powershell",
+            "base64"
+          ],
+          "description": "PowerShell obfuscation \u2014 injected by CorrectionAgent after triage-correlation mismatch",
+          "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+          "base_score": 85,
+          "injected_by": "devil_advocate_auto_remediation"
+        }
+      ],
+      "temporal_sequences": [],
+      "high_signal_signatures": [],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-23T14:24:08.190240+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "dynamic_priority_escalation",
+          "timestamp": "2026-05-23T14:24:08.190594+00:00",
+          "artifact": "triage_scan"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T14:24:08.488366+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T14:24:08.492132+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T14:24:08.492261+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T14:24:08.492334+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "process_injection",
+          "timestamp": "2026-05-23T14:24:08.496056+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "process_injection",
+          "timestamp": "2026-05-23T14:24:08.496144+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "process_injection",
+          "timestamp": "2026-05-23T14:24:08.496222+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "process_injection",
+          "timestamp": "2026-05-23T14:24:08.496334+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T14:24:08.496427+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T14:24:08.496521+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "c2_communication",
+          "timestamp": "2026-05-23T14:24:08.499994+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "data_exfiltration",
+          "timestamp": "2026-05-23T14:24:08.500267+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "data_exfiltration",
+          "timestamp": "2026-05-23T14:24:08.500345+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "suspicious_port",
+          "timestamp": "2026-05-23T14:24:08.501061+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log"
+        }
+      ],
+      "threat_assessment": {
+        "score": 100,
+        "level": "CRITICAL",
+        "reasons": [
+          "Base pattern score: 90",
+          "6 patterns detected (+10)",
+          "Correlated IPs (+5)"
+        ]
+      },
+      "attack_narrative": "The attack originated from 10.0.0.12 targeting the target, gaining initial foothold through exploitation of a network-accessible service. Following injection, the compromised process established a covert C2 communication channel to 45.33.22.11 over HTTPS, with the TLS certificate issued by an unexpected authority \u2014 a hallmark of attacker-controlled infrastructure masquerading as legitimate services. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+      "containment_actions": [
+        "BLOCK IP 10.0.0.12 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 185.220.101.45 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 45.142.212.100 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 45.33.22.11 at perimeter firewall and all internal segment boundaries",
+        "SUSPEND account 'admin' and invalidate all active sessions",
+        "SUSPEND account 'root' and invalidate all active sessions",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "failed password"
+          ],
+          "description": "Credential brute force detected",
+          "mitre_technique": "T1110 - Brute Force",
+          "base_score": 70,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860442+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "sudo",
+            "root"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860525+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "reverse shell"
+          ],
+          "description": "C2 or lateral movement detected",
+          "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+          "base_score": 85,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860583+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "ransomware"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860634+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "CREDENTIAL_DUMPING",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "mimikatz",
+            "lsass"
+          ],
+          "description": "Credential dumping detected",
+          "mitre_technique": "T1003 - OS Credential Dumping",
+          "base_score": 88,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860684+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "DATA_EXFILTRATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "exfiltration"
+          ],
+          "description": "Data exfiltration detected",
+          "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+          "base_score": 80,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860733+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "10.0.0.12",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 10.0.0.12",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860757+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "185.220.101.45",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 185.220.101.45",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860767+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "45.142.212.100",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 45.142.212.100",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860776+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "45.33.22.11",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 45.33.22.11",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:24:08.860783+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:24:08.861123+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 1,
+            "files": [
+              "chaotic_kill_chain.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.190240+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "dynamic_priority_escalation",
+            "reason": "Critical keywords found in evidence",
+            "keywords": [
+              "virtualalloc",
+              "lsass",
+              "windowstyle hidden",
+              "reverse shell",
+              "powershell",
+              "base64",
+              "ransomware",
+              "backdoor",
+              "mimikatz",
+              "exfiltration",
+              "lateral movement",
+              "executionpolicy bypass",
+              "encoded"
+            ],
+            "artifact": "triage_scan",
+            "priority_set": "CRITICAL",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.190594+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Triage-level finding \u2014 acceptable",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b",
+            "keywords_matched": [
+              "failed password",
+              "sudo",
+              "root",
+              "ransomware"
+            ],
+            "total_hits": 8,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.488366+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Keywords: ['failed password', 'sudo', 'root', 'ransomware']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "filename_pattern": "mimikatz",
+            "evidence": [
+              "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.492132+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "filename_pattern": "payload",
+            "evidence": [
+              "2026-05-22 08:31:05 [POWERSHELL] ScriptBlock Text = FromBase64String(\"ZXhwbG9pdA==\") encoded payload triggered",
+              "2026-05-22 08:32:00 [NETWORK] ICMP Tunneling detected: payload length 1450 bytes entropy 7.91 exfiltration to 45.33.22.11"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.492261+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "filename_pattern": "ransomware",
+            "evidence": [
+              "2026-05-22 08:32:25 [SECURITY] Ransomware signature detected: .locked extension mass file encryption"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.492334+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "process_injection",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "virtualalloc",
+            "evidence": [
+              "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1055 - Process Injection",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.496056+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "process_injection",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "virtualallocex",
+            "evidence": [
+              "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1055 - Process Injection",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.496144+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "process_injection",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "writeprocessmemory",
+            "evidence": [
+              "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1055 - Process Injection",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.496222+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "process_injection",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "anomaly process",
+            "evidence": [
+              "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1055 - Process Injection",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.496334+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "lsass",
+            "evidence": [
+              "2026-05-22 08:31:00 [MEMORY] Target Process lsass.exe opened by source unknown via VirtualAllocEx and WriteProcessMemory",
+              "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.496427+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "mimikatz",
+            "evidence": [
+              "2026-05-22 08:31:02 [MEMORY] Anomaly process created: mimikatz.exe accessing lsass credential store"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.496521+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "c2_communication",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "reverse shell",
+            "evidence": [
+              "2026-05-22 08:32:05 [NETWORK] Reverse shell established to 185.220.101.45 port 4444"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1071 - Application Layer Protocol",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.499994+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "data_exfiltration",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "data exfil",
+            "evidence": [
+              "2026-05-22 08:32:10 [NETWORK] Data exfiltration detected: 850MB outbound to 45.142.212.100"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1041 - Exfiltration Over C2 Channel",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.500267+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "data_exfiltration",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "indicator": "exfiltration",
+            "evidence": [
+              "2026-05-22 08:32:00 [NETWORK] ICMP Tunneling detected: payload length 1450 bytes entropy 7.91 exfiltration to 45.33.22.11",
+              "2026-05-22 08:32:10 [NETWORK] Data exfiltration detected: 850MB outbound to 45.142.212.100"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1041 - Exfiltration Over C2 Channel",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.500345+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_port",
+            "artifact": "/data/data/com.termux/files/home/cases/stress_volume_run/chaotic_kill_chain.log",
+            "file_hash": "765674e8b4cdae65",
+            "port": "4444",
+            "severity": "HIGH",
+            "mitre": "T1571 - Non-Standard Port",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:24:08.501061+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: chaotic_kill_chain.log",
+            "File on disk: chaotic_kill_chain.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['failed password']",
+            "MITRE: T1110 - Brute Force"
+          ]
+        },
+        {
+          "pattern": "PRIVILEGE_ESCALATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['sudo', 'root']",
+            "MITRE: T1548 - Abuse Elevation Control Mechanism"
+          ]
+        },
+        {
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['reverse shell']",
+            "MITRE: T1021 / T1059 - Remote Services / Command Interpreter"
+          ]
+        },
+        {
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['ransomware']",
+            "MITRE: T1486 - Data Encrypted for Impact"
+          ]
+        },
+        {
+          "pattern": "CREDENTIAL_DUMPING",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['mimikatz', 'lsass']",
+            "MITRE: T1003 - OS Credential Dumping"
+          ]
+        },
+        {
+          "pattern": "DATA_EXFILTRATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['exfiltration']",
+            "MITRE: T1041 - Exfiltration Over C2 Channel"
+          ]
+        },
+        {
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['hidden', 'bypass', 'windowstyle', 'encoded', 'executionpolicy', 'powershell', 'base64']",
+            "MITRE: T1059.001 - PowerShell / T1027 - Obfuscation"
+          ]
+        },
+        {
+          "ip": "10.0.0.12",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "185.220.101.45",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "45.142.212.100",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "45.33.22.11",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 27,
+        "validated": 27,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [],
+        "devil_advocate_suggestions": [],
+        "forced_reeval": false,
+        "auto_remediated_patterns": [
+          "POWERSHELL_OBFUSCATION"
+        ],
+        "auto_remediation_count": 1
+      },
+      "errors": [],
+      "timestamp": "2026-05-23T14:24:09.232209+00:00"
+    }
+  },
+  "timestamp": "2026-05-23T14:24:09.237207+00:00",
+  "duration_seconds": 1.13
+}

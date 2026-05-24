@@ -1,0 +1,3499 @@
+{
+  "nexus_ir_version": "4.0.0-langgraph",
+  "session_id": "20260523_081315",
+  "investigation_complete": true,
+  "langgraph_iterations": 2,
+  "executive_summary": {
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "case_priority": "CRITICAL",
+    "total_files_analyzed": 4,
+    "attack_patterns_detected": 7,
+    "unique_ips_found": 3,
+    "findings_validated": 37,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH",
+    "auto_remediated": 1
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "failed password"
+      ],
+      "description": "Credential brute force detected",
+      "mitre_technique": "T1110 - Brute Force",
+      "base_score": 70,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.860955+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "PRIVILEGE_ESCALATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "privilege escalation",
+        "unauthorized"
+      ],
+      "description": "Privilege escalation detected",
+      "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+      "base_score": 75,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.861121+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "LATERAL_MOVEMENT_OR_C2",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "exploit",
+        "reverse shell"
+      ],
+      "description": "C2 or lateral movement detected",
+      "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+      "base_score": 85,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.861258+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "malware",
+        "ransomware"
+      ],
+      "description": "Malware or ransomware execution detected",
+      "mitre_technique": "T1486 - Data Encrypted for Impact",
+      "base_score": 90,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.861398+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "CREDENTIAL_DUMPING",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "lsass",
+        "mimikatz"
+      ],
+      "description": "Credential dumping detected",
+      "mitre_technique": "T1003 - OS Credential Dumping",
+      "base_score": 88,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.861529+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "DATA_EXFILTRATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "exfiltration"
+      ],
+      "description": "Data exfiltration detected",
+      "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+      "base_score": 80,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.861672+00:00",
+      "traceable": true
+    },
+    {
+      "pattern": "POWERSHELL_OBFUSCATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "powershell",
+        "base64",
+        "encoded"
+      ],
+      "description": "PowerShell obfuscation \u2014 injected by CorrectionAgent after triage-correlation mismatch",
+      "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+      "base_score": 85,
+      "injected_by": "devil_advocate_auto_remediation"
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "185.220.101.47",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 185.220.101.47",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.861720+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "203.45.67.89",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 203.45.67.89",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.861741+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "91.108.56.130",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 91.108.56.130",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T08:13:17.861763+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-23T08:13:15.931209+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "dynamic_priority_escalation",
+      "timestamp": "2026-05-23T08:13:15.931952+00:00",
+      "artifact": "triage_scan"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T08:13:16.211798+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T08:13:16.484857+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T08:13:16.828843+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T08:13:17.098681+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malware_drop_zone",
+      "timestamp": "2026-05-23T08:13:17.105373+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T08:13:17.105660+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malware_drop_zone",
+      "timestamp": "2026-05-23T08:13:17.107582+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T08:13:17.107857+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T08:13:17.110172+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T08:13:17.110356+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T08:13:17.110506+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malware_drop_zone",
+      "timestamp": "2026-05-23T08:13:17.112308+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T08:13:17.112551+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T08:13:17.112720+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "process_injection",
+      "timestamp": "2026-05-23T08:13:17.118125+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T08:13:17.118249+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T08:13:17.118344+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T08:13:17.118426+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "c2_communication",
+      "timestamp": "2026-05-23T08:13:17.126760+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "suspicious_port",
+      "timestamp": "2026-05-23T08:13:17.127526+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "c2_communication",
+      "timestamp": "2026-05-23T08:13:17.128297+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "c2_communication",
+      "timestamp": "2026-05-23T08:13:17.128370+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "c2_communication",
+      "timestamp": "2026-05-23T08:13:17.128429+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "data_exfiltration",
+      "timestamp": "2026-05-23T08:13:17.128618+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "suspicious_port",
+      "timestamp": "2026-05-23T08:13:17.129109+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 4,
+        "files": [
+          "database_audit.log",
+          "domain_controller.log",
+          "endpoint_security.log",
+          "perimeter_firewall.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:15.931209+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: database_audit.log",
+        "File on disk: database_audit.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "dynamic_priority_escalation",
+        "reason": "Critical keywords found in evidence",
+        "keywords": [
+          "c2",
+          "malware",
+          "backdoor",
+          "reverse shell",
+          "base64",
+          "encoded",
+          "powershell",
+          "ransomware",
+          "exploit",
+          "lsass",
+          "lateral movement",
+          "mimikatz",
+          "golden ticket",
+          "kerberoast"
+        ],
+        "artifact": "triage_scan",
+        "priority_set": "CRITICAL",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:15.931952+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Triage-level finding \u2014 acceptable",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+        "file_hash": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+        "keywords_matched": [
+          "unauthorized",
+          "privilege escalation"
+        ],
+        "total_hits": 2,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:16.211798+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: database_audit.log",
+        "File on disk: database_audit.log",
+        "Keywords: ['unauthorized', 'privilege escalation']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "file_hash": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+        "keywords_matched": [
+          "failed password",
+          "unauthorized"
+        ],
+        "total_hits": 5,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:16.484857+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: domain_controller.log",
+        "File on disk: domain_controller.log",
+        "Keywords: ['failed password', 'unauthorized']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+        "file_hash": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+        "keywords_matched": [
+          "unauthorized",
+          "exploit",
+          "malware",
+          "ransomware"
+        ],
+        "total_hits": 7,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:16.828843+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: endpoint_security.log",
+        "File on disk: endpoint_security.log",
+        "Keywords: ['unauthorized', 'exploit', 'malware', 'ransomware']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2",
+        "keywords_matched": [
+          "exploit"
+        ],
+        "total_hits": 1,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.098681+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Keywords: ['exploit']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malware_drop_zone",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+        "file_hash": "eeeba11a1eb0d6fb",
+        "path_pattern": "temp",
+        "evidence": [
+          "2026-05-15 01:28:00 DB_AUDIT ALERT SQL injection attempt on login form from 91.108.56.130",
+          "2026-05-15 01:28:05 DB_AUDIT ALERT brute force on database credentials: 47 failed attempts in 5 seconds"
+        ],
+        "severity": "HIGH",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.105373+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: database_audit.log",
+        "File on disk: database_audit.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+        "file_hash": "eeeba11a1eb0d6fb",
+        "filename_pattern": "payload",
+        "evidence": [
+          "2026-05-15 01:27:26 DB_AUDIT ALERT INJECTION detected: payload=\"1 OR 1=1 UNION SELECT password FROM users\""
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.105660+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: database_audit.log",
+        "File on disk: database_audit.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malware_drop_zone",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "file_hash": "700e089eb1381d13",
+        "path_pattern": "temp",
+        "evidence": [
+          "2026-05-15 01:27:10 EventID 4776: Credential validation for krbtgt [GOLDEN TICKET ATTEMPT]"
+        ],
+        "severity": "HIGH",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.107582+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: domain_controller.log",
+        "File on disk: domain_controller.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "file_hash": "700e089eb1381d13",
+        "filename_pattern": "mimikatz",
+        "evidence": [
+          "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb",
+          "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.107857+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: domain_controller.log",
+        "File on disk: domain_controller.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+        "file_hash": "4486d05cdf3fa163",
+        "filename_pattern": "payload",
+        "evidence": [
+          "2026-05-15 01:26:50 ALERT  HOST=FINSERV-DC01 Base64 encoded payload decoded and executed by PID 9821"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.110172+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: endpoint_security.log",
+        "File on disk: endpoint_security.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+        "file_hash": "4486d05cdf3fa163",
+        "filename_pattern": "exploit",
+        "evidence": [
+          "2026-05-15 01:27:15 ALERT  HOST=FINSERV-DC01 Lateral movement to FINSERV-DB01 via SMB exploit",
+          "2026-05-15 01:28:20 CRIT   HOST=FINSERV-DC01 Exploit CVE-2024-21413 confirmed successful"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.110356+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: endpoint_security.log",
+        "File on disk: endpoint_security.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+        "file_hash": "4486d05cdf3fa163",
+        "filename_pattern": "ransomware",
+        "evidence": [
+          "2026-05-15 01:28:00 ALERT  HOST=FINSERV-DC01 Ransomware signature detected: LockBit 3.0 variant",
+          "2026-05-15 01:28:10 ALERT  HOST=FINSERV-DB01 Ransomware propagation via SMB to FINSERV-FILE01"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.110506+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: endpoint_security.log",
+        "File on disk: endpoint_security.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malware_drop_zone",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d5",
+        "path_pattern": "temp",
+        "evidence": [
+          "2026-05-15 01:25:10 ALERT INBOUND  TCP 91.108.56.130:65432 -> 203.45.67.89:443 [EXPLOIT attempt CVE-2024-21413]"
+        ],
+        "severity": "HIGH",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.112308+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d5",
+        "filename_pattern": "beacon",
+        "evidence": [
+          "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.112551+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d5",
+        "filename_pattern": "exploit",
+        "evidence": [
+          "2026-05-15 01:25:10 ALERT INBOUND  TCP 91.108.56.130:65432 -> 203.45.67.89:443 [EXPLOIT attempt CVE-2024-21413]"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.112720+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "process_injection",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "file_hash": "700e089eb1381d13",
+        "indicator": "anomaly process",
+        "evidence": [
+          "2026-05-15 01:26:20 EventID 4688: Anomaly process created: whoami.exe by svc_backup",
+          "2026-05-15 01:26:25 EventID 4688: Anomaly process created: net.exe user /domain by svc_backup",
+          "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1055 - Process Injection",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.118125+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: domain_controller.log",
+        "File on disk: domain_controller.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "file_hash": "700e089eb1381d13",
+        "indicator": "lsass",
+        "evidence": [
+          "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.118249+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: domain_controller.log",
+        "File on disk: domain_controller.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "file_hash": "700e089eb1381d13",
+        "indicator": "golden ticket",
+        "evidence": [
+          "2026-05-15 01:27:10 EventID 4776: Credential validation for krbtgt [GOLDEN TICKET ATTEMPT]"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.118344+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: domain_controller.log",
+        "File on disk: domain_controller.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "file_hash": "700e089eb1381d13",
+        "indicator": "mimikatz",
+        "evidence": [
+          "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb",
+          "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.118426+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: domain_controller.log",
+        "File on disk: domain_controller.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "c2_communication",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+        "file_hash": "4486d05cdf3fa163",
+        "indicator": "reverse shell",
+        "evidence": [
+          "2026-05-15 01:26:55 ALERT  HOST=FINSERV-DC01 Reverse shell established to 91.108.56.130:4444"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1071 - Application Layer Protocol",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.126760+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: endpoint_security.log",
+        "File on disk: endpoint_security.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_port",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+        "file_hash": "4486d05cdf3fa163",
+        "port": "4444",
+        "severity": "HIGH",
+        "mitre": "T1571 - Non-Standard Port",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.127526+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: endpoint_security.log",
+        "File on disk: endpoint_security.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "c2_communication",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d5",
+        "indicator": "beacon",
+        "evidence": [
+          "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1071 - Application Layer Protocol",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.128297+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "c2_communication",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d5",
+        "indicator": "c2",
+        "evidence": [
+          "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1071 - Application Layer Protocol",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.128370+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "c2_communication",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d5",
+        "indicator": "reverse shell",
+        "evidence": [
+          "2026-05-15 01:25:45 ALLOW OUTBOUND TCP 203.45.67.89:44321 -> 91.108.56.130:4444 [REVERSE SHELL]"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1071 - Application Layer Protocol",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.128429+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "data_exfiltration",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d5",
+        "indicator": "data exfil",
+        "evidence": [
+          "2026-05-15 02:15:00 ALERT OUTBOUND TCP 203.45.67.89:55000 -> 185.220.101.47:443 [DATA EXFIL 2.3GB]",
+          "2026-05-15 02:16:00 ALERT OUTBOUND TCP 203.45.67.89:55001 -> 185.220.101.47:443 [DATA EXFIL 1.8GB]"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1041 - Exfiltration Over C2 Channel",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.128618+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_port",
+        "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+        "file_hash": "610c2dc9c9f3c7d5",
+        "port": "4444",
+        "severity": "HIGH",
+        "mitre": "T1571 - Non-Standard Port",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T08:13:17.129109+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: perimeter_firewall.log",
+        "File on disk: perimeter_firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['failed password']",
+        "MITRE: T1110 - Brute Force"
+      ]
+    },
+    {
+      "pattern": "PRIVILEGE_ESCALATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['privilege escalation', 'unauthorized']",
+        "MITRE: T1548 - Abuse Elevation Control Mechanism"
+      ]
+    },
+    {
+      "pattern": "LATERAL_MOVEMENT_OR_C2",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['exploit', 'reverse shell']",
+        "MITRE: T1021 / T1059 - Remote Services / Command Interpreter"
+      ]
+    },
+    {
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['malware', 'ransomware']",
+        "MITRE: T1486 - Data Encrypted for Impact"
+      ]
+    },
+    {
+      "pattern": "CREDENTIAL_DUMPING",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['lsass', 'mimikatz']",
+        "MITRE: T1003 - OS Credential Dumping"
+      ]
+    },
+    {
+      "pattern": "DATA_EXFILTRATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['exfiltration']",
+        "MITRE: T1041 - Exfiltration Over C2 Channel"
+      ]
+    },
+    {
+      "pattern": "POWERSHELL_OBFUSCATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['powershell', 'base64', 'encoded']",
+        "MITRE: T1059.001 - PowerShell / T1027 - Obfuscation"
+      ]
+    },
+    {
+      "ip": "185.220.101.47",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "203.45.67.89",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "91.108.56.130",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "The attack originated from 185.220.101.47 targeting FINSERV-DB01, gaining initial foothold through exploitation of a network-accessible service. Following injection, the compromised process established a covert C2 communication channel to 91.108.56.130 over HTTPS, with the TLS certificate issued by an unexpected authority \u2014 a hallmark of attacker-controlled infrastructure masquerading as legitimate services. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+  "containment_actions": [
+    "BLOCK IP 185.220.101.47 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 203.45.67.89 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 91.108.56.130 at perimeter firewall and all internal segment boundaries",
+    "ISOLATE host CVE-2024 immediately \u2014 disconnect from all network segments",
+    "ISOLATE host FINSERV-DB01 immediately \u2014 disconnect from all network segments",
+    "ISOLATE host FINSERV-DC01 immediately \u2014 disconnect from all network segments",
+    "ISOLATE host FINSERV-FILE01 immediately \u2014 disconnect from all network segments",
+    "SUSPEND account 'svc_backup' and invalidate all active sessions",
+    "COLLECT forensic image of: C:\\Windows\\System32\\lsass.exe",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [
+      "185.220.101.47",
+      "203.45.67.89",
+      "91.108.56.130"
+    ],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [
+      "SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoA",
+      "WindowsDefenderUpdate",
+      "e3b0c44298fc1c149afb"
+    ],
+    "decoded_payloads": [],
+    "file_paths": [
+      "C:\\Windows\\System32\\lsass.exe"
+    ],
+    "hostnames": [
+      "CVE-2024",
+      "FINSERV-DB01",
+      "FINSERV-DC01",
+      "FINSERV-FILE01"
+    ],
+    "usernames": [
+      "svc_backup"
+    ],
+    "process_ids": [
+      "9821"
+    ],
+    "granted_access": [],
+    "domains": []
+  },
+  "temporal_sequences": [],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log": {
+      "sha256": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+      "timestamp": "2026-05-23T08:13:17.123204+00:00",
+      "size_bytes": 1062
+    },
+    "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log": {
+      "sha256": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+      "timestamp": "2026-05-23T08:13:17.124532+00:00",
+      "size_bytes": 1458
+    },
+    "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log": {
+      "sha256": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+      "timestamp": "2026-05-23T08:13:17.126164+00:00",
+      "size_bytes": 1252
+    },
+    "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log": {
+      "sha256": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2",
+      "timestamp": "2026-05-23T08:13:17.127765+00:00",
+      "size_bytes": 955
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-23T08:13:15.928551+00:00",
+      "level": "AGENT",
+      "message": "NODE: Triage \u2014 examining evidence...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:15.932188+00:00",
+      "level": "DONE",
+      "message": "Triage done \u2014 Priority: CRITICAL, Files: 4",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:15.934295+00:00",
+      "level": "AGENT",
+      "message": "NODE: Log Analysis \u2014 hunting IoCs...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.099611+00:00",
+      "level": "DONE",
+      "message": "Log analysis done \u2014 4 findings",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.103671+00:00",
+      "level": "AGENT",
+      "message": "NODE: Disk Analysis -- scanning file system artifacts...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.113658+00:00",
+      "level": "DONE",
+      "message": "Disk analysis done -- 10 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.116322+00:00",
+      "level": "AGENT",
+      "message": "NODE: Memory Analysis -- hunting injection and credential dumps...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.119984+00:00",
+      "level": "DONE",
+      "message": "Memory analysis done -- 4 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.122583+00:00",
+      "level": "AGENT",
+      "message": "NODE: Network Analysis -- detecting C2, exfil, tunneling...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.129295+00:00",
+      "level": "DONE",
+      "message": "Network analysis done -- 7 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.131503+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correlation \u2014 cross-referencing findings...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.134870+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: CRITICAL (100/100)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.136681+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 0)...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.845985+00:00",
+      "level": "LOOP",
+      "message": "Devil advocate flagged issues \u2014 re-evaluation needed (iteration 0)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.851007+00:00",
+      "level": "LOOP",
+      "message": "Incrementing to iteration 1 \u2014 re-running correlation with fixed data",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.854551+00:00",
+      "level": "LOOP",
+      "message": "NODE: Correlation (re-run #1) \u2014 applying fixes...",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.862893+00:00",
+      "level": "LOOP",
+      "message": "State-retained: POWERSHELL_OBFUSCATION re-applied from previous iteration",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.863075+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: CRITICAL (100/100)",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T08:13:17.866943+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 1)...",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T08:13:18.565815+00:00",
+      "level": "DONE",
+      "message": "Correction done \u2014 100.0% accuracy, 37 validated",
+      "iteration": 1
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/financial_breach",
+      "priority": "CRITICAL",
+      "keyword_hits": {
+        "critical_keywords_found": [
+          "c2",
+          "malware",
+          "backdoor",
+          "reverse shell",
+          "base64",
+          "encoded",
+          "powershell",
+          "ransomware",
+          "exploit",
+          "lsass",
+          "lateral movement",
+          "mimikatz",
+          "golden ticket",
+          "kerberoast"
+        ],
+        "high_keywords_found": [
+          "brute force",
+          "unauthorized",
+          "registry",
+          "injection",
+          "scheduled task",
+          "anomaly",
+          "privilege escalation",
+          "failed password",
+          "persistence",
+          "svchost"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+        "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+        "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+        "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+          "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+          "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 4,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "4 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+        "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+        "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+        "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 4,
+          "files": [
+            "database_audit.log",
+            "domain_controller.log",
+            "endpoint_security.log",
+            "perimeter_firewall.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:15.931209+00:00",
+          "traceable": true
+        },
+        {
+          "type": "dynamic_priority_escalation",
+          "reason": "Critical keywords found in evidence",
+          "keywords": [
+            "c2",
+            "malware",
+            "backdoor",
+            "reverse shell",
+            "base64",
+            "encoded",
+            "powershell",
+            "ransomware",
+            "exploit",
+            "lsass",
+            "lateral movement",
+            "mimikatz",
+            "golden ticket",
+            "kerberoast"
+          ],
+          "artifact": "triage_scan",
+          "priority_set": "CRITICAL",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:15.931952+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T08:13:15.932136+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 4,
+      "suspicious_files": 4,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log": {
+          "unauthorized": {
+            "matches": [
+              "2026-05-15 01:27:35 DB_AUDIT ALERT Unauthorized privilege escalation: svc_backup granted DBA role"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+            "file_hash": "eeeba11a1eb0d6fb",
+            "tool_used": "grep+regex",
+            "command_hash": "7fe948efc9a7e140"
+          },
+          "privilege escalation": {
+            "matches": [
+              "2026-05-15 01:27:35 DB_AUDIT ALERT Unauthorized privilege escalation: svc_backup granted DBA role"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+            "file_hash": "eeeba11a1eb0d6fb",
+            "tool_used": "grep+regex",
+            "command_hash": "5c310bafea10dcd2"
+          }
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log": {
+          "failed password": {
+            "matches": [
+              "2026-05-15 01:25:50 EventID 4625 AUDIT_FAILURE: Failed password for Administrator from 91.108.56.130",
+              "2026-05-15 01:25:52 EventID 4625 AUDIT_FAILURE: Failed password for Administrator from 91.108.56.130",
+              "2026-05-15 01:25:54 EventID 4625 AUDIT_FAILURE: Failed password for svc_backup from 91.108.56.130",
+              "2026-05-15 01:25:56 EventID 4625 AUDIT_FAILURE: Failed password for svc_backup from 91.108.56.130"
+            ],
+            "count": 4,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13",
+            "tool_used": "grep+regex",
+            "command_hash": "c6ef583440c82434"
+          },
+          "unauthorized": {
+            "matches": [
+              "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13",
+            "tool_used": "grep+regex",
+            "command_hash": "951cd8c180e4f494"
+          }
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log": {
+          "unauthorized": {
+            "matches": [
+              "2026-05-15 01:27:20 ALERT  HOST=FINSERV-DB01 Unauthorized access: financial_records.db opened",
+              "2026-05-15 01:27:25 ALERT  HOST=FINSERV-DB01 Unauthorized access: customer_accounts.db opened"
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "tool_used": "grep+regex",
+            "command_hash": "7e9df3faa881d4e6"
+          },
+          "exploit": {
+            "matches": [
+              "2026-05-15 01:27:15 ALERT  HOST=FINSERV-DC01 Lateral movement to FINSERV-DB01 via SMB exploit",
+              "2026-05-15 01:28:20 CRIT   HOST=FINSERV-DC01 Exploit CVE-2024-21413 confirmed successful"
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "tool_used": "grep+regex",
+            "command_hash": "36b078da5a1b3ffc"
+          },
+          "malware": {
+            "matches": [
+              "2026-05-15 01:28:15 CRIT   HOST=FINSERV-DC01 Malware persistence confirmed in registry run key"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "tool_used": "grep+regex",
+            "command_hash": "947b7c856aeb6304"
+          },
+          "ransomware": {
+            "matches": [
+              "2026-05-15 01:28:00 ALERT  HOST=FINSERV-DC01 Ransomware signature detected: LockBit 3.0 variant",
+              "2026-05-15 01:28:10 ALERT  HOST=FINSERV-DB01 Ransomware propagation via SMB to FINSERV-FILE01"
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "tool_used": "grep+regex",
+            "command_hash": "cec83a37166b2284"
+          }
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log": {
+          "exploit": {
+            "matches": [
+              "2026-05-15 01:25:10 ALERT INBOUND  TCP 91.108.56.130:65432 -> 203.45.67.89:443 [EXPLOIT attempt CVE-2024-21413]"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "tool_used": "grep+regex",
+            "command_hash": "c130a026015cfd87"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [
+          "185.220.101.47",
+          "203.45.67.89",
+          "91.108.56.130"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [
+          "SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoA",
+          "WindowsDefenderUpdate",
+          "e3b0c44298fc1c149afb"
+        ],
+        "decoded_payloads": [],
+        "file_paths": [
+          "C:\\Windows\\System32\\lsass.exe"
+        ],
+        "hostnames": [
+          "CVE-2024",
+          "FINSERV-DB01",
+          "FINSERV-DC01",
+          "FINSERV-FILE01"
+        ],
+        "usernames": [
+          "svc_backup"
+        ],
+        "process_ids": [
+          "9821"
+        ],
+        "granted_access": []
+      },
+      "unique_ips": [
+        "185.220.101.47",
+        "203.45.67.89",
+        "91.108.56.130"
+      ],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log": {
+          "sha256": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+          "timestamp": "2026-05-23T08:13:15.960685+00:00",
+          "size_bytes": 1062
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log": {
+          "sha256": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+          "timestamp": "2026-05-23T08:13:16.212265+00:00",
+          "size_bytes": 1458
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log": {
+          "sha256": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+          "timestamp": "2026-05-23T08:13:16.485122+00:00",
+          "size_bytes": 1252
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log": {
+          "sha256": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2",
+          "timestamp": "2026-05-23T08:13:16.829087+00:00",
+          "size_bytes": 955
+        }
+      },
+      "decoded_payloads": [
+        {
+          "original": "e3b0c44298fc1c149afb",
+          "decoded_text": "{v\ufffds\ufffd6\ufffd\ufffd\ufffd\ufffd\ufffdx\ufffd\ufffd\ufffd",
+          "is_compressed": false,
+          "extracted_strings": [],
+          "suspicious_indicators": []
+        },
+        {
+          "original": "SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoA",
+          "decoded_text": "I\u0000E\u0000X\u0000 \u0000(\u0000N\u0000e\u0000w\u0000-\u0000O\u0000b\u0000j\u0000",
+          "is_compressed": false,
+          "extracted_strings": [],
+          "suspicious_indicators": []
+        }
+      ],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+          "file_hash": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+          "keywords_matched": [
+            "unauthorized",
+            "privilege escalation"
+          ],
+          "total_hits": 2,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:16.211798+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "file_hash": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+          "keywords_matched": [
+            "failed password",
+            "unauthorized"
+          ],
+          "total_hits": 5,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:16.484857+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+          "file_hash": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+          "keywords_matched": [
+            "unauthorized",
+            "exploit",
+            "malware",
+            "ransomware"
+          ],
+          "total_hits": 7,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:16.828843+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2",
+          "keywords_matched": [
+            "exploit"
+          ],
+          "total_hits": 1,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.098681+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T08:13:17.099465+00:00"
+    },
+    "disk_analysis": {
+      "status": "COMPLETE",
+      "agent": "DiskAgent",
+      "files_analyzed": 4,
+      "total_hits": 10,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "suspicious_executables": [
+          "C:\\Windows\\System32\\lsass.exe"
+        ],
+        "drop_zone_paths": [
+          "2026-05-15 01:25:10 ALERT INBOUND  TCP 91.108.56.130:65432 -> 203.45.67.89:443 [EXPLOIT attempt CVE-2024-21413]",
+          "2026-05-15 01:27:10 EventID 4776: Credential validation for krbtgt [GOLDEN TICKET ATTEMPT]",
+          "2026-05-15 01:28:00 DB_AUDIT ALERT SQL injection attempt on login form from 91.108.56.130",
+          "2026-05-15 01:28:05 DB_AUDIT ALERT brute force on database credentials: 47 failed attempts in 5 seconds"
+        ],
+        "persistence_paths": [],
+        "double_extension_files": [],
+        "malicious_filenames": [
+          "beacon",
+          "exploit",
+          "mimikatz",
+          "payload",
+          "ransomware"
+        ]
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log": {
+          "sha256": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+          "timestamp": "2026-05-23T08:13:17.104728+00:00",
+          "size_bytes": 1062
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log": {
+          "sha256": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+          "timestamp": "2026-05-23T08:13:17.106804+00:00",
+          "size_bytes": 1458
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log": {
+          "sha256": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+          "timestamp": "2026-05-23T08:13:17.109219+00:00",
+          "size_bytes": 1252
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log": {
+          "sha256": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2",
+          "timestamp": "2026-05-23T08:13:17.111669+00:00",
+          "size_bytes": 955
+        }
+      },
+      "findings": [
+        {
+          "type": "malware_drop_zone",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+          "file_hash": "eeeba11a1eb0d6fb",
+          "path_pattern": "temp",
+          "evidence": [
+            "2026-05-15 01:28:00 DB_AUDIT ALERT SQL injection attempt on login form from 91.108.56.130",
+            "2026-05-15 01:28:05 DB_AUDIT ALERT brute force on database credentials: 47 failed attempts in 5 seconds"
+          ],
+          "severity": "HIGH",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.105373+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+          "file_hash": "eeeba11a1eb0d6fb",
+          "filename_pattern": "payload",
+          "evidence": [
+            "2026-05-15 01:27:26 DB_AUDIT ALERT INJECTION detected: payload=\"1 OR 1=1 UNION SELECT password FROM users\""
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.105660+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malware_drop_zone",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "file_hash": "700e089eb1381d13",
+          "path_pattern": "temp",
+          "evidence": [
+            "2026-05-15 01:27:10 EventID 4776: Credential validation for krbtgt [GOLDEN TICKET ATTEMPT]"
+          ],
+          "severity": "HIGH",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.107582+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "file_hash": "700e089eb1381d13",
+          "filename_pattern": "mimikatz",
+          "evidence": [
+            "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb",
+            "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.107857+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+          "file_hash": "4486d05cdf3fa163",
+          "filename_pattern": "payload",
+          "evidence": [
+            "2026-05-15 01:26:50 ALERT  HOST=FINSERV-DC01 Base64 encoded payload decoded and executed by PID 9821"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.110172+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+          "file_hash": "4486d05cdf3fa163",
+          "filename_pattern": "exploit",
+          "evidence": [
+            "2026-05-15 01:27:15 ALERT  HOST=FINSERV-DC01 Lateral movement to FINSERV-DB01 via SMB exploit",
+            "2026-05-15 01:28:20 CRIT   HOST=FINSERV-DC01 Exploit CVE-2024-21413 confirmed successful"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.110356+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+          "file_hash": "4486d05cdf3fa163",
+          "filename_pattern": "ransomware",
+          "evidence": [
+            "2026-05-15 01:28:00 ALERT  HOST=FINSERV-DC01 Ransomware signature detected: LockBit 3.0 variant",
+            "2026-05-15 01:28:10 ALERT  HOST=FINSERV-DB01 Ransomware propagation via SMB to FINSERV-FILE01"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.110506+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malware_drop_zone",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d5",
+          "path_pattern": "temp",
+          "evidence": [
+            "2026-05-15 01:25:10 ALERT INBOUND  TCP 91.108.56.130:65432 -> 203.45.67.89:443 [EXPLOIT attempt CVE-2024-21413]"
+          ],
+          "severity": "HIGH",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.112308+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d5",
+          "filename_pattern": "beacon",
+          "evidence": [
+            "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.112551+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d5",
+          "filename_pattern": "exploit",
+          "evidence": [
+            "2026-05-15 01:25:10 ALERT INBOUND  TCP 91.108.56.130:65432 -> 203.45.67.89:443 [EXPLOIT attempt CVE-2024-21413]"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.112720+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T08:13:17.113538+00:00"
+    },
+    "memory_analysis": {
+      "status": "COMPLETE",
+      "agent": "MemoryAgent",
+      "files_analyzed": 4,
+      "total_hits": 4,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "injection_techniques": [
+          "anomaly process"
+        ],
+        "credential_dump_indicators": [
+          "golden ticket",
+          "lsass",
+          "mimikatz"
+        ],
+        "suspicious_process_pairs": [],
+        "hollowing_indicators": [],
+        "memory_anomalies": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log": {
+          "sha256": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+          "timestamp": "2026-05-23T08:13:17.116952+00:00",
+          "size_bytes": 1062
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log": {
+          "sha256": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+          "timestamp": "2026-05-23T08:13:17.117649+00:00",
+          "size_bytes": 1458
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log": {
+          "sha256": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+          "timestamp": "2026-05-23T08:13:17.118711+00:00",
+          "size_bytes": 1252
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log": {
+          "sha256": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2",
+          "timestamp": "2026-05-23T08:13:17.119443+00:00",
+          "size_bytes": 955
+        }
+      },
+      "findings": [
+        {
+          "type": "process_injection",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "file_hash": "700e089eb1381d13",
+          "indicator": "anomaly process",
+          "evidence": [
+            "2026-05-15 01:26:20 EventID 4688: Anomaly process created: whoami.exe by svc_backup",
+            "2026-05-15 01:26:25 EventID 4688: Anomaly process created: net.exe user /domain by svc_backup",
+            "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1055 - Process Injection",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.118125+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "file_hash": "700e089eb1381d13",
+          "indicator": "lsass",
+          "evidence": [
+            "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.118249+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "file_hash": "700e089eb1381d13",
+          "indicator": "golden ticket",
+          "evidence": [
+            "2026-05-15 01:27:10 EventID 4776: Credential validation for krbtgt [GOLDEN TICKET ATTEMPT]"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.118344+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+          "file_hash": "700e089eb1381d13",
+          "indicator": "mimikatz",
+          "evidence": [
+            "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb",
+            "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.118426+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T08:13:17.119915+00:00"
+    },
+    "network_analysis": {
+      "status": "COMPLETE",
+      "agent": "NetworkAgent",
+      "files_analyzed": 4,
+      "total_hits": 7,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "c2_indicators": [
+          "beacon",
+          "c2",
+          "reverse shell"
+        ],
+        "suspicious_ips": [],
+        "suspicious_ports": [
+          "4444"
+        ],
+        "dns_tunnel_indicators": [],
+        "exfil_indicators": [
+          "data exfil"
+        ],
+        "scan_indicators": [],
+        "tls_anomalies": [],
+        "long_subdomains": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log": {
+          "sha256": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+          "timestamp": "2026-05-23T08:13:17.123204+00:00",
+          "size_bytes": 1062
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log": {
+          "sha256": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+          "timestamp": "2026-05-23T08:13:17.124532+00:00",
+          "size_bytes": 1458
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log": {
+          "sha256": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+          "timestamp": "2026-05-23T08:13:17.126164+00:00",
+          "size_bytes": 1252
+        },
+        "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log": {
+          "sha256": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2",
+          "timestamp": "2026-05-23T08:13:17.127765+00:00",
+          "size_bytes": 955
+        }
+      },
+      "findings": [
+        {
+          "type": "c2_communication",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+          "file_hash": "4486d05cdf3fa163",
+          "indicator": "reverse shell",
+          "evidence": [
+            "2026-05-15 01:26:55 ALERT  HOST=FINSERV-DC01 Reverse shell established to 91.108.56.130:4444"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1071 - Application Layer Protocol",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.126760+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_port",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+          "file_hash": "4486d05cdf3fa163",
+          "port": "4444",
+          "severity": "HIGH",
+          "mitre": "T1571 - Non-Standard Port",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.127526+00:00",
+          "traceable": true
+        },
+        {
+          "type": "c2_communication",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d5",
+          "indicator": "beacon",
+          "evidence": [
+            "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1071 - Application Layer Protocol",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.128297+00:00",
+          "traceable": true
+        },
+        {
+          "type": "c2_communication",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d5",
+          "indicator": "c2",
+          "evidence": [
+            "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1071 - Application Layer Protocol",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.128370+00:00",
+          "traceable": true
+        },
+        {
+          "type": "c2_communication",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d5",
+          "indicator": "reverse shell",
+          "evidence": [
+            "2026-05-15 01:25:45 ALLOW OUTBOUND TCP 203.45.67.89:44321 -> 91.108.56.130:4444 [REVERSE SHELL]"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1071 - Application Layer Protocol",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.128429+00:00",
+          "traceable": true
+        },
+        {
+          "type": "data_exfiltration",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d5",
+          "indicator": "data exfil",
+          "evidence": [
+            "2026-05-15 02:15:00 ALERT OUTBOUND TCP 203.45.67.89:55000 -> 185.220.101.47:443 [DATA EXFIL 2.3GB]",
+            "2026-05-15 02:16:00 ALERT OUTBOUND TCP 203.45.67.89:55001 -> 185.220.101.47:443 [DATA EXFIL 1.8GB]"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1041 - Exfiltration Over C2 Channel",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.128618+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_port",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+          "file_hash": "610c2dc9c9f3c7d5",
+          "port": "4444",
+          "severity": "HIGH",
+          "mitre": "T1571 - Non-Standard Port",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.129109+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T08:13:17.129246+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 5,
+      "extracted_entities": {
+        "ipv4_addresses": [
+          "185.220.101.47",
+          "203.45.67.89",
+          "91.108.56.130"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [
+          "SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoA",
+          "WindowsDefenderUpdate",
+          "e3b0c44298fc1c149afb"
+        ],
+        "decoded_payloads": [],
+        "file_paths": [
+          "C:\\Windows\\System32\\lsass.exe"
+        ],
+        "hostnames": [
+          "CVE-2024",
+          "FINSERV-DB01",
+          "FINSERV-DC01",
+          "FINSERV-FILE01"
+        ],
+        "usernames": [
+          "svc_backup"
+        ],
+        "process_ids": [
+          "9821"
+        ],
+        "granted_access": [],
+        "domains": []
+      },
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "185.220.101.47",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 185.220.101.47",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861720+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "203.45.67.89",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 203.45.67.89",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861741+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "91.108.56.130",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 91.108.56.130",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861763+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "failed password"
+          ],
+          "description": "Credential brute force detected",
+          "mitre_technique": "T1110 - Brute Force",
+          "base_score": 70,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.860955+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "privilege escalation",
+            "unauthorized"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861121+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "exploit",
+            "reverse shell"
+          ],
+          "description": "C2 or lateral movement detected",
+          "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+          "base_score": 85,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861258+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "malware",
+            "ransomware"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861398+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "CREDENTIAL_DUMPING",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "lsass",
+            "mimikatz"
+          ],
+          "description": "Credential dumping detected",
+          "mitre_technique": "T1003 - OS Credential Dumping",
+          "base_score": 88,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861529+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "DATA_EXFILTRATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "exfiltration"
+          ],
+          "description": "Data exfiltration detected",
+          "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+          "base_score": 80,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861672+00:00",
+          "traceable": true
+        },
+        {
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "powershell",
+            "base64",
+            "encoded"
+          ],
+          "description": "PowerShell obfuscation \u2014 injected by CorrectionAgent after triage-correlation mismatch",
+          "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+          "base_score": 85,
+          "injected_by": "devil_advocate_auto_remediation"
+        }
+      ],
+      "temporal_sequences": [],
+      "high_signal_signatures": [],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-23T08:13:15.931209+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "dynamic_priority_escalation",
+          "timestamp": "2026-05-23T08:13:15.931952+00:00",
+          "artifact": "triage_scan"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T08:13:16.211798+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T08:13:16.484857+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T08:13:16.828843+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T08:13:17.098681+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malware_drop_zone",
+          "timestamp": "2026-05-23T08:13:17.105373+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T08:13:17.105660+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malware_drop_zone",
+          "timestamp": "2026-05-23T08:13:17.107582+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T08:13:17.107857+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T08:13:17.110172+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T08:13:17.110356+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T08:13:17.110506+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malware_drop_zone",
+          "timestamp": "2026-05-23T08:13:17.112308+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T08:13:17.112551+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T08:13:17.112720+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "process_injection",
+          "timestamp": "2026-05-23T08:13:17.118125+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T08:13:17.118249+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T08:13:17.118344+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T08:13:17.118426+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "c2_communication",
+          "timestamp": "2026-05-23T08:13:17.126760+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "suspicious_port",
+          "timestamp": "2026-05-23T08:13:17.127526+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "c2_communication",
+          "timestamp": "2026-05-23T08:13:17.128297+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "c2_communication",
+          "timestamp": "2026-05-23T08:13:17.128370+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "c2_communication",
+          "timestamp": "2026-05-23T08:13:17.128429+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "data_exfiltration",
+          "timestamp": "2026-05-23T08:13:17.128618+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "suspicious_port",
+          "timestamp": "2026-05-23T08:13:17.129109+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log"
+        }
+      ],
+      "threat_assessment": {
+        "score": 100,
+        "level": "CRITICAL",
+        "reasons": [
+          "Base pattern score: 90",
+          "6 patterns detected (+10)",
+          "Correlated IPs (+5)"
+        ]
+      },
+      "attack_narrative": "The attack originated from 185.220.101.47 targeting FINSERV-DB01, gaining initial foothold through exploitation of a network-accessible service. Following injection, the compromised process established a covert C2 communication channel to 91.108.56.130 over HTTPS, with the TLS certificate issued by an unexpected authority \u2014 a hallmark of attacker-controlled infrastructure masquerading as legitimate services. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+      "containment_actions": [
+        "BLOCK IP 185.220.101.47 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 203.45.67.89 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 91.108.56.130 at perimeter firewall and all internal segment boundaries",
+        "ISOLATE host CVE-2024 immediately \u2014 disconnect from all network segments",
+        "ISOLATE host FINSERV-DB01 immediately \u2014 disconnect from all network segments",
+        "ISOLATE host FINSERV-DC01 immediately \u2014 disconnect from all network segments",
+        "ISOLATE host FINSERV-FILE01 immediately \u2014 disconnect from all network segments",
+        "SUSPEND account 'svc_backup' and invalidate all active sessions",
+        "COLLECT forensic image of: C:\\Windows\\System32\\lsass.exe",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "failed password"
+          ],
+          "description": "Credential brute force detected",
+          "mitre_technique": "T1110 - Brute Force",
+          "base_score": 70,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.860955+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "privilege escalation",
+            "unauthorized"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861121+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "exploit",
+            "reverse shell"
+          ],
+          "description": "C2 or lateral movement detected",
+          "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+          "base_score": 85,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861258+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "malware",
+            "ransomware"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861398+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "CREDENTIAL_DUMPING",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "lsass",
+            "mimikatz"
+          ],
+          "description": "Credential dumping detected",
+          "mitre_technique": "T1003 - OS Credential Dumping",
+          "base_score": 88,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861529+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "DATA_EXFILTRATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "exfiltration"
+          ],
+          "description": "Data exfiltration detected",
+          "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+          "base_score": 80,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861672+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "185.220.101.47",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 185.220.101.47",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861720+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "203.45.67.89",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 203.45.67.89",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861741+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "91.108.56.130",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 91.108.56.130",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T08:13:17.861763+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T08:13:17.862595+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 4,
+            "files": [
+              "database_audit.log",
+              "domain_controller.log",
+              "endpoint_security.log",
+              "perimeter_firewall.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:15.931209+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: database_audit.log",
+            "File on disk: database_audit.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "dynamic_priority_escalation",
+            "reason": "Critical keywords found in evidence",
+            "keywords": [
+              "c2",
+              "malware",
+              "backdoor",
+              "reverse shell",
+              "base64",
+              "encoded",
+              "powershell",
+              "ransomware",
+              "exploit",
+              "lsass",
+              "lateral movement",
+              "mimikatz",
+              "golden ticket",
+              "kerberoast"
+            ],
+            "artifact": "triage_scan",
+            "priority_set": "CRITICAL",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:15.931952+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Triage-level finding \u2014 acceptable",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+            "file_hash": "eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07",
+            "keywords_matched": [
+              "unauthorized",
+              "privilege escalation"
+            ],
+            "total_hits": 2,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:16.211798+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: database_audit.log",
+            "File on disk: database_audit.log",
+            "Keywords: ['unauthorized', 'privilege escalation']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5",
+            "keywords_matched": [
+              "failed password",
+              "unauthorized"
+            ],
+            "total_hits": 5,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:16.484857+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: domain_controller.log",
+            "File on disk: domain_controller.log",
+            "Keywords: ['failed password', 'unauthorized']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622",
+            "keywords_matched": [
+              "unauthorized",
+              "exploit",
+              "malware",
+              "ransomware"
+            ],
+            "total_hits": 7,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:16.828843+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: endpoint_security.log",
+            "File on disk: endpoint_security.log",
+            "Keywords: ['unauthorized', 'exploit', 'malware', 'ransomware']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2",
+            "keywords_matched": [
+              "exploit"
+            ],
+            "total_hits": 1,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.098681+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Keywords: ['exploit']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malware_drop_zone",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+            "file_hash": "eeeba11a1eb0d6fb",
+            "path_pattern": "temp",
+            "evidence": [
+              "2026-05-15 01:28:00 DB_AUDIT ALERT SQL injection attempt on login form from 91.108.56.130",
+              "2026-05-15 01:28:05 DB_AUDIT ALERT brute force on database credentials: 47 failed attempts in 5 seconds"
+            ],
+            "severity": "HIGH",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.105373+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: database_audit.log",
+            "File on disk: database_audit.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/database_audit.log",
+            "file_hash": "eeeba11a1eb0d6fb",
+            "filename_pattern": "payload",
+            "evidence": [
+              "2026-05-15 01:27:26 DB_AUDIT ALERT INJECTION detected: payload=\"1 OR 1=1 UNION SELECT password FROM users\""
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.105660+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: database_audit.log",
+            "File on disk: database_audit.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malware_drop_zone",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13",
+            "path_pattern": "temp",
+            "evidence": [
+              "2026-05-15 01:27:10 EventID 4776: Credential validation for krbtgt [GOLDEN TICKET ATTEMPT]"
+            ],
+            "severity": "HIGH",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.107582+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: domain_controller.log",
+            "File on disk: domain_controller.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13",
+            "filename_pattern": "mimikatz",
+            "evidence": [
+              "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb",
+              "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.107857+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: domain_controller.log",
+            "File on disk: domain_controller.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "filename_pattern": "payload",
+            "evidence": [
+              "2026-05-15 01:26:50 ALERT  HOST=FINSERV-DC01 Base64 encoded payload decoded and executed by PID 9821"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.110172+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: endpoint_security.log",
+            "File on disk: endpoint_security.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "filename_pattern": "exploit",
+            "evidence": [
+              "2026-05-15 01:27:15 ALERT  HOST=FINSERV-DC01 Lateral movement to FINSERV-DB01 via SMB exploit",
+              "2026-05-15 01:28:20 CRIT   HOST=FINSERV-DC01 Exploit CVE-2024-21413 confirmed successful"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.110356+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: endpoint_security.log",
+            "File on disk: endpoint_security.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "filename_pattern": "ransomware",
+            "evidence": [
+              "2026-05-15 01:28:00 ALERT  HOST=FINSERV-DC01 Ransomware signature detected: LockBit 3.0 variant",
+              "2026-05-15 01:28:10 ALERT  HOST=FINSERV-DB01 Ransomware propagation via SMB to FINSERV-FILE01"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.110506+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: endpoint_security.log",
+            "File on disk: endpoint_security.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malware_drop_zone",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "path_pattern": "temp",
+            "evidence": [
+              "2026-05-15 01:25:10 ALERT INBOUND  TCP 91.108.56.130:65432 -> 203.45.67.89:443 [EXPLOIT attempt CVE-2024-21413]"
+            ],
+            "severity": "HIGH",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.112308+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "filename_pattern": "beacon",
+            "evidence": [
+              "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.112551+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "filename_pattern": "exploit",
+            "evidence": [
+              "2026-05-15 01:25:10 ALERT INBOUND  TCP 91.108.56.130:65432 -> 203.45.67.89:443 [EXPLOIT attempt CVE-2024-21413]"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.112720+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "process_injection",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13",
+            "indicator": "anomaly process",
+            "evidence": [
+              "2026-05-15 01:26:20 EventID 4688: Anomaly process created: whoami.exe by svc_backup",
+              "2026-05-15 01:26:25 EventID 4688: Anomaly process created: net.exe user /domain by svc_backup",
+              "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1055 - Process Injection",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.118125+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: domain_controller.log",
+            "File on disk: domain_controller.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13",
+            "indicator": "lsass",
+            "evidence": [
+              "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.118249+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: domain_controller.log",
+            "File on disk: domain_controller.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13",
+            "indicator": "golden ticket",
+            "evidence": [
+              "2026-05-15 01:27:10 EventID 4776: Credential validation for krbtgt [GOLDEN TICKET ATTEMPT]"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.118344+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: domain_controller.log",
+            "File on disk: domain_controller.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/domain_controller.log",
+            "file_hash": "700e089eb1381d13",
+            "indicator": "mimikatz",
+            "evidence": [
+              "2026-05-15 01:27:00 EventID 4688: Anomaly process created: mimikatz.exe by Administrator hash=e3b0c44298fc1c149afb",
+              "2026-05-15 01:27:05 EventID 4663: Unauthorized access to C:\\Windows\\System32\\lsass.exe by mimikatz"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.118426+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: domain_controller.log",
+            "File on disk: domain_controller.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "c2_communication",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "indicator": "reverse shell",
+            "evidence": [
+              "2026-05-15 01:26:55 ALERT  HOST=FINSERV-DC01 Reverse shell established to 91.108.56.130:4444"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1071 - Application Layer Protocol",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.126760+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: endpoint_security.log",
+            "File on disk: endpoint_security.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_port",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/endpoint_security.log",
+            "file_hash": "4486d05cdf3fa163",
+            "port": "4444",
+            "severity": "HIGH",
+            "mitre": "T1571 - Non-Standard Port",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.127526+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: endpoint_security.log",
+            "File on disk: endpoint_security.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "c2_communication",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "indicator": "beacon",
+            "evidence": [
+              "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1071 - Application Layer Protocol",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.128297+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "c2_communication",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "indicator": "c2",
+            "evidence": [
+              "2026-05-15 01:26:00 ALLOW OUTBOUND TCP 203.45.67.89:44322 -> 91.108.56.130:443 [C2 BEACON]"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1071 - Application Layer Protocol",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.128370+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "c2_communication",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "indicator": "reverse shell",
+            "evidence": [
+              "2026-05-15 01:25:45 ALLOW OUTBOUND TCP 203.45.67.89:44321 -> 91.108.56.130:4444 [REVERSE SHELL]"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1071 - Application Layer Protocol",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.128429+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "data_exfiltration",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "indicator": "data exfil",
+            "evidence": [
+              "2026-05-15 02:15:00 ALERT OUTBOUND TCP 203.45.67.89:55000 -> 185.220.101.47:443 [DATA EXFIL 2.3GB]",
+              "2026-05-15 02:16:00 ALERT OUTBOUND TCP 203.45.67.89:55001 -> 185.220.101.47:443 [DATA EXFIL 1.8GB]"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1041 - Exfiltration Over C2 Channel",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.128618+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_port",
+            "artifact": "/data/data/com.termux/files/home/cases/financial_breach/perimeter_firewall.log",
+            "file_hash": "610c2dc9c9f3c7d5",
+            "port": "4444",
+            "severity": "HIGH",
+            "mitre": "T1571 - Non-Standard Port",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T08:13:17.129109+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: perimeter_firewall.log",
+            "File on disk: perimeter_firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['failed password']",
+            "MITRE: T1110 - Brute Force"
+          ]
+        },
+        {
+          "pattern": "PRIVILEGE_ESCALATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['privilege escalation', 'unauthorized']",
+            "MITRE: T1548 - Abuse Elevation Control Mechanism"
+          ]
+        },
+        {
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['exploit', 'reverse shell']",
+            "MITRE: T1021 / T1059 - Remote Services / Command Interpreter"
+          ]
+        },
+        {
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['malware', 'ransomware']",
+            "MITRE: T1486 - Data Encrypted for Impact"
+          ]
+        },
+        {
+          "pattern": "CREDENTIAL_DUMPING",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['lsass', 'mimikatz']",
+            "MITRE: T1003 - OS Credential Dumping"
+          ]
+        },
+        {
+          "pattern": "DATA_EXFILTRATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['exfiltration']",
+            "MITRE: T1041 - Exfiltration Over C2 Channel"
+          ]
+        },
+        {
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['powershell', 'base64', 'encoded']",
+            "MITRE: T1059.001 - PowerShell / T1027 - Obfuscation"
+          ]
+        },
+        {
+          "ip": "185.220.101.47",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "203.45.67.89",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "91.108.56.130",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 37,
+        "validated": 37,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [],
+        "devil_advocate_suggestions": [],
+        "forced_reeval": false,
+        "auto_remediated_patterns": [
+          "POWERSHELL_OBFUSCATION"
+        ],
+        "auto_remediation_count": 1
+      },
+      "errors": [],
+      "timestamp": "2026-05-23T08:13:18.565648+00:00"
+    }
+  },
+  "timestamp": "2026-05-23T08:13:18.570375+00:00",
+  "duration_seconds": 2.71
+}

@@ -1,0 +1,6 @@
+NEXUS-IR Pressure Test -- Sun May 24 07:42:42 WAT 2026
+Sequential: 10/10, avg=7659ms, min=5794ms, max=9757ms
+Real cases: 10/10
+Parallel: 8585ms wall time
+Burst: 20/20, first=7370ms, last=4632ms, drift=-2738ms
+Total: 43/43

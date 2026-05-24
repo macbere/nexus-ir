@@ -1,0 +1,104 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260521_224434
+  Generated    : 2026-05-21 22:44:34 UTC
+  Duration     : 0.46s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : LOW (0/100)
+  Case Priority    : HIGH
+  Files Scanned    : 1
+  Attack Patterns  : 0
+  IPs Identified   : 0
+  Findings Valid   : 2
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : sysmon_lolbin.json
+  SHA256 : f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e
+  Size   : 1131 bytes
+  Hashed : 2026-05-21T22:44:34.416785+00:00
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  No attack patterns detected.
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  FILE PATHS:
+    - /bit.ly/3x9Z2a1
+  HOSTNAMES:
+    - DESKTOP-DEV
+    - DESKTOP-DEV-99A
+  USERNAMES:
+    - DESKTOP-DEV-99A
+  PROCESS IDS:
+    - 10240
+    - 2104
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  No IP correlations found.
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-21T22:44:34
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: sysmon_lolbin.json
+
+  2026-05-21T22:44:34
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: sysmon_lolbin.json
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : sysmon_lolbin.json
+
+  [2] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : sysmon_lolbin.json
+      File Hash  : f14b1cdd94c84b608b1406a61855472b...
+      Keywords   : regsvr32
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] ISOLATE host DESKTOP-DEV immediately — disconnect from all network segments
+  [02] ISOLATE host DESKTOP-DEV-99A immediately — disconnect from all network segments
+  [03] SUSPEND account 'DESKTOP-DEV-99A' and invalidate all active sessions
+  [04] PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings
+  [05] NOTIFY CISO and legal team — assess breach notification obligations
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================

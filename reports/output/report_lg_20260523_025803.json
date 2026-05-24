@@ -1,0 +1,790 @@
+{
+  "nexus_ir_version": "4.0.0-langgraph",
+  "session_id": "20260523_025803",
+  "investigation_complete": true,
+  "langgraph_iterations": 1,
+  "executive_summary": {
+    "threat_level": "HIGH",
+    "threat_score": 80,
+    "case_priority": "HIGH",
+    "total_files_analyzed": 1,
+    "attack_patterns_detected": 1,
+    "unique_ips_found": 1,
+    "findings_validated": 5,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH",
+    "auto_remediated": 0
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "PRIVILEGE_ESCALATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "unauthorized",
+        "sudo",
+        "privilege escalation"
+      ],
+      "description": "Privilege escalation detected",
+      "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+      "base_score": 75,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:58:03.825803+00:00",
+      "traceable": true
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "203.0.113.99",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 203.0.113.99",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:58:03.825841+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-23T02:58:03.476917+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T02:58:03.810563+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malware_drop_zone",
+      "timestamp": "2026-05-23T02:58:03.815087+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 1,
+        "files": [
+          "access.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:58:03.476917+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: access.log",
+        "File on disk: access.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/insider/access.log",
+        "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+        "file_hash": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76",
+        "keywords_matched": [
+          "unauthorized",
+          "privilege escalation",
+          "sudo"
+        ],
+        "total_hits": 3,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:58:03.810563+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: access.log",
+        "File on disk: access.log",
+        "Keywords: ['unauthorized', 'privilege escalation', 'sudo']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malware_drop_zone",
+        "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+        "file_hash": "6a6a8f82685d612a",
+        "path_pattern": "temp",
+        "evidence": [
+          "2026-05-20 23:45:10 Privilege escalation attempt by john",
+          "2026-05-20 23:45:30 Injection attempt detected in database query"
+        ],
+        "severity": "HIGH",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:58:03.815087+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: access.log",
+        "File on disk: access.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "PRIVILEGE_ESCALATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['unauthorized', 'sudo', 'privilege escalation']",
+        "MITRE: T1548 - Abuse Elevation Control Mechanism"
+      ]
+    },
+    {
+      "ip": "203.0.113.99",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "The attack originated from 203.0.113.99 targeting the target, gaining initial foothold through exploitation of a network-accessible service.",
+  "containment_actions": [
+    "BLOCK IP 203.0.113.99 at perimeter firewall and all internal segment boundaries",
+    "SUSPEND account 'john' and invalidate all active sessions",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [
+      "203.0.113.99"
+    ],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [],
+    "decoded_payloads": [],
+    "file_paths": [
+      "/etc/passwd"
+    ],
+    "hostnames": [],
+    "usernames": [
+      "john"
+    ],
+    "process_ids": [],
+    "granted_access": [],
+    "domains": []
+  },
+  "temporal_sequences": [],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/insider/access.log": {
+      "sha256": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76",
+      "timestamp": "2026-05-23T02:58:03.821443+00:00",
+      "size_bytes": 318
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-23T02:58:03.474093+00:00",
+      "level": "AGENT",
+      "message": "NODE: Triage \u2014 examining evidence...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.478029+00:00",
+      "level": "DONE",
+      "message": "Triage done \u2014 Priority: HIGH, Files: 1",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.482093+00:00",
+      "level": "AGENT",
+      "message": "NODE: Log Analysis \u2014 hunting IoCs...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.810952+00:00",
+      "level": "DONE",
+      "message": "Log analysis done \u2014 1 findings",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.814154+00:00",
+      "level": "AGENT",
+      "message": "NODE: Disk Analysis -- scanning file system artifacts...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.815457+00:00",
+      "level": "DONE",
+      "message": "Disk analysis done -- 1 hit(s), priority: HIGH",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.817935+00:00",
+      "level": "AGENT",
+      "message": "NODE: Memory Analysis -- hunting injection and credential dumps...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.818934+00:00",
+      "level": "DONE",
+      "message": "Memory analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.820961+00:00",
+      "level": "AGENT",
+      "message": "NODE: Network Analysis -- detecting C2, exfil, tunneling...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.822523+00:00",
+      "level": "DONE",
+      "message": "Network analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.824621+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correlation \u2014 cross-referencing findings...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.826153+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: HIGH (80/100)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.827969+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 0)...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:03.915526+00:00",
+      "level": "DONE",
+      "message": "Correction done \u2014 100.0% accuracy, 5 validated",
+      "iteration": 0
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/insider",
+      "priority": "HIGH",
+      "keyword_hits": {
+        "critical_keywords_found": [],
+        "high_keywords_found": [
+          "injection",
+          "unauthorized",
+          "sudo",
+          "privilege escalation"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/insider/access.log"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/insider/access.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 1,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "1 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/insider/access.log": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 1,
+          "files": [
+            "access.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:03.476917+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:03.477895+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 1,
+      "suspicious_files": 1,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/insider/access.log": {
+          "unauthorized": {
+            "matches": [
+              "2026-05-20 23:45:01 Unauthorized access to /etc/passwd by user john"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "file_hash": "6a6a8f82685d612a",
+            "tool_used": "grep+regex",
+            "command_hash": "a844b4356681c10f"
+          },
+          "privilege escalation": {
+            "matches": [
+              "2026-05-20 23:45:10 Privilege escalation attempt by john"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "file_hash": "6a6a8f82685d612a",
+            "tool_used": "grep+regex",
+            "command_hash": "996f3d72f4fb05f7"
+          },
+          "sudo": {
+            "matches": [
+              "2026-05-20 23:45:15 sudo -s executed outside business hours"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "file_hash": "6a6a8f82685d612a",
+            "tool_used": "grep+regex",
+            "command_hash": "e9e2a2c7fd0508f2"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [
+          "203.0.113.99"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [
+          "/etc/passwd"
+        ],
+        "hostnames": [],
+        "usernames": [
+          "john"
+        ],
+        "process_ids": [],
+        "granted_access": []
+      },
+      "unique_ips": [
+        "203.0.113.99"
+      ],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/insider/access.log": {
+          "sha256": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76",
+          "timestamp": "2026-05-23T02:58:03.513833+00:00",
+          "size_bytes": 318
+        }
+      },
+      "decoded_payloads": [],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/insider/access.log",
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+          "file_hash": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76",
+          "keywords_matched": [
+            "unauthorized",
+            "privilege escalation",
+            "sudo"
+          ],
+          "total_hits": 3,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:03.810563+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:03.810881+00:00"
+    },
+    "disk_analysis": {
+      "status": "COMPLETE",
+      "agent": "DiskAgent",
+      "files_analyzed": 1,
+      "total_hits": 1,
+      "priority": "HIGH",
+      "extracted_iocs": {
+        "suspicious_executables": [],
+        "drop_zone_paths": [
+          "2026-05-20 23:45:10 Privilege escalation attempt by john",
+          "2026-05-20 23:45:30 Injection attempt detected in database query"
+        ],
+        "persistence_paths": [],
+        "double_extension_files": [],
+        "malicious_filenames": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/insider/access.log": {
+          "sha256": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76",
+          "timestamp": "2026-05-23T02:58:03.814704+00:00",
+          "size_bytes": 318
+        }
+      },
+      "findings": [
+        {
+          "type": "malware_drop_zone",
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+          "file_hash": "6a6a8f82685d612a",
+          "path_pattern": "temp",
+          "evidence": [
+            "2026-05-20 23:45:10 Privilege escalation attempt by john",
+            "2026-05-20 23:45:30 Injection attempt detected in database query"
+          ],
+          "severity": "HIGH",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:03.815087+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:03.815401+00:00"
+    },
+    "memory_analysis": {
+      "status": "COMPLETE",
+      "agent": "MemoryAgent",
+      "files_analyzed": 1,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "injection_techniques": [],
+        "credential_dump_indicators": [],
+        "suspicious_process_pairs": [],
+        "hollowing_indicators": [],
+        "memory_anomalies": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/insider/access.log": {
+          "sha256": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76",
+          "timestamp": "2026-05-23T02:58:03.818470+00:00",
+          "size_bytes": 318
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:03.818873+00:00"
+    },
+    "network_analysis": {
+      "status": "COMPLETE",
+      "agent": "NetworkAgent",
+      "files_analyzed": 1,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "c2_indicators": [],
+        "suspicious_ips": [],
+        "suspicious_ports": [],
+        "dns_tunnel_indicators": [],
+        "exfil_indicators": [],
+        "scan_indicators": [],
+        "tls_anomalies": [],
+        "long_subdomains": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/insider/access.log": {
+          "sha256": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76",
+          "timestamp": "2026-05-23T02:58:03.821443+00:00",
+          "size_bytes": 318
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:03.822456+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 5,
+      "extracted_entities": {
+        "ipv4_addresses": [
+          "203.0.113.99"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [
+          "/etc/passwd"
+        ],
+        "hostnames": [],
+        "usernames": [
+          "john"
+        ],
+        "process_ids": [],
+        "granted_access": [],
+        "domains": []
+      },
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "203.0.113.99",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 203.0.113.99",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:03.825841+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "unauthorized",
+            "sudo",
+            "privilege escalation"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:03.825803+00:00",
+          "traceable": true
+        }
+      ],
+      "temporal_sequences": [],
+      "high_signal_signatures": [],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-23T02:58:03.476917+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T02:58:03.810563+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malware_drop_zone",
+          "timestamp": "2026-05-23T02:58:03.815087+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/insider/access.log"
+        }
+      ],
+      "threat_assessment": {
+        "score": 80,
+        "level": "HIGH",
+        "reasons": [
+          "Base pattern score: 75",
+          "Correlated IPs (+5)"
+        ]
+      },
+      "attack_narrative": "The attack originated from 203.0.113.99 targeting the target, gaining initial foothold through exploitation of a network-accessible service.",
+      "containment_actions": [
+        "BLOCK IP 203.0.113.99 at perimeter firewall and all internal segment boundaries",
+        "SUSPEND account 'john' and invalidate all active sessions",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "unauthorized",
+            "sudo",
+            "privilege escalation"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:03.825803+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "203.0.113.99",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 203.0.113.99",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:03.825841+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:03.826102+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 1,
+            "files": [
+              "access.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:58:03.476917+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: access.log",
+            "File on disk: access.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "file_hash": "6a6a8f82685d612a9aa39307b4b0c0bce0a99c2c44a66bf50293a386b3666a76",
+            "keywords_matched": [
+              "unauthorized",
+              "privilege escalation",
+              "sudo"
+            ],
+            "total_hits": 3,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:58:03.810563+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: access.log",
+            "File on disk: access.log",
+            "Keywords: ['unauthorized', 'privilege escalation', 'sudo']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malware_drop_zone",
+            "artifact": "/data/data/com.termux/files/home/cases/insider/access.log",
+            "file_hash": "6a6a8f82685d612a",
+            "path_pattern": "temp",
+            "evidence": [
+              "2026-05-20 23:45:10 Privilege escalation attempt by john",
+              "2026-05-20 23:45:30 Injection attempt detected in database query"
+            ],
+            "severity": "HIGH",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:58:03.815087+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: access.log",
+            "File on disk: access.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "PRIVILEGE_ESCALATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['unauthorized', 'sudo', 'privilege escalation']",
+            "MITRE: T1548 - Abuse Elevation Control Mechanism"
+          ]
+        },
+        {
+          "ip": "203.0.113.99",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 5,
+        "validated": 5,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [],
+        "devil_advocate_suggestions": [],
+        "forced_reeval": false,
+        "auto_remediated_patterns": [],
+        "auto_remediation_count": 0
+      },
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:03.915178+00:00"
+    }
+  },
+  "timestamp": "2026-05-23T02:58:03.922601+00:00",
+  "duration_seconds": 0.53
+}

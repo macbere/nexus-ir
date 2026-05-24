@@ -1,0 +1,113 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260523_142637
+  Generated    : 2026-05-23 14:26:38 UTC
+  Duration     : 0.47s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : HIGH (80/100)
+  Case Priority    : HIGH
+  Files Scanned    : 1
+  Attack Patterns  : 2
+  IPs Identified   : 1
+  Findings Valid   : 5
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : auth.log
+  SHA256 : df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe
+  Size   : 413 bytes
+  Hashed : 2026-05-23T14:26:37.940346+00:00
+
+-----------------------------------------------------------------
+  ATTACK NARRATIVE -- KILL CHAIN SUMMARY
+-----------------------------------------------------------------
+  The attack originated from 45.33.32.156 targeting the target,
+  gaining initial foothold through exploitation of a
+  network-accessible service.
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  [1] BRUTE_FORCE_ATTACK
+      Confidence : HIGH
+      MITRE      : T1110 - Brute Force
+      Description: Credential brute force detected
+      Evidence   : failed password
+
+  [2] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation detected
+      Evidence   : unauthorized, sudo, root
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  IPV4 ADDRESSES:
+    - 45.33.32.156
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  -> 45.33.32.156
+     Significance : HIGH
+     Description  : Regex-verified IoC: 45.33.32.156
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-23T14:26:37
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: auth.log
+
+  2026-05-23T14:26:37
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: auth.log
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : auth.log
+
+  [2] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : auth.log
+      File Hash  : df02ab04e7d8687a251eed0ca8d3dcb9...
+      Keywords   : failed password, unauthorized, sudo, root
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] BLOCK IP 45.33.32.156 at perimeter firewall and all internal segment boundaries
+  [02] PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings
+  [03] NOTIFY CISO and legal team — assess breach notification obligations
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================

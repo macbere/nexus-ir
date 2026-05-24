@@ -1,0 +1,593 @@
+{
+  "nexus_ir_version": "4.0.0-langgraph",
+  "session_id": "20260521_224313",
+  "investigation_complete": true,
+  "langgraph_iterations": 1,
+  "executive_summary": {
+    "threat_level": "CRITICAL",
+    "threat_score": 88,
+    "case_priority": "CRITICAL",
+    "total_files_analyzed": 1,
+    "attack_patterns_detected": 1,
+    "unique_ips_found": 0,
+    "findings_validated": 4,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH",
+    "auto_remediated": 0
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "CREDENTIAL_DUMPING",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "lsass"
+      ],
+      "description": "Credential dumping detected",
+      "mitre_technique": "T1003 - OS Credential Dumping",
+      "base_score": 88,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-21T22:43:13.415881+00:00",
+      "traceable": true
+    }
+  ],
+  "ip_correlations": [],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-21T22:43:13.106950+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "dynamic_priority_escalation",
+      "timestamp": "2026-05-21T22:43:13.107347+00:00",
+      "artifact": "triage_scan"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-21T22:43:13.411172+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "json_artifacts",
+        "count": 1,
+        "files": [
+          "sysmon_blinding.json"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-21T22:43:13.106950+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_blinding.json",
+        "File on disk: sysmon_blinding.json",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "dynamic_priority_escalation",
+        "reason": "Critical keywords found in evidence",
+        "keywords": [
+          "lsass"
+        ],
+        "artifact": "triage_scan",
+        "priority_set": "CRITICAL",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-21T22:43:13.107347+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Triage-level finding \u2014 acceptable",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+        "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+        "file_hash": "f9363d427be7f425c38101b3db2157215b2ec576afc4487973f7d60d77a721fc",
+        "keywords_matched": [
+          "lsass",
+          "rundll32"
+        ],
+        "total_hits": 3,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-21T22:43:13.411172+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_blinding.json",
+        "File on disk: sysmon_blinding.json",
+        "Keywords: ['lsass', 'rundll32']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "CREDENTIAL_DUMPING",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['lsass']",
+        "MITRE: T1003 - OS Credential Dumping"
+      ]
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "",
+  "containment_actions": [
+    "ISOLATE host DESKTOP-DEV immediately \u2014 disconnect from all network segments",
+    "ISOLATE host DESKTOP-DEV-99A immediately \u2014 disconnect from all network segments",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [],
+    "decoded_payloads": [],
+    "file_paths": [],
+    "hostnames": [
+      "DESKTOP-DEV",
+      "DESKTOP-DEV-99A"
+    ],
+    "usernames": [],
+    "process_ids": [
+      "11412",
+      "11500",
+      "5540"
+    ],
+    "granted_access": [],
+    "domains": []
+  },
+  "temporal_sequences": [],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json": {
+      "sha256": "f9363d427be7f425c38101b3db2157215b2ec576afc4487973f7d60d77a721fc",
+      "timestamp": "2026-05-21T22:43:13.136932+00:00",
+      "size_bytes": 958
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-21T22:43:13.104725+00:00",
+      "level": "AGENT",
+      "message": "NODE: Triage \u2014 examining evidence...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-21T22:43:13.107684+00:00",
+      "level": "DONE",
+      "message": "Triage done \u2014 Priority: CRITICAL, Files: 1",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-21T22:43:13.110381+00:00",
+      "level": "AGENT",
+      "message": "NODE: Log Analysis \u2014 hunting IoCs...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-21T22:43:13.411603+00:00",
+      "level": "DONE",
+      "message": "Log analysis done \u2014 1 findings",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-21T22:43:13.413871+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correlation \u2014 cross-referencing findings...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-21T22:43:13.416410+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: CRITICAL (88/100)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-21T22:43:13.418319+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 0)...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-21T22:43:13.467912+00:00",
+      "level": "DONE",
+      "message": "Correction done \u2014 100.0% accuracy, 4 validated",
+      "iteration": 0
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/defense_blinding",
+      "priority": "CRITICAL",
+      "keyword_hits": {
+        "critical_keywords_found": [
+          "lsass"
+        ],
+        "high_keywords_found": [
+          "rundll32"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [
+          "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json"
+        ],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 1,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "1 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json": "f9363d427be7f425c38101b3db2157215b2ec576afc4487973f7d60d77a721fc"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "json_artifacts",
+          "count": 1,
+          "files": [
+            "sysmon_blinding.json"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T22:43:13.106950+00:00",
+          "traceable": true
+        },
+        {
+          "type": "dynamic_priority_escalation",
+          "reason": "Critical keywords found in evidence",
+          "keywords": [
+            "lsass"
+          ],
+          "artifact": "triage_scan",
+          "priority_set": "CRITICAL",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T22:43:13.107347+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-21T22:43:13.107615+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 1,
+      "suspicious_files": 1,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json": {
+          "lsass": {
+            "matches": [
+              "rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump 684 C:\\Users\\Public\\lsass.dmp full"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+            "file_hash": "f9363d427be7f425",
+            "tool_used": "json_parser"
+          },
+          "rundll32": {
+            "matches": [
+              "C:\\Windows\\System32\\rundll32.exe",
+              "rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump 684 C:\\Users\\Public\\lsass.dmp full"
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+            "file_hash": "f9363d427be7f425",
+            "tool_used": "json_parser"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [
+          "DESKTOP-DEV",
+          "DESKTOP-DEV-99A"
+        ],
+        "usernames": [],
+        "process_ids": [
+          "11412",
+          "11500",
+          "5540"
+        ],
+        "granted_access": []
+      },
+      "unique_ips": [],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json": {
+          "sha256": "f9363d427be7f425c38101b3db2157215b2ec576afc4487973f7d60d77a721fc",
+          "timestamp": "2026-05-21T22:43:13.136932+00:00",
+          "size_bytes": 958
+        }
+      },
+      "decoded_payloads": [],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+          "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+          "file_hash": "f9363d427be7f425c38101b3db2157215b2ec576afc4487973f7d60d77a721fc",
+          "keywords_matched": [
+            "lsass",
+            "rundll32"
+          ],
+          "total_hits": 3,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T22:43:13.411172+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-21T22:43:13.411521+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 2,
+      "extracted_entities": {
+        "ipv4_addresses": [],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [
+          "DESKTOP-DEV",
+          "DESKTOP-DEV-99A"
+        ],
+        "usernames": [],
+        "process_ids": [
+          "11412",
+          "11500",
+          "5540"
+        ],
+        "granted_access": [],
+        "domains": []
+      },
+      "ip_correlations": [],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "CREDENTIAL_DUMPING",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "lsass"
+          ],
+          "description": "Credential dumping detected",
+          "mitre_technique": "T1003 - OS Credential Dumping",
+          "base_score": 88,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T22:43:13.415881+00:00",
+          "traceable": true
+        }
+      ],
+      "temporal_sequences": [],
+      "high_signal_signatures": [],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-21T22:43:13.106950+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "dynamic_priority_escalation",
+          "timestamp": "2026-05-21T22:43:13.107347+00:00",
+          "artifact": "triage_scan"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-21T22:43:13.411172+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json"
+        }
+      ],
+      "threat_assessment": {
+        "score": 88,
+        "level": "CRITICAL",
+        "reasons": [
+          "Base pattern score: 88"
+        ]
+      },
+      "attack_narrative": "",
+      "containment_actions": [
+        "ISOLATE host DESKTOP-DEV immediately \u2014 disconnect from all network segments",
+        "ISOLATE host DESKTOP-DEV-99A immediately \u2014 disconnect from all network segments",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "CREDENTIAL_DUMPING",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "lsass"
+          ],
+          "description": "Credential dumping detected",
+          "mitre_technique": "T1003 - OS Credential Dumping",
+          "base_score": 88,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T22:43:13.415881+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-21T22:43:13.416326+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "json_artifacts",
+            "count": 1,
+            "files": [
+              "sysmon_blinding.json"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-21T22:43:13.106950+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_blinding.json",
+            "File on disk: sysmon_blinding.json",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "dynamic_priority_escalation",
+            "reason": "Critical keywords found in evidence",
+            "keywords": [
+              "lsass"
+            ],
+            "artifact": "triage_scan",
+            "priority_set": "CRITICAL",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-21T22:43:13.107347+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Triage-level finding \u2014 acceptable",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+            "artifact": "/data/data/com.termux/files/home/cases/defense_blinding/sysmon_blinding.json",
+            "file_hash": "f9363d427be7f425c38101b3db2157215b2ec576afc4487973f7d60d77a721fc",
+            "keywords_matched": [
+              "lsass",
+              "rundll32"
+            ],
+            "total_hits": 3,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-21T22:43:13.411172+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_blinding.json",
+            "File on disk: sysmon_blinding.json",
+            "Keywords: ['lsass', 'rundll32']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "CREDENTIAL_DUMPING",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['lsass']",
+            "MITRE: T1003 - OS Credential Dumping"
+          ]
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 4,
+        "validated": 4,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [],
+        "devil_advocate_suggestions": [],
+        "forced_reeval": false,
+        "auto_remediated_patterns": [],
+        "auto_remediation_count": 0
+      },
+      "errors": [],
+      "timestamp": "2026-05-21T22:43:13.467831+00:00"
+    }
+  },
+  "timestamp": "2026-05-21T22:43:13.470890+00:00",
+  "duration_seconds": 0.42
+}

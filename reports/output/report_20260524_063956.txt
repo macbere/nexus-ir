@@ -1,0 +1,483 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260524_063953
+  Generated    : 2026-05-24 06:39:56 UTC
+  Duration     : 3.08s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : CRITICAL (100/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 4
+  Attack Patterns  : 8
+  IPs Identified   : 3
+  Findings Valid   : 37
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : database_audit.log
+  SHA256 : eeeba11a1eb0d6fb5fe6c9daef6a22b8ca7f50992eb4464b65bb6a1089d9af07
+  Size   : 1062 bytes
+  Hashed : 2026-05-24T06:39:54.893373+00:00
+
+  File   : domain_controller.log
+  SHA256 : 700e089eb1381d13b853dcdf294c41a6c0f4561ded08989eecb2d8d74fb54bb5
+  Size   : 1458 bytes
+  Hashed : 2026-05-24T06:39:54.894664+00:00
+
+  File   : endpoint_security.log
+  SHA256 : 4486d05cdf3fa16322c4f1d40c37e2a4f42c6ae9bcbd9760a899c48f65060622
+  Size   : 1252 bytes
+  Hashed : 2026-05-24T06:39:54.896209+00:00
+
+  File   : perimeter_firewall.log
+  SHA256 : 610c2dc9c9f3c7d58df2f4e5035fa8cfecb51de16fd571b04b98a48f73e9c5a2
+  Size   : 955 bytes
+  Hashed : 2026-05-24T06:39:54.898284+00:00
+
+-----------------------------------------------------------------
+  ATTACK NARRATIVE -- KILL CHAIN SUMMARY
+-----------------------------------------------------------------
+  The attack originated from 185.220.101.47 targeting
+  FINSERV-DB01, gaining initial foothold through exploitation
+  of a network-accessible service. Following injection, the
+  compromised process established a covert C2 communication
+  channel to 91.108.56.130 over HTTPS, with the TLS certificate
+  issued by an unexpected authority — a hallmark of
+  attacker-controlled infrastructure masquerading as legitimate
+  services. The attack chain represents a complete APT
+  intrusion lifecycle: obfuscated execution, process injection
+  for persistence, and beaconing to external C2 infrastructure
+  — consistent with a Cobalt Strike or similar commercial
+  implant deployment.
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  [1] BRUTE_FORCE_ATTACK
+      Confidence : HIGH
+      MITRE      : T1110 - Brute Force
+      Description: Credential brute force detected
+      Evidence   : failed password
+
+  [2] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation detected
+      Evidence   : unauthorized, privilege escalation
+
+  [3] LATERAL_MOVEMENT_OR_C2
+      Confidence : CRITICAL
+      MITRE      : T1021 / T1059 - Remote Services / Command Interpreter
+      Description: C2 or lateral movement detected
+      Evidence   : exploit, reverse shell
+
+  [4] RANSOMWARE_OR_MALWARE
+      Confidence : CRITICAL
+      MITRE      : T1486 - Data Encrypted for Impact
+      Description: Malware or ransomware execution detected
+      Evidence   : ransomware, malware
+
+  [5] CREDENTIAL_DUMPING
+      Confidence : CRITICAL
+      MITRE      : T1003 - OS Credential Dumping
+      Description: Credential dumping detected
+      Evidence   : mimikatz, lsass
+
+  [6] DATA_EXFILTRATION
+      Confidence : HIGH
+      MITRE      : T1041 - Exfiltration Over C2 Channel
+      Description: Data exfiltration detected
+      Evidence   : exfiltration
+
+  [7] POWERSHELL_OBFUSCATION
+      Confidence : HIGH
+      MITRE      : T1059.001 - PowerShell / T1027 - Obfuscation
+      Description: PowerShell obfuscation — injected by CorrectionAgent after triage-correlation mismatch
+      Evidence   : base64, powershell, encoded
+
+  [8] PROCESS_INJECTION
+      Confidence : CRITICAL
+      MITRE      : T1055 - Process Injection
+      Description: APT process injection confirmed via text-log signatures
+      Evidence   : anomaly process, lsass, lateral movement
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  IPV4 ADDRESSES:
+    - 185.220.101.47
+    - 203.45.67.89
+    - 91.108.56.130
+  BASE64 STRINGS:
+    - SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoA
+    - WindowsDefenderUpdate
+    - e3b0c44298fc1c149afb
+  FILE PATHS:
+    - C:\Windows\System32\lsass.exe
+  HOSTNAMES:
+    - CVE-2024
+    - FINSERV-DB01
+    - FINSERV-DC01
+    - FINSERV-FILE01
+  USERNAMES:
+    - svc_backup
+  PROCESS IDS:
+    - 9821
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  -> 185.220.101.47
+     Significance : HIGH
+     Description  : Regex-verified IoC: 185.220.101.47
+
+  -> 203.45.67.89
+     Significance : HIGH
+     Description  : Regex-verified IoC: 203.45.67.89
+
+  -> 91.108.56.130
+     Significance : HIGH
+     Description  : Regex-verified IoC: 91.108.56.130
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-24T06:39:53
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: database_audit.log
+
+  2026-05-24T06:39:53
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: triage_scan
+
+  2026-05-24T06:39:53
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: database_audit.log
+
+  2026-05-24T06:39:54
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: domain_controller.log
+
+  2026-05-24T06:39:54
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: endpoint_security.log
+
+  2026-05-24T06:39:54
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: perimeter_firewall.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malware_drop_zone
+    Artifact: database_audit.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: database_audit.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malware_drop_zone
+    Artifact: domain_controller.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: domain_controller.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: endpoint_security.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: endpoint_security.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: endpoint_security.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malware_drop_zone
+    Artifact: perimeter_firewall.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: perimeter_firewall.log
+
+  2026-05-24T06:39:54
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: perimeter_firewall.log
+
+  2026-05-24T06:39:54
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: domain_controller.log
+
+  2026-05-24T06:39:54
+    Agent   : MemoryAgent
+    Event   : credential_dumping
+    Artifact: domain_controller.log
+
+  2026-05-24T06:39:54
+    Agent   : MemoryAgent
+    Event   : credential_dumping
+    Artifact: domain_controller.log
+
+  2026-05-24T06:39:54
+    Agent   : MemoryAgent
+    Event   : credential_dumping
+    Artifact: domain_controller.log
+
+  2026-05-24T06:39:54
+    Agent   : NetworkAgent
+    Event   : c2_communication
+    Artifact: endpoint_security.log
+
+  2026-05-24T06:39:54
+    Agent   : NetworkAgent
+    Event   : suspicious_port
+    Artifact: endpoint_security.log
+
+  2026-05-24T06:39:54
+    Agent   : NetworkAgent
+    Event   : c2_communication
+    Artifact: perimeter_firewall.log
+
+  2026-05-24T06:39:54
+    Agent   : NetworkAgent
+    Event   : c2_communication
+    Artifact: perimeter_firewall.log
+
+  2026-05-24T06:39:54
+    Agent   : NetworkAgent
+    Event   : c2_communication
+    Artifact: perimeter_firewall.log
+
+  2026-05-24T06:39:54
+    Agent   : NetworkAgent
+    Event   : data_exfiltration
+    Artifact: perimeter_firewall.log
+
+  2026-05-24T06:39:54
+    Agent   : NetworkAgent
+    Event   : suspicious_port
+    Artifact: perimeter_firewall.log
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : database_audit.log
+
+  [2] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : triage_scan
+
+  [3] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : database_audit.log
+      File Hash  : eeeba11a1eb0d6fb5fe6c9daef6a22b8...
+      Keywords   : unauthorized, privilege escalation
+
+  [4] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : domain_controller.log
+      File Hash  : 700e089eb1381d13b853dcdf294c41a6...
+      Keywords   : failed password, unauthorized
+
+  [5] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : endpoint_security.log
+      File Hash  : 4486d05cdf3fa16322c4f1d40c37e2a4...
+      Keywords   : unauthorized, exploit, malware, ransomware
+
+  [6] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d58df2f4e5035fa8cf...
+      Keywords   : exploit
+
+  [7] Type       : malware_drop_zone
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : database_audit.log
+      File Hash  : eeeba11a1eb0d6fb...
+
+  [8] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : database_audit.log
+      File Hash  : eeeba11a1eb0d6fb...
+
+  [9] Type       : malware_drop_zone
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : domain_controller.log
+      File Hash  : 700e089eb1381d13...
+
+  [10] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : domain_controller.log
+      File Hash  : 700e089eb1381d13...
+
+  [11] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : endpoint_security.log
+      File Hash  : 4486d05cdf3fa163...
+
+  [12] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : endpoint_security.log
+      File Hash  : 4486d05cdf3fa163...
+
+  [13] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : endpoint_security.log
+      File Hash  : 4486d05cdf3fa163...
+
+  [14] Type       : malware_drop_zone
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d5...
+
+  [15] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d5...
+
+  [16] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d5...
+
+  [17] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : domain_controller.log
+      File Hash  : 700e089eb1381d13...
+
+  [18] Type       : credential_dumping
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : domain_controller.log
+      File Hash  : 700e089eb1381d13...
+
+  [19] Type       : credential_dumping
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : domain_controller.log
+      File Hash  : 700e089eb1381d13...
+
+  [20] Type       : credential_dumping
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : domain_controller.log
+      File Hash  : 700e089eb1381d13...
+
+  [21] Type       : c2_communication
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : endpoint_security.log
+      File Hash  : 4486d05cdf3fa163...
+
+  [22] Type       : suspicious_port
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : endpoint_security.log
+      File Hash  : 4486d05cdf3fa163...
+
+  [23] Type       : c2_communication
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d5...
+
+  [24] Type       : c2_communication
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d5...
+
+  [25] Type       : c2_communication
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d5...
+
+  [26] Type       : data_exfiltration
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d5...
+
+  [27] Type       : suspicious_port
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : perimeter_firewall.log
+      File Hash  : 610c2dc9c9f3c7d5...
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] BLOCK IP 185.220.101.47 at perimeter firewall and all internal segment boundaries
+  [02] BLOCK IP 203.45.67.89 at perimeter firewall and all internal segment boundaries
+  [03] BLOCK IP 91.108.56.130 at perimeter firewall and all internal segment boundaries
+  [04] ISOLATE host CVE-2024 immediately — disconnect from all network segments
+  [05] ISOLATE host FINSERV-DB01 immediately — disconnect from all network segments
+  [06] ISOLATE host FINSERV-DC01 immediately — disconnect from all network segments
+  [07] ISOLATE host FINSERV-FILE01 immediately — disconnect from all network segments
+  [08] SUSPEND account 'svc_backup' and invalidate all active sessions
+  [09] COLLECT forensic image of: C:\Windows\System32\lsass.exe
+  [10] PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings
+  [11] NOTIFY CISO and legal team — assess breach notification obligations
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================

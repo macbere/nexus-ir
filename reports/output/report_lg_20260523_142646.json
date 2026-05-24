@@ -1,0 +1,776 @@
+{
+  "nexus_ir_version": "4.0.0-langgraph",
+  "session_id": "20260523_142646",
+  "investigation_complete": true,
+  "langgraph_iterations": 1,
+  "executive_summary": {
+    "threat_level": "HIGH",
+    "threat_score": 80,
+    "case_priority": "HIGH",
+    "total_files_analyzed": 1,
+    "attack_patterns_detected": 2,
+    "unique_ips_found": 1,
+    "findings_validated": 5,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH",
+    "auto_remediated": 0
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "failed password"
+      ],
+      "description": "Credential brute force detected",
+      "mitre_technique": "T1110 - Brute Force",
+      "base_score": 70,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:26:47.157564+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "PRIVILEGE_ESCALATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "sudo",
+        "unauthorized",
+        "root"
+      ],
+      "description": "Privilege escalation detected",
+      "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+      "base_score": 75,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:26:47.157649+00:00",
+      "traceable": true
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "45.33.32.156",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 45.33.32.156",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:26:47.157672+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-23T14:26:46.872601+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T14:26:47.141913+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 1,
+        "files": [
+          "auth.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:26:46.872601+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: auth.log",
+        "File on disk: auth.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+        "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+        "file_hash": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe",
+        "keywords_matched": [
+          "failed password",
+          "unauthorized",
+          "sudo",
+          "root"
+        ],
+        "total_hits": 9,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:26:47.141913+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: auth.log",
+        "File on disk: auth.log",
+        "Keywords: ['failed password', 'unauthorized', 'sudo', 'root']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['failed password']",
+        "MITRE: T1110 - Brute Force"
+      ]
+    },
+    {
+      "pattern": "PRIVILEGE_ESCALATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['sudo', 'unauthorized', 'root']",
+        "MITRE: T1548 - Abuse Elevation Control Mechanism"
+      ]
+    },
+    {
+      "ip": "45.33.32.156",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "The attack originated from 45.33.32.156 targeting the target, gaining initial foothold through exploitation of a network-accessible service.",
+  "containment_actions": [
+    "BLOCK IP 45.33.32.156 at perimeter firewall and all internal segment boundaries",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [
+      "45.33.32.156"
+    ],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [],
+    "decoded_payloads": [],
+    "file_paths": [],
+    "hostnames": [],
+    "usernames": [],
+    "process_ids": [],
+    "granted_access": [],
+    "domains": []
+  },
+  "temporal_sequences": [],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/brute_force/auth.log": {
+      "sha256": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe",
+      "timestamp": "2026-05-23T14:26:47.151469+00:00",
+      "size_bytes": 413
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-23T14:26:46.871785+00:00",
+      "level": "AGENT",
+      "message": "NODE: Triage \u2014 examining evidence...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:46.873075+00:00",
+      "level": "DONE",
+      "message": "Triage done \u2014 Priority: HIGH, Files: 1",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:46.875564+00:00",
+      "level": "AGENT",
+      "message": "NODE: Log Analysis \u2014 hunting IoCs...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.142133+00:00",
+      "level": "DONE",
+      "message": "Log analysis done \u2014 1 findings",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.144461+00:00",
+      "level": "AGENT",
+      "message": "NODE: Disk Analysis -- scanning file system artifacts...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.145693+00:00",
+      "level": "DONE",
+      "message": "Disk analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.148054+00:00",
+      "level": "AGENT",
+      "message": "NODE: Memory Analysis -- hunting injection and credential dumps...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.149043+00:00",
+      "level": "DONE",
+      "message": "Memory analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.150991+00:00",
+      "level": "AGENT",
+      "message": "NODE: Network Analysis -- detecting C2, exfil, tunneling...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.152354+00:00",
+      "level": "DONE",
+      "message": "Network analysis done -- 0 hit(s), priority: LOW",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.154836+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correlation \u2014 cross-referencing findings...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.158110+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: HIGH (80/100)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.159886+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 0)...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:26:47.204577+00:00",
+      "level": "DONE",
+      "message": "Correction done \u2014 100.0% accuracy, 5 validated",
+      "iteration": 0
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/brute_force",
+      "priority": "HIGH",
+      "keyword_hits": {
+        "critical_keywords_found": [],
+        "high_keywords_found": [
+          "sudo",
+          "unauthorized",
+          "failed password",
+          "root"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/brute_force/auth.log"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/brute_force/auth.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 1,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "1 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/brute_force/auth.log": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 1,
+          "files": [
+            "auth.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:26:46.872601+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:26:46.873018+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 1,
+      "suspicious_files": 1,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/brute_force/auth.log": {
+          "failed password": {
+            "matches": [
+              "May 20 03:12:01 server sshd: Failed password for root from 45.33.32.156",
+              "May 20 03:12:03 server sshd: Failed password for root from 45.33.32.156",
+              "May 20 03:12:05 server sshd: Failed password for admin from 45.33.32.156"
+            ],
+            "count": 3,
+            "source_file": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+            "file_hash": "df02ab04e7d8687a",
+            "tool_used": "grep+regex",
+            "command_hash": "88cad5bd49124725"
+          },
+          "unauthorized": {
+            "matches": [
+              "May 20 03:13:01 server sshd: Unauthorized file access detected"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+            "file_hash": "df02ab04e7d8687a",
+            "tool_used": "grep+regex",
+            "command_hash": "7571b6a9efe5bb8a"
+          },
+          "sudo": {
+            "matches": [
+              "May 20 03:12:10 server sshd: sudo command executed by root"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+            "file_hash": "df02ab04e7d8687a",
+            "tool_used": "grep+regex",
+            "command_hash": "b57f89e0c7ded928"
+          },
+          "root": {
+            "matches": [
+              "May 20 03:12:01 server sshd: Failed password for root from 45.33.32.156",
+              "May 20 03:12:03 server sshd: Failed password for root from 45.33.32.156",
+              "May 20 03:12:07 server sshd: Accepted password for root from 45.33.32.156",
+              "May 20 03:12:10 server sshd: sudo command executed by root"
+            ],
+            "count": 4,
+            "source_file": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+            "file_hash": "df02ab04e7d8687a",
+            "tool_used": "grep+regex",
+            "command_hash": "7d451e1ae42053f1"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [
+          "45.33.32.156"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [],
+        "usernames": [],
+        "process_ids": [],
+        "granted_access": []
+      },
+      "unique_ips": [
+        "45.33.32.156"
+      ],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/brute_force/auth.log": {
+          "sha256": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe",
+          "timestamp": "2026-05-23T14:26:46.900516+00:00",
+          "size_bytes": 413
+        }
+      },
+      "decoded_payloads": [],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+          "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+          "file_hash": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe",
+          "keywords_matched": [
+            "failed password",
+            "unauthorized",
+            "sudo",
+            "root"
+          ],
+          "total_hits": 9,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:26:47.141913+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:26:47.142074+00:00"
+    },
+    "disk_analysis": {
+      "status": "COMPLETE",
+      "agent": "DiskAgent",
+      "files_analyzed": 1,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "suspicious_executables": [],
+        "drop_zone_paths": [],
+        "persistence_paths": [],
+        "double_extension_files": [],
+        "malicious_filenames": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/brute_force/auth.log": {
+          "sha256": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe",
+          "timestamp": "2026-05-23T14:26:47.145049+00:00",
+          "size_bytes": 413
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T14:26:47.145632+00:00"
+    },
+    "memory_analysis": {
+      "status": "COMPLETE",
+      "agent": "MemoryAgent",
+      "files_analyzed": 1,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "injection_techniques": [],
+        "credential_dump_indicators": [],
+        "suspicious_process_pairs": [],
+        "hollowing_indicators": [],
+        "memory_anomalies": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/brute_force/auth.log": {
+          "sha256": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe",
+          "timestamp": "2026-05-23T14:26:47.148569+00:00",
+          "size_bytes": 413
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T14:26:47.148986+00:00"
+    },
+    "network_analysis": {
+      "status": "COMPLETE",
+      "agent": "NetworkAgent",
+      "files_analyzed": 1,
+      "total_hits": 0,
+      "priority": "LOW",
+      "extracted_iocs": {
+        "c2_indicators": [],
+        "suspicious_ips": [],
+        "suspicious_ports": [],
+        "dns_tunnel_indicators": [],
+        "exfil_indicators": [],
+        "scan_indicators": [],
+        "tls_anomalies": [],
+        "long_subdomains": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/brute_force/auth.log": {
+          "sha256": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe",
+          "timestamp": "2026-05-23T14:26:47.151469+00:00",
+          "size_bytes": 413
+        }
+      },
+      "findings": [],
+      "errors": [],
+      "timestamp": "2026-05-23T14:26:47.152298+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 5,
+      "extracted_entities": {
+        "ipv4_addresses": [
+          "45.33.32.156"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [],
+        "usernames": [],
+        "process_ids": [],
+        "granted_access": [],
+        "domains": []
+      },
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "45.33.32.156",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 45.33.32.156",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:26:47.157672+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "failed password"
+          ],
+          "description": "Credential brute force detected",
+          "mitre_technique": "T1110 - Brute Force",
+          "base_score": 70,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:26:47.157564+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "sudo",
+            "unauthorized",
+            "root"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:26:47.157649+00:00",
+          "traceable": true
+        }
+      ],
+      "temporal_sequences": [],
+      "high_signal_signatures": [],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-23T14:26:46.872601+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T14:26:47.141913+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log"
+        }
+      ],
+      "threat_assessment": {
+        "score": 80,
+        "level": "HIGH",
+        "reasons": [
+          "Base pattern score: 75",
+          "Correlated IPs (+5)"
+        ]
+      },
+      "attack_narrative": "The attack originated from 45.33.32.156 targeting the target, gaining initial foothold through exploitation of a network-accessible service.",
+      "containment_actions": [
+        "BLOCK IP 45.33.32.156 at perimeter firewall and all internal segment boundaries",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "failed password"
+          ],
+          "description": "Credential brute force detected",
+          "mitre_technique": "T1110 - Brute Force",
+          "base_score": 70,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:26:47.157564+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "sudo",
+            "unauthorized",
+            "root"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:26:47.157649+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "45.33.32.156",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 45.33.32.156",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:26:47.157672+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:26:47.158045+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 1,
+            "files": [
+              "auth.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:26:46.872601+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: auth.log",
+            "File on disk: auth.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+            "artifact": "/data/data/com.termux/files/home/cases/brute_force/auth.log",
+            "file_hash": "df02ab04e7d8687a251eed0ca8d3dcb95615d55794de65eff94591ccea11bdbe",
+            "keywords_matched": [
+              "failed password",
+              "unauthorized",
+              "sudo",
+              "root"
+            ],
+            "total_hits": 9,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:26:47.141913+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: auth.log",
+            "File on disk: auth.log",
+            "Keywords: ['failed password', 'unauthorized', 'sudo', 'root']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['failed password']",
+            "MITRE: T1110 - Brute Force"
+          ]
+        },
+        {
+          "pattern": "PRIVILEGE_ESCALATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['sudo', 'unauthorized', 'root']",
+            "MITRE: T1548 - Abuse Elevation Control Mechanism"
+          ]
+        },
+        {
+          "ip": "45.33.32.156",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 5,
+        "validated": 5,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [],
+        "devil_advocate_suggestions": [],
+        "forced_reeval": false,
+        "auto_remediated_patterns": [],
+        "auto_remediation_count": 0
+      },
+      "errors": [],
+      "timestamp": "2026-05-23T14:26:47.204500+00:00"
+    }
+  },
+  "timestamp": "2026-05-23T14:26:47.207297+00:00",
+  "duration_seconds": 0.41
+}

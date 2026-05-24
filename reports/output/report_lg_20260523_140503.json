@@ -1,0 +1,3177 @@
+{
+  "nexus_ir_version": "4.0.0-langgraph",
+  "session_id": "20260523_140503",
+  "investigation_complete": true,
+  "langgraph_iterations": 2,
+  "executive_summary": {
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "case_priority": "CRITICAL",
+    "total_files_analyzed": 4,
+    "attack_patterns_detected": 7,
+    "unique_ips_found": 4,
+    "findings_validated": 34,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH",
+    "auto_remediated": 1
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "failed password"
+      ],
+      "description": "Credential brute force detected",
+      "mitre_technique": "T1110 - Brute Force",
+      "base_score": 70,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.143968+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "PRIVILEGE_ESCALATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "unauthorized",
+        "root",
+        "privilege escalation",
+        "sudo"
+      ],
+      "description": "Privilege escalation detected",
+      "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+      "base_score": 75,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144041+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "LATERAL_MOVEMENT_OR_C2",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "reverse shell",
+        "exploit"
+      ],
+      "description": "C2 or lateral movement detected",
+      "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+      "base_score": 85,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144093+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "ransomware"
+      ],
+      "description": "Malware or ransomware execution detected",
+      "mitre_technique": "T1486 - Data Encrypted for Impact",
+      "base_score": 90,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144141+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "CREDENTIAL_DUMPING",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "lsass",
+        "mimikatz"
+      ],
+      "description": "Credential dumping detected",
+      "mitre_technique": "T1003 - OS Credential Dumping",
+      "base_score": 88,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144189+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "DATA_EXFILTRATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "exfiltration"
+      ],
+      "description": "Data exfiltration detected",
+      "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+      "base_score": 80,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144237+00:00",
+      "traceable": true
+    },
+    {
+      "pattern": "POWERSHELL_OBFUSCATION",
+      "confidence": "HIGH",
+      "evidence_keywords": [
+        "base64",
+        "powershell",
+        "encoded"
+      ],
+      "description": "PowerShell obfuscation \u2014 injected by CorrectionAgent after triage-correlation mismatch",
+      "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+      "base_score": 85,
+      "injected_by": "devil_advocate_auto_remediation"
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "10.0.0.12",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 10.0.0.12",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144260+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "10.0.0.5",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 10.0.0.5",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144270+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "185.220.101.47",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 185.220.101.47",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144278+00:00",
+      "traceable": true
+    },
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "45.142.212.100",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 45.142.212.100",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-23T14:05:06.144286+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-23T14:05:03.667022+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "dynamic_priority_escalation",
+      "timestamp": "2026-05-23T14:05:03.669938+00:00",
+      "artifact": "triage_scan"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T14:05:04.213127+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T14:05:04.628764+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T14:05:05.023639+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-23T14:05:05.382658+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malware_drop_zone",
+      "timestamp": "2026-05-23T14:05:05.394817+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T14:05:05.395062+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T14:05:05.396569+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T14:05:05.396738+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "DiskAgent",
+      "type": "malicious_filename",
+      "timestamp": "2026-05-23T14:05:05.398747+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "process_injection",
+      "timestamp": "2026-05-23T14:05:05.406973+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "process_injection",
+      "timestamp": "2026-05-23T14:05:05.407052+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T14:05:05.407130+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T14:05:05.407203+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "process_injection",
+      "timestamp": "2026-05-23T14:05:05.407711+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T14:05:05.407793+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+    },
+    {
+      "agent": "MemoryAgent",
+      "type": "credential_dumping",
+      "timestamp": "2026-05-23T14:05:05.407863+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "suspicious_port",
+      "timestamp": "2026-05-23T14:05:05.412995+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "c2_communication",
+      "timestamp": "2026-05-23T14:05:05.413746+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "data_exfiltration",
+      "timestamp": "2026-05-23T14:05:05.414016+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "data_exfiltration",
+      "timestamp": "2026-05-23T14:05:05.414093+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    },
+    {
+      "agent": "NetworkAgent",
+      "type": "suspicious_port",
+      "timestamp": "2026-05-23T14:05:05.414531+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 4,
+        "files": [
+          "auth.log",
+          "firewall.log",
+          "system.log",
+          "windows_event.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:03.667022+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: auth.log",
+        "File on disk: auth.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "dynamic_priority_escalation",
+        "reason": "Critical keywords found in evidence",
+        "keywords": [
+          "base64",
+          "backdoor",
+          "lsass",
+          "encoded",
+          "ransomware",
+          "reverse shell",
+          "exfiltration",
+          "exploit",
+          "mimikatz",
+          "lateral movement",
+          "powershell"
+        ],
+        "artifact": "triage_scan",
+        "priority_set": "CRITICAL",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:03.669938+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Triage-level finding \u2014 acceptable",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+        "file_hash": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+        "keywords_matched": [
+          "failed password",
+          "unauthorized",
+          "privilege escalation",
+          "sudo",
+          "root"
+        ],
+        "total_hits": 12,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:04.213127+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: auth.log",
+        "File on disk: auth.log",
+        "Keywords: ['failed password', 'unauthorized', 'privilege escalation', 'sudo', 'root']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+        "file_hash": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+        "keywords_matched": [
+          "exploit"
+        ],
+        "total_hits": 1,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:04.628764+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: firewall.log",
+        "File on disk: firewall.log",
+        "Keywords: ['exploit']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+        "keywords_matched": [
+          "exploit",
+          "ransomware"
+        ],
+        "total_hits": 2,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.023639+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Keywords: ['exploit', 'ransomware']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+        "file_hash": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1",
+        "keywords_matched": [
+          "unauthorized"
+        ],
+        "total_hits": 1,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.382658+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: windows_event.log",
+        "File on disk: windows_event.log",
+        "Keywords: ['unauthorized']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malware_drop_zone",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+        "file_hash": "3a329f24609e245f",
+        "path_pattern": "temp",
+        "evidence": [
+          "2026-05-19 22:05:33 ALLOW TCP 185.220.101.47:4444 -> 10.0.0.5:80 [EXPLOIT attempt]"
+        ],
+        "severity": "HIGH",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.394817+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: firewall.log",
+        "File on disk: firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+        "file_hash": "3a329f24609e245f",
+        "filename_pattern": "exploit",
+        "evidence": [
+          "2026-05-19 22:05:33 ALLOW TCP 185.220.101.47:4444 -> 10.0.0.5:80 [EXPLOIT attempt]"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.395062+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: firewall.log",
+        "File on disk: firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "filename_pattern": "exploit",
+        "evidence": [
+          "2026-05-19 22:07:40 system: Exploit CVE-2024-21413 executed successfully"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.396569+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "filename_pattern": "ransomware",
+        "evidence": [
+          "2026-05-19 22:07:30 system: Ransomware signature detected: .locked extension"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.396738+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "malicious_filename",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+        "file_hash": "8322719ad2dc512f",
+        "filename_pattern": "mimikatz",
+        "evidence": [
+          "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+        ],
+        "severity": "CRITICAL",
+        "agent": "DiskAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.398747+00:00",
+        "traceable": true
+      },
+      "source_agent": "DiskAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: windows_event.log",
+        "File on disk: windows_event.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "process_injection",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "indicator": "process spawned",
+        "evidence": [
+          "2026-05-19 22:07:01 kernel: Suspicious process spawned: cmd.exe /c powershell -enc SQBFAFgA"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1055 - Process Injection",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.406973+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "process_injection",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "indicator": "suspicious process",
+        "evidence": [
+          "2026-05-19 22:07:01 kernel: Suspicious process spawned: cmd.exe /c powershell -enc SQBFAFgA"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1055 - Process Injection",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.407052+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "indicator": "lsass",
+        "evidence": [
+          "2026-05-19 22:07:25 system: Credential dumping detected: lsass.exe access"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.407130+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "indicator": "credential dump",
+        "evidence": [
+          "2026-05-19 22:07:25 system: Credential dumping detected: lsass.exe access"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.407203+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "process_injection",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+        "file_hash": "8322719ad2dc512f",
+        "indicator": "anomaly process",
+        "evidence": [
+          "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1055 - Process Injection",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.407711+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: windows_event.log",
+        "File on disk: windows_event.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+        "file_hash": "8322719ad2dc512f",
+        "indicator": "lsass",
+        "evidence": [
+          "2026-05-19 22:08:25 EventID 4663: Unauthorized file access on C:\\Windows\\System32\\lsass.exe"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.407793+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: windows_event.log",
+        "File on disk: windows_event.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "credential_dumping",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+        "file_hash": "8322719ad2dc512f",
+        "indicator": "mimikatz",
+        "evidence": [
+          "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1003 - OS Credential Dumping",
+        "agent": "MemoryAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.407863+00:00",
+        "traceable": true
+      },
+      "source_agent": "MemoryAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: windows_event.log",
+        "File on disk: windows_event.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_port",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+        "file_hash": "3a329f24609e245f",
+        "port": "4444",
+        "severity": "HIGH",
+        "mitre": "T1571 - Non-Standard Port",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.412995+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: firewall.log",
+        "File on disk: firewall.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "c2_communication",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "indicator": "reverse shell",
+        "evidence": [
+          "2026-05-19 22:07:15 system: Reverse shell established to 185.220.101.47:9999"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1071 - Application Layer Protocol",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.413746+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "data_exfiltration",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "indicator": "data exfil",
+        "evidence": [
+          "2026-05-19 22:07:45 system: Data exfiltration to 45.142.212.100 port 443"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1041 - Exfiltration Over C2 Channel",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.414016+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "data_exfiltration",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "indicator": "exfiltration",
+        "evidence": [
+          "2026-05-19 22:07:45 system: Data exfiltration to 45.142.212.100 port 443"
+        ],
+        "severity": "CRITICAL",
+        "mitre": "T1041 - Exfiltration Over C2 Channel",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.414093+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_port",
+        "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "file_hash": "cb28c1cff594c2fa",
+        "port": "9999",
+        "severity": "HIGH",
+        "mitre": "T1571 - Non-Standard Port",
+        "agent": "NetworkAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-23T14:05:05.414531+00:00",
+        "traceable": true
+      },
+      "source_agent": "NetworkAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "BRUTE_FORCE_ATTACK",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['failed password']",
+        "MITRE: T1110 - Brute Force"
+      ]
+    },
+    {
+      "pattern": "PRIVILEGE_ESCALATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['unauthorized', 'root', 'privilege escalation', 'sudo']",
+        "MITRE: T1548 - Abuse Elevation Control Mechanism"
+      ]
+    },
+    {
+      "pattern": "LATERAL_MOVEMENT_OR_C2",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['reverse shell', 'exploit']",
+        "MITRE: T1021 / T1059 - Remote Services / Command Interpreter"
+      ]
+    },
+    {
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['ransomware']",
+        "MITRE: T1486 - Data Encrypted for Impact"
+      ]
+    },
+    {
+      "pattern": "CREDENTIAL_DUMPING",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['lsass', 'mimikatz']",
+        "MITRE: T1003 - OS Credential Dumping"
+      ]
+    },
+    {
+      "pattern": "DATA_EXFILTRATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['exfiltration']",
+        "MITRE: T1041 - Exfiltration Over C2 Channel"
+      ]
+    },
+    {
+      "pattern": "POWERSHELL_OBFUSCATION",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['base64', 'powershell', 'encoded']",
+        "MITRE: T1059.001 - PowerShell / T1027 - Obfuscation"
+      ]
+    },
+    {
+      "ip": "10.0.0.12",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "10.0.0.5",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "185.220.101.47",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    },
+    {
+      "ip": "45.142.212.100",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "The attack originated from 10.0.0.12 targeting CVE-2024, gaining initial foothold through exploitation of a network-accessible service. Following injection, the compromised process established a covert C2 communication channel to 45.142.212.100 over HTTPS, with the TLS certificate issued by an unexpected authority \u2014 a hallmark of attacker-controlled infrastructure masquerading as legitimate services. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+  "containment_actions": [
+    "BLOCK IP 10.0.0.12 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 10.0.0.5 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 185.220.101.47 at perimeter firewall and all internal segment boundaries",
+    "BLOCK IP 45.142.212.100 at perimeter firewall and all internal segment boundaries",
+    "ISOLATE host CVE-2024 immediately \u2014 disconnect from all network segments",
+    "SUSPEND account 'Administrator' and invalidate all active sessions",
+    "COLLECT forensic image of: C:\\Windows\\System32\\lsass.exe",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [
+      "10.0.0.12",
+      "10.0.0.5",
+      "185.220.101.47",
+      "45.142.212.100"
+    ],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [],
+    "decoded_payloads": [],
+    "file_paths": [
+      "C:\\Windows\\System32\\lsass.exe"
+    ],
+    "hostnames": [
+      "CVE-2024"
+    ],
+    "usernames": [
+      "Administrator"
+    ],
+    "process_ids": [
+      "4821"
+    ],
+    "granted_access": [],
+    "domains": []
+  },
+  "temporal_sequences": [],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/apt_attack/auth.log": {
+      "sha256": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+      "timestamp": "2026-05-23T14:05:05.411030+00:00",
+      "size_bytes": 608
+    },
+    "/data/data/com.termux/files/home/cases/apt_attack/firewall.log": {
+      "sha256": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+      "timestamp": "2026-05-23T14:05:05.412211+00:00",
+      "size_bytes": 377
+    },
+    "/data/data/com.termux/files/home/cases/apt_attack/system.log": {
+      "sha256": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+      "timestamp": "2026-05-23T14:05:05.413221+00:00",
+      "size_bytes": 764
+    },
+    "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log": {
+      "sha256": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1",
+      "timestamp": "2026-05-23T14:05:05.414810+00:00",
+      "size_bytes": 646
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-23T14:05:03.657317+00:00",
+      "level": "AGENT",
+      "message": "NODE: Triage \u2014 examining evidence...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:03.670637+00:00",
+      "level": "DONE",
+      "message": "Triage done \u2014 Priority: CRITICAL, Files: 4",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:03.676838+00:00",
+      "level": "AGENT",
+      "message": "NODE: Log Analysis \u2014 hunting IoCs...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.383370+00:00",
+      "level": "DONE",
+      "message": "Log analysis done \u2014 4 findings",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.389014+00:00",
+      "level": "AGENT",
+      "message": "NODE: Disk Analysis -- scanning file system artifacts...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.399684+00:00",
+      "level": "DONE",
+      "message": "Disk analysis done -- 5 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.403695+00:00",
+      "level": "AGENT",
+      "message": "NODE: Memory Analysis -- hunting injection and credential dumps...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.408051+00:00",
+      "level": "DONE",
+      "message": "Memory analysis done -- 7 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.410378+00:00",
+      "level": "AGENT",
+      "message": "NODE: Network Analysis -- detecting C2, exfil, tunneling...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.415925+00:00",
+      "level": "DONE",
+      "message": "Network analysis done -- 5 hit(s), priority: CRITICAL",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.418479+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correlation \u2014 cross-referencing findings...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.422500+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: CRITICAL (100/100)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:05.424493+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 0)...",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:06.135587+00:00",
+      "level": "LOOP",
+      "message": "Devil advocate flagged issues \u2014 re-evaluation needed (iteration 0)",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:06.139612+00:00",
+      "level": "LOOP",
+      "message": "Incrementing to iteration 1 \u2014 re-running correlation with fixed data",
+      "iteration": 0
+    },
+    {
+      "timestamp": "2026-05-23T14:05:06.141422+00:00",
+      "level": "LOOP",
+      "message": "NODE: Correlation (re-run #1) \u2014 applying fixes...",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T14:05:06.144714+00:00",
+      "level": "LOOP",
+      "message": "State-retained: POWERSHELL_OBFUSCATION re-applied from previous iteration",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T14:05:06.144759+00:00",
+      "level": "DONE",
+      "message": "Correlation done \u2014 Threat: CRITICAL (100/100)",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T14:05:06.147422+00:00",
+      "level": "AGENT",
+      "message": "NODE: Correction \u2014 devil advocate pass (iteration 1)...",
+      "iteration": 1
+    },
+    {
+      "timestamp": "2026-05-23T14:05:06.737306+00:00",
+      "level": "DONE",
+      "message": "Correction done \u2014 100.0% accuracy, 34 validated",
+      "iteration": 1
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/apt_attack",
+      "priority": "CRITICAL",
+      "keyword_hits": {
+        "critical_keywords_found": [
+          "base64",
+          "backdoor",
+          "lsass",
+          "encoded",
+          "ransomware",
+          "reverse shell",
+          "exfiltration",
+          "exploit",
+          "mimikatz",
+          "lateral movement",
+          "powershell"
+        ],
+        "high_keywords_found": [
+          "failed password",
+          "sudo",
+          "anomaly",
+          "root",
+          "svchost",
+          "account lockout",
+          "scheduled task",
+          "unauthorized",
+          "privilege escalation"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+        "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+        "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+        "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+          "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+          "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 4,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "4 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/apt_attack/auth.log": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+        "/data/data/com.termux/files/home/cases/apt_attack/firewall.log": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+        "/data/data/com.termux/files/home/cases/apt_attack/system.log": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+        "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 4,
+          "files": [
+            "auth.log",
+            "firewall.log",
+            "system.log",
+            "windows_event.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:03.667022+00:00",
+          "traceable": true
+        },
+        {
+          "type": "dynamic_priority_escalation",
+          "reason": "Critical keywords found in evidence",
+          "keywords": [
+            "base64",
+            "backdoor",
+            "lsass",
+            "encoded",
+            "ransomware",
+            "reverse shell",
+            "exfiltration",
+            "exploit",
+            "mimikatz",
+            "lateral movement",
+            "powershell"
+          ],
+          "artifact": "triage_scan",
+          "priority_set": "CRITICAL",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:03.669938+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:05:03.670498+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 4,
+      "suspicious_files": 4,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/apt_attack/auth.log": {
+          "failed password": {
+            "matches": [
+              "2026-05-19 22:06:15 server sshd: Failed password for root from 185.220.101.47",
+              "2026-05-19 22:06:17 server sshd: Failed password for root from 185.220.101.47",
+              "2026-05-19 22:06:19 server sshd: Failed password for admin from 185.220.101.47",
+              "2026-05-19 22:06:21 server sshd: Failed password for admin from 185.220.101.47"
+            ],
+            "count": 4,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+            "file_hash": "26920349c6b3948a",
+            "tool_used": "grep+regex",
+            "command_hash": "ffa92e097e902d90"
+          },
+          "unauthorized": {
+            "matches": [
+              "2026-05-19 22:06:35 server sudo: Unauthorized privilege escalation by admin"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+            "file_hash": "26920349c6b3948a",
+            "tool_used": "grep+regex",
+            "command_hash": "f82950eda86f003b"
+          },
+          "privilege escalation": {
+            "matches": [
+              "2026-05-19 22:06:35 server sudo: Unauthorized privilege escalation by admin"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+            "file_hash": "26920349c6b3948a",
+            "tool_used": "grep+regex",
+            "command_hash": "0d113cf071772bfa"
+          },
+          "sudo": {
+            "matches": [
+              "2026-05-19 22:06:30 server sudo: admin executed sudo -s as root",
+              "2026-05-19 22:06:35 server sudo: Unauthorized privilege escalation by admin"
+            ],
+            "count": 2,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+            "file_hash": "26920349c6b3948a",
+            "tool_used": "grep+regex",
+            "command_hash": "059490ec8e33adf7"
+          },
+          "root": {
+            "matches": [
+              "2026-05-19 22:06:15 server sshd: Failed password for root from 185.220.101.47",
+              "2026-05-19 22:06:17 server sshd: Failed password for root from 185.220.101.47",
+              "2026-05-19 22:06:30 server sudo: admin executed sudo -s as root",
+              "2026-05-19 22:06:40 server sshd: root login accepted from 185.220.101.47"
+            ],
+            "count": 4,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+            "file_hash": "26920349c6b3948a",
+            "tool_used": "grep+regex",
+            "command_hash": "7e543cc13190f047"
+          }
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/firewall.log": {
+          "exploit": {
+            "matches": [
+              "2026-05-19 22:05:33 ALLOW TCP 185.220.101.47:4444 -> 10.0.0.5:80 [EXPLOIT attempt]"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+            "file_hash": "3a329f24609e245f",
+            "tool_used": "grep+regex",
+            "command_hash": "9274f9da203ff0e6"
+          }
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/system.log": {
+          "exploit": {
+            "matches": [
+              "2026-05-19 22:07:40 system: Exploit CVE-2024-21413 executed successfully"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "tool_used": "grep+regex",
+            "command_hash": "4ee989ed2d4de426"
+          },
+          "ransomware": {
+            "matches": [
+              "2026-05-19 22:07:30 system: Ransomware signature detected: .locked extension"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "tool_used": "grep+regex",
+            "command_hash": "7c7846a80e4229cc"
+          }
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log": {
+          "unauthorized": {
+            "matches": [
+              "2026-05-19 22:08:25 EventID 4663: Unauthorized file access on C:\\Windows\\System32\\lsass.exe"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+            "file_hash": "8322719ad2dc512f",
+            "tool_used": "grep+regex",
+            "command_hash": "6dc95c801d6fcf80"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [
+          "10.0.0.12",
+          "10.0.0.5",
+          "185.220.101.47",
+          "45.142.212.100"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [
+          "C:\\Windows\\System32\\lsass.exe"
+        ],
+        "hostnames": [
+          "CVE-2024"
+        ],
+        "usernames": [
+          "Administrator"
+        ],
+        "process_ids": [
+          "4821"
+        ],
+        "granted_access": []
+      },
+      "unique_ips": [
+        "10.0.0.12",
+        "10.0.0.5",
+        "185.220.101.47",
+        "45.142.212.100"
+      ],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/apt_attack/auth.log": {
+          "sha256": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+          "timestamp": "2026-05-23T14:05:03.739664+00:00",
+          "size_bytes": 608
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/firewall.log": {
+          "sha256": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+          "timestamp": "2026-05-23T14:05:04.213683+00:00",
+          "size_bytes": 377
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/system.log": {
+          "sha256": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+          "timestamp": "2026-05-23T14:05:04.629068+00:00",
+          "size_bytes": 764
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log": {
+          "sha256": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1",
+          "timestamp": "2026-05-23T14:05:05.024049+00:00",
+          "size_bytes": 646
+        }
+      },
+      "decoded_payloads": [],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+          "file_hash": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+          "keywords_matched": [
+            "failed password",
+            "unauthorized",
+            "privilege escalation",
+            "sudo",
+            "root"
+          ],
+          "total_hits": 12,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:04.213127+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+          "file_hash": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+          "keywords_matched": [
+            "exploit"
+          ],
+          "total_hits": 1,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:04.628764+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+          "keywords_matched": [
+            "exploit",
+            "ransomware"
+          ],
+          "total_hits": 2,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.023639+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+          "file_hash": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1",
+          "keywords_matched": [
+            "unauthorized"
+          ],
+          "total_hits": 1,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.382658+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:05:05.383238+00:00"
+    },
+    "disk_analysis": {
+      "status": "COMPLETE",
+      "agent": "DiskAgent",
+      "files_analyzed": 4,
+      "total_hits": 5,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "suspicious_executables": [
+          "C:\\Windows\\System32\\lsass.exe"
+        ],
+        "drop_zone_paths": [
+          "2026-05-19 22:05:33 ALLOW TCP 185.220.101.47:4444 -> 10.0.0.5:80 [EXPLOIT attempt]"
+        ],
+        "persistence_paths": [],
+        "double_extension_files": [],
+        "malicious_filenames": [
+          "exploit",
+          "mimikatz",
+          "ransomware"
+        ]
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/apt_attack/auth.log": {
+          "sha256": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+          "timestamp": "2026-05-23T14:05:05.392399+00:00",
+          "size_bytes": 608
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/firewall.log": {
+          "sha256": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+          "timestamp": "2026-05-23T14:05:05.394038+00:00",
+          "size_bytes": 377
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/system.log": {
+          "sha256": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+          "timestamp": "2026-05-23T14:05:05.395787+00:00",
+          "size_bytes": 764
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log": {
+          "sha256": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1",
+          "timestamp": "2026-05-23T14:05:05.397652+00:00",
+          "size_bytes": 646
+        }
+      },
+      "findings": [
+        {
+          "type": "malware_drop_zone",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+          "file_hash": "3a329f24609e245f",
+          "path_pattern": "temp",
+          "evidence": [
+            "2026-05-19 22:05:33 ALLOW TCP 185.220.101.47:4444 -> 10.0.0.5:80 [EXPLOIT attempt]"
+          ],
+          "severity": "HIGH",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.394817+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+          "file_hash": "3a329f24609e245f",
+          "filename_pattern": "exploit",
+          "evidence": [
+            "2026-05-19 22:05:33 ALLOW TCP 185.220.101.47:4444 -> 10.0.0.5:80 [EXPLOIT attempt]"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.395062+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "filename_pattern": "exploit",
+          "evidence": [
+            "2026-05-19 22:07:40 system: Exploit CVE-2024-21413 executed successfully"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.396569+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "filename_pattern": "ransomware",
+          "evidence": [
+            "2026-05-19 22:07:30 system: Ransomware signature detected: .locked extension"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.396738+00:00",
+          "traceable": true
+        },
+        {
+          "type": "malicious_filename",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+          "file_hash": "8322719ad2dc512f",
+          "filename_pattern": "mimikatz",
+          "evidence": [
+            "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+          ],
+          "severity": "CRITICAL",
+          "agent": "DiskAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.398747+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:05:05.399561+00:00"
+    },
+    "memory_analysis": {
+      "status": "COMPLETE",
+      "agent": "MemoryAgent",
+      "files_analyzed": 4,
+      "total_hits": 7,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "injection_techniques": [
+          "anomaly process",
+          "process spawned",
+          "suspicious process"
+        ],
+        "credential_dump_indicators": [
+          "credential dump",
+          "lsass",
+          "mimikatz"
+        ],
+        "suspicious_process_pairs": [],
+        "hollowing_indicators": [],
+        "memory_anomalies": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/apt_attack/auth.log": {
+          "sha256": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+          "timestamp": "2026-05-23T14:05:05.404808+00:00",
+          "size_bytes": 608
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/firewall.log": {
+          "sha256": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+          "timestamp": "2026-05-23T14:05:05.405982+00:00",
+          "size_bytes": 377
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/system.log": {
+          "sha256": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+          "timestamp": "2026-05-23T14:05:05.406609+00:00",
+          "size_bytes": 764
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log": {
+          "sha256": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1",
+          "timestamp": "2026-05-23T14:05:05.407411+00:00",
+          "size_bytes": 646
+        }
+      },
+      "findings": [
+        {
+          "type": "process_injection",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "indicator": "process spawned",
+          "evidence": [
+            "2026-05-19 22:07:01 kernel: Suspicious process spawned: cmd.exe /c powershell -enc SQBFAFgA"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1055 - Process Injection",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.406973+00:00",
+          "traceable": true
+        },
+        {
+          "type": "process_injection",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "indicator": "suspicious process",
+          "evidence": [
+            "2026-05-19 22:07:01 kernel: Suspicious process spawned: cmd.exe /c powershell -enc SQBFAFgA"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1055 - Process Injection",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.407052+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "indicator": "lsass",
+          "evidence": [
+            "2026-05-19 22:07:25 system: Credential dumping detected: lsass.exe access"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.407130+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "indicator": "credential dump",
+          "evidence": [
+            "2026-05-19 22:07:25 system: Credential dumping detected: lsass.exe access"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.407203+00:00",
+          "traceable": true
+        },
+        {
+          "type": "process_injection",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+          "file_hash": "8322719ad2dc512f",
+          "indicator": "anomaly process",
+          "evidence": [
+            "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1055 - Process Injection",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.407711+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+          "file_hash": "8322719ad2dc512f",
+          "indicator": "lsass",
+          "evidence": [
+            "2026-05-19 22:08:25 EventID 4663: Unauthorized file access on C:\\Windows\\System32\\lsass.exe"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.407793+00:00",
+          "traceable": true
+        },
+        {
+          "type": "credential_dumping",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+          "file_hash": "8322719ad2dc512f",
+          "indicator": "mimikatz",
+          "evidence": [
+            "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1003 - OS Credential Dumping",
+          "agent": "MemoryAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.407863+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:05:05.408003+00:00"
+    },
+    "network_analysis": {
+      "status": "COMPLETE",
+      "agent": "NetworkAgent",
+      "files_analyzed": 4,
+      "total_hits": 5,
+      "priority": "CRITICAL",
+      "extracted_iocs": {
+        "c2_indicators": [
+          "reverse shell"
+        ],
+        "suspicious_ips": [],
+        "suspicious_ports": [
+          "4444",
+          "9999"
+        ],
+        "dns_tunnel_indicators": [],
+        "exfil_indicators": [
+          "data exfil",
+          "exfiltration"
+        ],
+        "scan_indicators": [],
+        "tls_anomalies": [],
+        "long_subdomains": []
+      },
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/apt_attack/auth.log": {
+          "sha256": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+          "timestamp": "2026-05-23T14:05:05.411030+00:00",
+          "size_bytes": 608
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/firewall.log": {
+          "sha256": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+          "timestamp": "2026-05-23T14:05:05.412211+00:00",
+          "size_bytes": 377
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/system.log": {
+          "sha256": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+          "timestamp": "2026-05-23T14:05:05.413221+00:00",
+          "size_bytes": 764
+        },
+        "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log": {
+          "sha256": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1",
+          "timestamp": "2026-05-23T14:05:05.414810+00:00",
+          "size_bytes": 646
+        }
+      },
+      "findings": [
+        {
+          "type": "suspicious_port",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+          "file_hash": "3a329f24609e245f",
+          "port": "4444",
+          "severity": "HIGH",
+          "mitre": "T1571 - Non-Standard Port",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.412995+00:00",
+          "traceable": true
+        },
+        {
+          "type": "c2_communication",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "indicator": "reverse shell",
+          "evidence": [
+            "2026-05-19 22:07:15 system: Reverse shell established to 185.220.101.47:9999"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1071 - Application Layer Protocol",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.413746+00:00",
+          "traceable": true
+        },
+        {
+          "type": "data_exfiltration",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "indicator": "data exfil",
+          "evidence": [
+            "2026-05-19 22:07:45 system: Data exfiltration to 45.142.212.100 port 443"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1041 - Exfiltration Over C2 Channel",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.414016+00:00",
+          "traceable": true
+        },
+        {
+          "type": "data_exfiltration",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "indicator": "exfiltration",
+          "evidence": [
+            "2026-05-19 22:07:45 system: Data exfiltration to 45.142.212.100 port 443"
+          ],
+          "severity": "CRITICAL",
+          "mitre": "T1041 - Exfiltration Over C2 Channel",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.414093+00:00",
+          "traceable": true
+        },
+        {
+          "type": "suspicious_port",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+          "file_hash": "cb28c1cff594c2fa",
+          "port": "9999",
+          "severity": "HIGH",
+          "mitre": "T1571 - Non-Standard Port",
+          "agent": "NetworkAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:05.414531+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:05:05.415862+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 5,
+      "extracted_entities": {
+        "ipv4_addresses": [
+          "10.0.0.12",
+          "10.0.0.5",
+          "185.220.101.47",
+          "45.142.212.100"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [
+          "C:\\Windows\\System32\\lsass.exe"
+        ],
+        "hostnames": [
+          "CVE-2024"
+        ],
+        "usernames": [
+          "Administrator"
+        ],
+        "process_ids": [
+          "4821"
+        ],
+        "granted_access": [],
+        "domains": []
+      },
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "10.0.0.12",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 10.0.0.12",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144260+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "10.0.0.5",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 10.0.0.5",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144270+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "185.220.101.47",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 185.220.101.47",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144278+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "45.142.212.100",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 45.142.212.100",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144286+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "failed password"
+          ],
+          "description": "Credential brute force detected",
+          "mitre_technique": "T1110 - Brute Force",
+          "base_score": 70,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.143968+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "unauthorized",
+            "root",
+            "privilege escalation",
+            "sudo"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144041+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "reverse shell",
+            "exploit"
+          ],
+          "description": "C2 or lateral movement detected",
+          "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+          "base_score": 85,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144093+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "ransomware"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144141+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "CREDENTIAL_DUMPING",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "lsass",
+            "mimikatz"
+          ],
+          "description": "Credential dumping detected",
+          "mitre_technique": "T1003 - OS Credential Dumping",
+          "base_score": 88,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144189+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "DATA_EXFILTRATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "exfiltration"
+          ],
+          "description": "Data exfiltration detected",
+          "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+          "base_score": 80,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144237+00:00",
+          "traceable": true
+        },
+        {
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "base64",
+            "powershell",
+            "encoded"
+          ],
+          "description": "PowerShell obfuscation \u2014 injected by CorrectionAgent after triage-correlation mismatch",
+          "mitre_technique": "T1059.001 - PowerShell / T1027 - Obfuscation",
+          "base_score": 85,
+          "injected_by": "devil_advocate_auto_remediation"
+        }
+      ],
+      "temporal_sequences": [],
+      "high_signal_signatures": [],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-23T14:05:03.667022+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "dynamic_priority_escalation",
+          "timestamp": "2026-05-23T14:05:03.669938+00:00",
+          "artifact": "triage_scan"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T14:05:04.213127+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T14:05:04.628764+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T14:05:05.023639+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-23T14:05:05.382658+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malware_drop_zone",
+          "timestamp": "2026-05-23T14:05:05.394817+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T14:05:05.395062+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T14:05:05.396569+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T14:05:05.396738+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "DiskAgent",
+          "type": "malicious_filename",
+          "timestamp": "2026-05-23T14:05:05.398747+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "process_injection",
+          "timestamp": "2026-05-23T14:05:05.406973+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "process_injection",
+          "timestamp": "2026-05-23T14:05:05.407052+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T14:05:05.407130+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T14:05:05.407203+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "process_injection",
+          "timestamp": "2026-05-23T14:05:05.407711+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T14:05:05.407793+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+        },
+        {
+          "agent": "MemoryAgent",
+          "type": "credential_dumping",
+          "timestamp": "2026-05-23T14:05:05.407863+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "suspicious_port",
+          "timestamp": "2026-05-23T14:05:05.412995+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "c2_communication",
+          "timestamp": "2026-05-23T14:05:05.413746+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "data_exfiltration",
+          "timestamp": "2026-05-23T14:05:05.414016+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "data_exfiltration",
+          "timestamp": "2026-05-23T14:05:05.414093+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        },
+        {
+          "agent": "NetworkAgent",
+          "type": "suspicious_port",
+          "timestamp": "2026-05-23T14:05:05.414531+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log"
+        }
+      ],
+      "threat_assessment": {
+        "score": 100,
+        "level": "CRITICAL",
+        "reasons": [
+          "Base pattern score: 90",
+          "6 patterns detected (+10)",
+          "Correlated IPs (+5)"
+        ]
+      },
+      "attack_narrative": "The attack originated from 10.0.0.12 targeting CVE-2024, gaining initial foothold through exploitation of a network-accessible service. Following injection, the compromised process established a covert C2 communication channel to 45.142.212.100 over HTTPS, with the TLS certificate issued by an unexpected authority \u2014 a hallmark of attacker-controlled infrastructure masquerading as legitimate services. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+      "containment_actions": [
+        "BLOCK IP 10.0.0.12 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 10.0.0.5 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 185.220.101.47 at perimeter firewall and all internal segment boundaries",
+        "BLOCK IP 45.142.212.100 at perimeter firewall and all internal segment boundaries",
+        "ISOLATE host CVE-2024 immediately \u2014 disconnect from all network segments",
+        "SUSPEND account 'Administrator' and invalidate all active sessions",
+        "COLLECT forensic image of: C:\\Windows\\System32\\lsass.exe",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "failed password"
+          ],
+          "description": "Credential brute force detected",
+          "mitre_technique": "T1110 - Brute Force",
+          "base_score": 70,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.143968+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "PRIVILEGE_ESCALATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "unauthorized",
+            "root",
+            "privilege escalation",
+            "sudo"
+          ],
+          "description": "Privilege escalation detected",
+          "mitre_technique": "T1548 - Abuse Elevation Control Mechanism",
+          "base_score": 75,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144041+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "reverse shell",
+            "exploit"
+          ],
+          "description": "C2 or lateral movement detected",
+          "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+          "base_score": 85,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144093+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "ransomware"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144141+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "CREDENTIAL_DUMPING",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "lsass",
+            "mimikatz"
+          ],
+          "description": "Credential dumping detected",
+          "mitre_technique": "T1003 - OS Credential Dumping",
+          "base_score": 88,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144189+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "DATA_EXFILTRATION",
+          "confidence": "HIGH",
+          "evidence_keywords": [
+            "exfiltration"
+          ],
+          "description": "Data exfiltration detected",
+          "mitre_technique": "T1041 - Exfiltration Over C2 Channel",
+          "base_score": 80,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144237+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "10.0.0.12",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 10.0.0.12",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144260+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "10.0.0.5",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 10.0.0.5",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144270+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "185.220.101.47",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 185.220.101.47",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144278+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "45.142.212.100",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 45.142.212.100",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-23T14:05:06.144286+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-23T14:05:06.144615+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 4,
+            "files": [
+              "auth.log",
+              "firewall.log",
+              "system.log",
+              "windows_event.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:03.667022+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: auth.log",
+            "File on disk: auth.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "dynamic_priority_escalation",
+            "reason": "Critical keywords found in evidence",
+            "keywords": [
+              "base64",
+              "backdoor",
+              "lsass",
+              "encoded",
+              "ransomware",
+              "reverse shell",
+              "exfiltration",
+              "exploit",
+              "mimikatz",
+              "lateral movement",
+              "powershell"
+            ],
+            "artifact": "triage_scan",
+            "priority_set": "CRITICAL",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:03.669938+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Triage-level finding \u2014 acceptable",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/auth.log",
+            "file_hash": "26920349c6b3948acf7976c01e09b7e4ef0fec4ed653e775cb951059e028945a",
+            "keywords_matched": [
+              "failed password",
+              "unauthorized",
+              "privilege escalation",
+              "sudo",
+              "root"
+            ],
+            "total_hits": 12,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:04.213127+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: auth.log",
+            "File on disk: auth.log",
+            "Keywords: ['failed password', 'unauthorized', 'privilege escalation', 'sudo', 'root']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+            "file_hash": "3a329f24609e245ff217eb6c5008cfa3a81407d4241dce99f9500047f9b494da",
+            "keywords_matched": [
+              "exploit"
+            ],
+            "total_hits": 1,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:04.628764+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: firewall.log",
+            "File on disk: firewall.log",
+            "Keywords: ['exploit']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa99174912c9216bb1761a51724c9c6f944a3f7f82ca6c193f",
+            "keywords_matched": [
+              "exploit",
+              "ransomware"
+            ],
+            "total_hits": 2,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.023639+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Keywords: ['exploit', 'ransomware']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+            "file_hash": "8322719ad2dc512f52043536f8caacb3e4524a8f913b2ffdbdba13870fc493b1",
+            "keywords_matched": [
+              "unauthorized"
+            ],
+            "total_hits": 1,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.382658+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: windows_event.log",
+            "File on disk: windows_event.log",
+            "Keywords: ['unauthorized']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malware_drop_zone",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+            "file_hash": "3a329f24609e245f",
+            "path_pattern": "temp",
+            "evidence": [
+              "2026-05-19 22:05:33 ALLOW TCP 185.220.101.47:4444 -> 10.0.0.5:80 [EXPLOIT attempt]"
+            ],
+            "severity": "HIGH",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.394817+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: firewall.log",
+            "File on disk: firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+            "file_hash": "3a329f24609e245f",
+            "filename_pattern": "exploit",
+            "evidence": [
+              "2026-05-19 22:05:33 ALLOW TCP 185.220.101.47:4444 -> 10.0.0.5:80 [EXPLOIT attempt]"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.395062+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: firewall.log",
+            "File on disk: firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "filename_pattern": "exploit",
+            "evidence": [
+              "2026-05-19 22:07:40 system: Exploit CVE-2024-21413 executed successfully"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.396569+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "filename_pattern": "ransomware",
+            "evidence": [
+              "2026-05-19 22:07:30 system: Ransomware signature detected: .locked extension"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.396738+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "malicious_filename",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+            "file_hash": "8322719ad2dc512f",
+            "filename_pattern": "mimikatz",
+            "evidence": [
+              "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+            ],
+            "severity": "CRITICAL",
+            "agent": "DiskAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.398747+00:00",
+            "traceable": true
+          },
+          "source_agent": "DiskAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: windows_event.log",
+            "File on disk: windows_event.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "process_injection",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "indicator": "process spawned",
+            "evidence": [
+              "2026-05-19 22:07:01 kernel: Suspicious process spawned: cmd.exe /c powershell -enc SQBFAFgA"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1055 - Process Injection",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.406973+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "process_injection",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "indicator": "suspicious process",
+            "evidence": [
+              "2026-05-19 22:07:01 kernel: Suspicious process spawned: cmd.exe /c powershell -enc SQBFAFgA"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1055 - Process Injection",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.407052+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "indicator": "lsass",
+            "evidence": [
+              "2026-05-19 22:07:25 system: Credential dumping detected: lsass.exe access"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.407130+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "indicator": "credential dump",
+            "evidence": [
+              "2026-05-19 22:07:25 system: Credential dumping detected: lsass.exe access"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.407203+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "process_injection",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+            "file_hash": "8322719ad2dc512f",
+            "indicator": "anomaly process",
+            "evidence": [
+              "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1055 - Process Injection",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.407711+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: windows_event.log",
+            "File on disk: windows_event.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+            "file_hash": "8322719ad2dc512f",
+            "indicator": "lsass",
+            "evidence": [
+              "2026-05-19 22:08:25 EventID 4663: Unauthorized file access on C:\\Windows\\System32\\lsass.exe"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.407793+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: windows_event.log",
+            "File on disk: windows_event.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "credential_dumping",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/windows_event.log",
+            "file_hash": "8322719ad2dc512f",
+            "indicator": "mimikatz",
+            "evidence": [
+              "2026-05-19 22:08:35 EventID 4688: Anomaly process created: mimikatz.exe hash=a3b4c5d6e7f8"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1003 - OS Credential Dumping",
+            "agent": "MemoryAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.407863+00:00",
+            "traceable": true
+          },
+          "source_agent": "MemoryAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: windows_event.log",
+            "File on disk: windows_event.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_port",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/firewall.log",
+            "file_hash": "3a329f24609e245f",
+            "port": "4444",
+            "severity": "HIGH",
+            "mitre": "T1571 - Non-Standard Port",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.412995+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: firewall.log",
+            "File on disk: firewall.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "c2_communication",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "indicator": "reverse shell",
+            "evidence": [
+              "2026-05-19 22:07:15 system: Reverse shell established to 185.220.101.47:9999"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1071 - Application Layer Protocol",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.413746+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "data_exfiltration",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "indicator": "data exfil",
+            "evidence": [
+              "2026-05-19 22:07:45 system: Data exfiltration to 45.142.212.100 port 443"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1041 - Exfiltration Over C2 Channel",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.414016+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "data_exfiltration",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "indicator": "exfiltration",
+            "evidence": [
+              "2026-05-19 22:07:45 system: Data exfiltration to 45.142.212.100 port 443"
+            ],
+            "severity": "CRITICAL",
+            "mitre": "T1041 - Exfiltration Over C2 Channel",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.414093+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_port",
+            "artifact": "/data/data/com.termux/files/home/cases/apt_attack/system.log",
+            "file_hash": "cb28c1cff594c2fa",
+            "port": "9999",
+            "severity": "HIGH",
+            "mitre": "T1571 - Non-Standard Port",
+            "agent": "NetworkAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-23T14:05:05.414531+00:00",
+            "traceable": true
+          },
+          "source_agent": "NetworkAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "BRUTE_FORCE_ATTACK",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['failed password']",
+            "MITRE: T1110 - Brute Force"
+          ]
+        },
+        {
+          "pattern": "PRIVILEGE_ESCALATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['unauthorized', 'root', 'privilege escalation', 'sudo']",
+            "MITRE: T1548 - Abuse Elevation Control Mechanism"
+          ]
+        },
+        {
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['reverse shell', 'exploit']",
+            "MITRE: T1021 / T1059 - Remote Services / Command Interpreter"
+          ]
+        },
+        {
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['ransomware']",
+            "MITRE: T1486 - Data Encrypted for Impact"
+          ]
+        },
+        {
+          "pattern": "CREDENTIAL_DUMPING",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['lsass', 'mimikatz']",
+            "MITRE: T1003 - OS Credential Dumping"
+          ]
+        },
+        {
+          "pattern": "DATA_EXFILTRATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['exfiltration']",
+            "MITRE: T1041 - Exfiltration Over C2 Channel"
+          ]
+        },
+        {
+          "pattern": "POWERSHELL_OBFUSCATION",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['base64', 'powershell', 'encoded']",
+            "MITRE: T1059.001 - PowerShell / T1027 - Obfuscation"
+          ]
+        },
+        {
+          "ip": "10.0.0.12",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "10.0.0.5",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "185.220.101.47",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        },
+        {
+          "ip": "45.142.212.100",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 34,
+        "validated": 34,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [],
+        "devil_advocate_suggestions": [],
+        "forced_reeval": false,
+        "auto_remediated_patterns": [
+          "POWERSHELL_OBFUSCATION"
+        ],
+        "auto_remediation_count": 1
+      },
+      "errors": [],
+      "timestamp": "2026-05-23T14:05:06.737241+00:00"
+    }
+  },
+  "timestamp": "2026-05-23T14:05:06.739793+00:00",
+  "duration_seconds": 3.19
+}

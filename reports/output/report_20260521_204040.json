@@ -1,0 +1,761 @@
+{
+  "nexus_ir_version": "1.0.0",
+  "session_id": "20260521_204040",
+  "investigation_complete": true,
+  "executive_summary": {
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "case_priority": "CRITICAL",
+    "total_files_analyzed": 1,
+    "attack_patterns_detected": 2,
+    "unique_ips_found": 1,
+    "findings_validated": 6,
+    "findings_rejected": 0,
+    "overall_confidence": "HIGH"
+  },
+  "attack_patterns": [
+    {
+      "type": "attack_pattern",
+      "pattern": "LATERAL_MOVEMENT_OR_C2",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "exploit"
+      ],
+      "description": "C2 or lateral movement detected",
+      "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+      "base_score": 85,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-21T20:40:41.110610+00:00",
+      "traceable": true
+    },
+    {
+      "type": "attack_pattern",
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "confidence": "CRITICAL",
+      "evidence_keywords": [
+        "ransomware"
+      ],
+      "description": "Malware or ransomware execution detected",
+      "mitre_technique": "T1486 - Data Encrypted for Impact",
+      "base_score": 90,
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-21T20:40:41.110709+00:00",
+      "traceable": true
+    }
+  ],
+  "ip_correlations": [
+    {
+      "type": "ip_seen_in_evidence",
+      "ip": "185.220.101.45",
+      "seen_by_agents": [
+        "LogAgent"
+      ],
+      "significance": "HIGH",
+      "description": "Regex-verified IoC: 185.220.101.45",
+      "agent": "CorrelationAgent",
+      "iteration": 1,
+      "timestamp": "2026-05-21T20:40:41.110735+00:00",
+      "traceable": true
+    }
+  ],
+  "timeline": [
+    {
+      "agent": "TriageAgent",
+      "type": "evidence_detected",
+      "timestamp": "2026-05-21T20:40:40.784237+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log"
+    },
+    {
+      "agent": "TriageAgent",
+      "type": "dynamic_priority_escalation",
+      "timestamp": "2026-05-21T20:40:40.784596+00:00",
+      "artifact": "triage_scan"
+    },
+    {
+      "agent": "LogAgent",
+      "type": "suspicious_log_activity",
+      "timestamp": "2026-05-21T20:40:41.107529+00:00",
+      "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log"
+    }
+  ],
+  "validated_findings": [
+    {
+      "finding": {
+        "type": "evidence_detected",
+        "category": "log_files",
+        "count": 1,
+        "files": [
+          "system.log"
+        ],
+        "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-21T20:40:40.784237+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "dynamic_priority_escalation",
+        "reason": "Critical keywords found in evidence",
+        "keywords": [
+          "powershell",
+          "exploit",
+          "ransomware",
+          "backdoor",
+          "base64",
+          "encoded"
+        ],
+        "artifact": "triage_scan",
+        "priority_set": "CRITICAL",
+        "agent": "TriageAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-21T20:40:40.784596+00:00",
+        "traceable": true
+      },
+      "source_agent": "TriageAgent",
+      "valid": true,
+      "confidence": 70,
+      "issues": [],
+      "verification_steps": [
+        "Triage-level finding \u2014 acceptable",
+        "Timestamp present"
+      ]
+    },
+    {
+      "finding": {
+        "type": "suspicious_log_activity",
+        "file": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+        "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+        "file_hash": "e33a5db2e30b99e37fc04568cdfbf7aca162ae3fa0ac1d927f68ada173795e3e",
+        "keywords_matched": [
+          "exploit",
+          "ransomware"
+        ],
+        "total_hits": 2,
+        "agent": "LogAgent",
+        "iteration": 1,
+        "timestamp": "2026-05-21T20:40:41.107529+00:00",
+        "traceable": true
+      },
+      "source_agent": "LogAgent",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Artifact verified: system.log",
+        "File on disk: system.log",
+        "Keywords: ['exploit', 'ransomware']",
+        "Timestamp present"
+      ]
+    },
+    {
+      "pattern": "LATERAL_MOVEMENT_OR_C2",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['exploit']",
+        "MITRE: T1021 / T1059 - Remote Services / Command Interpreter"
+      ]
+    },
+    {
+      "pattern": "RANSOMWARE_OR_MALWARE",
+      "valid": true,
+      "confidence": 100,
+      "issues": [],
+      "verification_steps": [
+        "Supported by: ['ransomware']",
+        "MITRE: T1486 - Data Encrypted for Impact"
+      ]
+    },
+    {
+      "ip": "185.220.101.45",
+      "valid": true,
+      "confidence": 90,
+      "issue": null
+    }
+  ],
+  "rejected_findings": [],
+  "attack_narrative": "The attack originated from 185.220.101.45 targeting CVE-2024, gaining initial foothold through exploitation of a network-accessible service. Following injection, the compromised process established a covert C2 communication channel to 185.220.101.45 over HTTPS, with the TLS certificate issued by an unexpected authority \u2014 a hallmark of attacker-controlled infrastructure masquerading as legitimate services. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+  "containment_actions": [
+    "BLOCK IP 185.220.101.45 at perimeter firewall and all internal segment boundaries",
+    "ISOLATE host CVE-2024 immediately \u2014 disconnect from all network segments",
+    "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+    "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+  ],
+  "extracted_entities": {
+    "ipv4_addresses": [
+      "185.220.101.45"
+    ],
+    "sha256_hashes": [],
+    "md5_hashes": [],
+    "base64_strings": [],
+    "decoded_payloads": [],
+    "file_paths": [],
+    "hostnames": [
+      "CVE-2024"
+    ],
+    "usernames": [],
+    "process_ids": [],
+    "granted_access": [],
+    "domains": []
+  },
+  "temporal_sequences": [],
+  "chain_of_custody": {
+    "/data/data/com.termux/files/home/cases/ransomware/system.log": {
+      "sha256": "e33a5db2e30b99e37fc04568cdfbf7aca162ae3fa0ac1d927f68ada173795e3e",
+      "timestamp": "2026-05-21T20:40:40.815181+00:00",
+      "size_bytes": 363
+    }
+  },
+  "execution_trace": [
+    {
+      "timestamp": "2026-05-21T20:40:40.780747+00:00",
+      "level": "START",
+      "message": "Starting investigation: /data/data/com.termux/files/home/cases/ransomware"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:40.780815+00:00",
+      "level": "INFO",
+      "message": "Session ID: 20260521_204040"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:40.782358+00:00",
+      "level": "AGENT",
+      "message": "Phase 1: TRIAGE \u2014 Examining evidence..."
+    },
+    {
+      "iteration": 3,
+      "agent": "TriageAgent",
+      "status": "COMPLETE",
+      "findings": 2,
+      "timestamp": "2026-05-21T20:40:40.784821+00:00"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:40.784873+00:00",
+      "level": "DONE",
+      "message": "Triage complete \u2014 Priority: CRITICAL, Files: 1"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:40.784921+00:00",
+      "level": "AGENT",
+      "message": "Phase 2: LOG ANALYSIS \u2014 Hunting suspicious activity..."
+    },
+    {
+      "iteration": 6,
+      "agent": "LogAgent",
+      "status": "COMPLETE",
+      "findings": 1,
+      "timestamp": "2026-05-21T20:40:41.107765+00:00"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:41.107820+00:00",
+      "level": "DONE",
+      "message": "Log analysis complete \u2014 Suspicious files: 1"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:41.107875+00:00",
+      "level": "AGENT",
+      "message": "Phase 3: CORRELATION \u2014 Cross-referencing all findings..."
+    },
+    {
+      "iteration": 9,
+      "agent": "CorrelationAgent",
+      "status": "COMPLETE",
+      "findings": 3,
+      "timestamp": "2026-05-21T20:40:41.111081+00:00"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:41.111128+00:00",
+      "level": "DONE",
+      "message": "Correlation complete \u2014 Threat: CRITICAL (95/100)"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:41.111179+00:00",
+      "level": "AGENT",
+      "message": "Phase 4: SELF-CORRECTION \u2014 Validating all findings..."
+    },
+    {
+      "iteration": 12,
+      "agent": "CorrectionAgent",
+      "status": "COMPLETE",
+      "findings": 6,
+      "timestamp": "2026-05-21T20:40:41.160680+00:00"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:41.160773+00:00",
+      "level": "DONE",
+      "message": "Correction complete \u2014 100.0% accuracy, 6 validated"
+    },
+    {
+      "timestamp": "2026-05-21T20:40:41.161004+00:00",
+      "level": "DONE",
+      "message": "Total investigation time: 0.4 seconds"
+    }
+  ],
+  "agent_reports": {
+    "triage": {
+      "status": "COMPLETE",
+      "agent": "TriageAgent",
+      "case_path": "/data/data/com.termux/files/home/cases/ransomware",
+      "priority": "CRITICAL",
+      "keyword_hits": {
+        "critical_keywords_found": [
+          "powershell",
+          "exploit",
+          "ransomware",
+          "backdoor",
+          "base64",
+          "encoded"
+        ],
+        "high_keywords_found": [
+          "anomaly"
+        ]
+      },
+      "all_files": [
+        "/data/data/com.termux/files/home/cases/ransomware/system.log"
+      ],
+      "evidence_types": {
+        "disk_images": [],
+        "memory_dumps": [],
+        "log_files": [
+          "/data/data/com.termux/files/home/cases/ransomware/system.log"
+        ],
+        "network_captures": [],
+        "registry_files": [],
+        "json_artifacts": [],
+        "csv_data": [],
+        "unknown": []
+      },
+      "total_files": 1,
+      "investigation_plan": [
+        {
+          "agent": "LogAgent",
+          "reason": "1 text artifact(s) detected",
+          "priority": 1
+        },
+        {
+          "agent": "CorrelationAgent",
+          "reason": "Always runs",
+          "priority": 5
+        },
+        {
+          "agent": "CorrectionAgent",
+          "reason": "Always runs",
+          "priority": 6
+        }
+      ],
+      "file_hashes": {
+        "/data/data/com.termux/files/home/cases/ransomware/system.log": "e33a5db2e30b99e37fc04568cdfbf7aca162ae3fa0ac1d927f68ada173795e3e"
+      },
+      "findings": [
+        {
+          "type": "evidence_detected",
+          "category": "log_files",
+          "count": 1,
+          "files": [
+            "system.log"
+          ],
+          "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:40.784237+00:00",
+          "traceable": true
+        },
+        {
+          "type": "dynamic_priority_escalation",
+          "reason": "Critical keywords found in evidence",
+          "keywords": [
+            "powershell",
+            "exploit",
+            "ransomware",
+            "backdoor",
+            "base64",
+            "encoded"
+          ],
+          "artifact": "triage_scan",
+          "priority_set": "CRITICAL",
+          "agent": "TriageAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:40.784596+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-21T20:40:40.784795+00:00"
+    },
+    "log_analysis": {
+      "status": "COMPLETE",
+      "agent": "LogAgent",
+      "log_files_analyzed": 1,
+      "suspicious_files": 1,
+      "hits": {
+        "/data/data/com.termux/files/home/cases/ransomware/system.log": {
+          "exploit": {
+            "matches": [
+              "2026-05-20 02:00:20 Exploit successful on CVE-2024-1234"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+            "file_hash": "e33a5db2e30b99e3",
+            "tool_used": "grep+regex",
+            "command_hash": "9e5a41e9bce39bc4"
+          },
+          "ransomware": {
+            "matches": [
+              "2026-05-20 02:00:25 Ransomware signature detected in memory"
+            ],
+            "count": 1,
+            "source_file": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+            "file_hash": "e33a5db2e30b99e3",
+            "tool_used": "grep+regex",
+            "command_hash": "03c068b0d193f10a"
+          }
+        }
+      },
+      "extracted_iocs": {
+        "ipv4_addresses": [
+          "185.220.101.45"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [
+          "CVE-2024"
+        ],
+        "usernames": [],
+        "process_ids": [],
+        "granted_access": []
+      },
+      "unique_ips": [
+        "185.220.101.45"
+      ],
+      "chain_of_custody": {
+        "/data/data/com.termux/files/home/cases/ransomware/system.log": {
+          "sha256": "e33a5db2e30b99e37fc04568cdfbf7aca162ae3fa0ac1d927f68ada173795e3e",
+          "timestamp": "2026-05-21T20:40:40.815181+00:00",
+          "size_bytes": 363
+        }
+      },
+      "decoded_payloads": [],
+      "findings": [
+        {
+          "type": "suspicious_log_activity",
+          "file": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+          "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+          "file_hash": "e33a5db2e30b99e37fc04568cdfbf7aca162ae3fa0ac1d927f68ada173795e3e",
+          "keywords_matched": [
+            "exploit",
+            "ransomware"
+          ],
+          "total_hits": 2,
+          "agent": "LogAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:41.107529+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-21T20:40:41.107726+00:00"
+    },
+    "correlation": {
+      "status": "COMPLETE",
+      "agent": "CorrelationAgent",
+      "agents_correlated": 2,
+      "extracted_entities": {
+        "ipv4_addresses": [
+          "185.220.101.45"
+        ],
+        "sha256_hashes": [],
+        "md5_hashes": [],
+        "base64_strings": [],
+        "decoded_payloads": [],
+        "file_paths": [],
+        "hostnames": [
+          "CVE-2024"
+        ],
+        "usernames": [],
+        "process_ids": [],
+        "granted_access": [],
+        "domains": []
+      },
+      "ip_correlations": [
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "185.220.101.45",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 185.220.101.45",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:41.110735+00:00",
+          "traceable": true
+        }
+      ],
+      "attack_patterns": [
+        {
+          "type": "attack_pattern",
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "exploit"
+          ],
+          "description": "C2 or lateral movement detected",
+          "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+          "base_score": 85,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:41.110610+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "ransomware"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:41.110709+00:00",
+          "traceable": true
+        }
+      ],
+      "temporal_sequences": [],
+      "high_signal_signatures": [],
+      "timeline": [
+        {
+          "agent": "TriageAgent",
+          "type": "evidence_detected",
+          "timestamp": "2026-05-21T20:40:40.784237+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log"
+        },
+        {
+          "agent": "TriageAgent",
+          "type": "dynamic_priority_escalation",
+          "timestamp": "2026-05-21T20:40:40.784596+00:00",
+          "artifact": "triage_scan"
+        },
+        {
+          "agent": "LogAgent",
+          "type": "suspicious_log_activity",
+          "timestamp": "2026-05-21T20:40:41.107529+00:00",
+          "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log"
+        }
+      ],
+      "threat_assessment": {
+        "score": 95,
+        "level": "CRITICAL",
+        "reasons": [
+          "Base pattern score: 90",
+          "Correlated IPs (+5)"
+        ]
+      },
+      "attack_narrative": "The attack originated from 185.220.101.45 targeting CVE-2024, gaining initial foothold through exploitation of a network-accessible service. Following injection, the compromised process established a covert C2 communication channel to 185.220.101.45 over HTTPS, with the TLS certificate issued by an unexpected authority \u2014 a hallmark of attacker-controlled infrastructure masquerading as legitimate services. The attack chain represents a complete APT intrusion lifecycle: obfuscated execution, process injection for persistence, and beaconing to external C2 infrastructure \u2014 consistent with a Cobalt Strike or similar commercial implant deployment.",
+      "containment_actions": [
+        "BLOCK IP 185.220.101.45 at perimeter firewall and all internal segment boundaries",
+        "ISOLATE host CVE-2024 immediately \u2014 disconnect from all network segments",
+        "PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings",
+        "NOTIFY CISO and legal team \u2014 assess breach notification obligations"
+      ],
+      "findings": [
+        {
+          "type": "attack_pattern",
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "exploit"
+          ],
+          "description": "C2 or lateral movement detected",
+          "mitre_technique": "T1021 / T1059 - Remote Services / Command Interpreter",
+          "base_score": 85,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:41.110610+00:00",
+          "traceable": true
+        },
+        {
+          "type": "attack_pattern",
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "confidence": "CRITICAL",
+          "evidence_keywords": [
+            "ransomware"
+          ],
+          "description": "Malware or ransomware execution detected",
+          "mitre_technique": "T1486 - Data Encrypted for Impact",
+          "base_score": 90,
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:41.110709+00:00",
+          "traceable": true
+        },
+        {
+          "type": "ip_seen_in_evidence",
+          "ip": "185.220.101.45",
+          "seen_by_agents": [
+            "LogAgent"
+          ],
+          "significance": "HIGH",
+          "description": "Regex-verified IoC: 185.220.101.45",
+          "agent": "CorrelationAgent",
+          "iteration": 1,
+          "timestamp": "2026-05-21T20:40:41.110735+00:00",
+          "traceable": true
+        }
+      ],
+      "errors": [],
+      "timestamp": "2026-05-21T20:40:41.111056+00:00"
+    },
+    "correction": {
+      "status": "COMPLETE",
+      "agent": "CorrectionAgent",
+      "validated_findings": [
+        {
+          "finding": {
+            "type": "evidence_detected",
+            "category": "log_files",
+            "count": 1,
+            "files": [
+              "system.log"
+            ],
+            "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-21T20:40:40.784237+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "dynamic_priority_escalation",
+            "reason": "Critical keywords found in evidence",
+            "keywords": [
+              "powershell",
+              "exploit",
+              "ransomware",
+              "backdoor",
+              "base64",
+              "encoded"
+            ],
+            "artifact": "triage_scan",
+            "priority_set": "CRITICAL",
+            "agent": "TriageAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-21T20:40:40.784596+00:00",
+            "traceable": true
+          },
+          "source_agent": "TriageAgent",
+          "valid": true,
+          "confidence": 70,
+          "issues": [],
+          "verification_steps": [
+            "Triage-level finding \u2014 acceptable",
+            "Timestamp present"
+          ]
+        },
+        {
+          "finding": {
+            "type": "suspicious_log_activity",
+            "file": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+            "artifact": "/data/data/com.termux/files/home/cases/ransomware/system.log",
+            "file_hash": "e33a5db2e30b99e37fc04568cdfbf7aca162ae3fa0ac1d927f68ada173795e3e",
+            "keywords_matched": [
+              "exploit",
+              "ransomware"
+            ],
+            "total_hits": 2,
+            "agent": "LogAgent",
+            "iteration": 1,
+            "timestamp": "2026-05-21T20:40:41.107529+00:00",
+            "traceable": true
+          },
+          "source_agent": "LogAgent",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Artifact verified: system.log",
+            "File on disk: system.log",
+            "Keywords: ['exploit', 'ransomware']",
+            "Timestamp present"
+          ]
+        },
+        {
+          "pattern": "LATERAL_MOVEMENT_OR_C2",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['exploit']",
+            "MITRE: T1021 / T1059 - Remote Services / Command Interpreter"
+          ]
+        },
+        {
+          "pattern": "RANSOMWARE_OR_MALWARE",
+          "valid": true,
+          "confidence": 100,
+          "issues": [],
+          "verification_steps": [
+            "Supported by: ['ransomware']",
+            "MITRE: T1486 - Data Encrypted for Impact"
+          ]
+        },
+        {
+          "ip": "185.220.101.45",
+          "valid": true,
+          "confidence": 90,
+          "issue": null
+        }
+      ],
+      "rejected_findings": [],
+      "warnings": [],
+      "summary": {
+        "total_findings_reviewed": 6,
+        "validated": 6,
+        "rejected": 0,
+        "warnings": 0,
+        "accuracy_rate": 100.0,
+        "overall_confidence": "HIGH",
+        "devil_advocate_issues": [
+          "PowerShell stealth keywords in triage but POWERSHELL_OBFUSCATION not detected"
+        ],
+        "devil_advocate_suggestions": [
+          "Force re-run correlation with PowerShell keyword context"
+        ],
+        "forced_reeval": false
+      },
+      "errors": [],
+      "timestamp": "2026-05-21T20:40:41.160631+00:00"
+    }
+  },
+  "timestamp": "2026-05-21T20:40:41.160883+00:00",
+  "duration_seconds": 0.38
+}

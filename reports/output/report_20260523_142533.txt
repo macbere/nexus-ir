@@ -1,0 +1,437 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260523_142531
+  Generated    : 2026-05-23 14:25:33 UTC
+  Duration     : 2.73s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : CRITICAL (100/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 6
+  Attack Patterns  : 3
+  IPs Identified   : 2
+  Findings Valid   : 37
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : sysmon_execution.json
+  SHA256 : 619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786
+  Size   : 914 bytes
+  Hashed : 2026-05-23T14:25:33.305624+00:00
+
+  File   : sysmon_execution.log
+  SHA256 : 619304a909d0de9741ac108a2ac53e2d366788677f5f7b66c59bdd492bb6a786
+  Size   : 914 bytes
+  Hashed : 2026-05-23T14:25:33.306758+00:00
+
+  File   : sysmon_injection.json
+  SHA256 : 670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00
+  Size   : 915 bytes
+  Hashed : 2026-05-23T14:25:33.307804+00:00
+
+  File   : sysmon_injection.log
+  SHA256 : 670fa5d537a5337b60c444b935c93dbcb1129f404bcd8fef7d95d15b19246d00
+  Size   : 915 bytes
+  Hashed : 2026-05-23T14:25:33.308851+00:00
+
+  File   : zeek_network.json
+  SHA256 : a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1
+  Size   : 1188 bytes
+  Hashed : 2026-05-23T14:25:33.310226+00:00
+
+  File   : zeek_network.log
+  SHA256 : a1f2ebf54ab8ff4069e38a67cf5e34e1fcec121526753060a5dc2fbcee5fbea1
+  Size   : 1188 bytes
+  Hashed : 2026-05-23T14:25:33.311851+00:00
+
+-----------------------------------------------------------------
+  ATTACK NARRATIVE -- KILL CHAIN SUMMARY
+-----------------------------------------------------------------
+  A heavily obfuscated PowerShell command was executed on
+  A1B2C3D4-E5F6 (ProcessID 1128) using ExecutionPolicy Bypass
+  and WindowStyle Hidden flags, indicating a fileless malware
+  execution technique designed to evade endpoint detection. The
+  malicious process injected shellcode into a legitimate system
+  process (GrantedAccess=0x1FFFFF) — this is
+  PROCESS_ALL_ACCESS, a definitive indicator of process
+  injection used to achieve execution within a trusted process
+  and bypass security monitoring. The attack chain represents a
+  complete APT intrusion lifecycle: obfuscated execution,
+  process injection for persistence, and beaconing to external
+  C2 infrastructure — consistent with a Cobalt Strike or
+  similar commercial implant deployment.
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  [1] RANSOMWARE_OR_MALWARE
+      Confidence : CRITICAL
+      MITRE      : T1486 - Data Encrypted for Impact
+      Description: Malware or ransomware execution detected
+      Evidence   : powershell, base64
+
+  [2] PROCESS_INJECTION
+      Confidence : CRITICAL
+      MITRE      : T1055 - Process Injection
+      Description: Process injection confirmed via GrantedAccess=0x1FFFFF
+      Evidence   : 0x1FFFFF
+
+  [3] POWERSHELL_OBFUSCATION
+      Confidence : CRITICAL
+      MITRE      : T1059.001 - PowerShell / T1027 - Obfuscation
+      Description: Obfuscated PowerShell execution with stealth flags
+      Evidence   : executionpolicy, windowstyle, hidden, bypass
+
+-----------------------------------------------------------------
+  TEMPORAL ATTACK SEQUENCES
+-----------------------------------------------------------------
+  [1] FULL_INJECTION_CHAIN [CRITICAL]
+      MITRE : T1055 - Process Injection / T1071 - C2 Communication
+      Detail: Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window
+
+  [2] FULL_INJECTION_CHAIN [CRITICAL]
+      MITRE : T1055 - Process Injection / T1071 - C2 Communication
+      Detail: Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window
+
+  [3] FULL_INJECTION_CHAIN [CRITICAL]
+      MITRE : T1055 - Process Injection / T1071 - C2 Communication
+      Detail: Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window
+
+  [4] FULL_INJECTION_CHAIN [CRITICAL]
+      MITRE : T1055 - Process Injection / T1071 - C2 Communication
+      Detail: Execution -> Process Injection -> Remote Thread -> C2 Beacon within time window
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  IPV4 ADDRESSES:
+    - 104.21.55.12
+    - 192.168.1.105
+  BASE64 STRINGS:
+    - K8jcSMwtyEnVS8/IzMlJTE7VyyxJ1UtJ0UvOT0lN1stNzMzRy0...
+  HOSTNAMES:
+    - A1B2C3D4-E5F6
+    - DESKTOP-DEV
+    - DESKTOP-DEV-99A
+  PROCESS IDS:
+    - 1128
+    - 4192
+    - 912
+  GRANTED ACCESS:
+    - 0x1FFFFF
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  -> 104.21.55.12
+     Significance : HIGH
+     Description  : Regex-verified IoC: 104.21.55.12
+
+  -> 192.168.1.105
+     Significance : HIGH
+     Description  : Regex-verified IoC: 192.168.1.105
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-23T14:25:31
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: sysmon_execution.log
+
+  2026-05-23T14:25:31
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: sysmon_execution.json
+
+  2026-05-23T14:25:31
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: triage_scan
+
+  2026-05-23T14:25:31
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: sysmon_execution.json
+
+  2026-05-23T14:25:32
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: sysmon_injection.json
+
+  2026-05-23T14:25:32
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: zeek_network.json
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : suspicious_process_tree
+    Artifact: sysmon_execution.json
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : suspicious_process_tree
+    Artifact: sysmon_execution.log
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.json
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.json
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.json
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.json
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.json
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.json
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.log
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.log
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.log
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.log
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.log
+
+  2026-05-23T14:25:33
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: sysmon_injection.log
+
+  2026-05-23T14:25:33
+    Agent   : NetworkAgent
+    Event   : tls_anomaly
+    Artifact: zeek_network.json
+
+  2026-05-23T14:25:33
+    Agent   : NetworkAgent
+    Event   : tls_anomaly
+    Artifact: zeek_network.log
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : sysmon_execution.log
+
+  [2] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : sysmon_execution.json
+
+  [3] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : triage_scan
+
+  [4] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : sysmon_execution.json
+      File Hash  : 619304a909d0de9741ac108a2ac53e2d...
+      Keywords   : powershell, base64, executionpolicy, windowstyle, hidden, bypass, wmi
+
+  [5] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : sysmon_injection.json
+      File Hash  : 670fa5d537a5337b60c444b935c93dbc...
+      Keywords   : powershell, 0x1fffff, svchost
+
+  [6] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : zeek_network.json
+      File Hash  : a1f2ebf54ab8ff4069e38a67cf5e34e1...
+      Keywords   : let's encrypt
+
+  [7] Type       : suspicious_process_tree
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_execution.json
+      File Hash  : 619304a909d0de97...
+
+  [8] Type       : suspicious_process_tree
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_execution.log
+      File Hash  : 619304a909d0de97...
+
+  [9] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.json
+      File Hash  : 670fa5d537a5337b...
+
+  [10] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.json
+      File Hash  : 670fa5d537a5337b...
+
+  [11] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.json
+      File Hash  : 670fa5d537a5337b...
+
+  [12] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.json
+      File Hash  : 670fa5d537a5337b...
+
+  [13] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.json
+      File Hash  : 670fa5d537a5337b...
+
+  [14] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.json
+      File Hash  : 670fa5d537a5337b...
+
+  [15] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.log
+      File Hash  : 670fa5d537a5337b...
+
+  [16] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.log
+      File Hash  : 670fa5d537a5337b...
+
+  [17] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.log
+      File Hash  : 670fa5d537a5337b...
+
+  [18] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.log
+      File Hash  : 670fa5d537a5337b...
+
+  [19] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.log
+      File Hash  : 670fa5d537a5337b...
+
+  [20] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : sysmon_injection.log
+      File Hash  : 670fa5d537a5337b...
+
+  [21] Type       : tls_anomaly
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : zeek_network.json
+      File Hash  : a1f2ebf54ab8ff40...
+
+  [22] Type       : tls_anomaly
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : zeek_network.log
+      File Hash  : a1f2ebf54ab8ff40...
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] BLOCK IP 104.21.55.12 at perimeter firewall and all internal segment boundaries
+  [02] BLOCK IP 192.168.1.105 at perimeter firewall and all internal segment boundaries
+  [03] ISOLATE host A1B2C3D4-E5F6 immediately — disconnect from all network segments
+  [04] ISOLATE host DESKTOP-DEV immediately — disconnect from all network segments
+  [05] ISOLATE host DESKTOP-DEV-99A immediately — disconnect from all network segments
+  [06] KILL all suspicious process trees — terminate injected processes
+  [07] DUMP memory of svchost.exe instances for forensic analysis
+  [08] ENABLE PowerShell ScriptBlock logging (Event 4104) across all endpoints
+  [09] ENFORCE Constrained Language Mode for PowerShell enterprise-wide
+  [10] REVIEW Windows Defender AMSI logs for bypass attempts
+  [11] DEPLOY EDR memory scanning across all endpoints immediately
+  [12] ENABLE Windows Credential Guard to prevent credential extraction
+  [13] REVIEW all TLS connections — audit certificate issuers for anomalies
+  [14] BLOCK all outbound connections to domains with mismatched certificate issuers
+  [15] REVIEW all TLS connections — audit certificate issuers for anomalies
+  [16] BLOCK all outbound connections to domains with mismatched certificate issuers
+  [17] REVIEW all TLS connections — audit certificate issuers for anomalies
+  [18] BLOCK all outbound connections to domains with mismatched certificate issuers
+  [19] REVIEW all TLS connections — audit certificate issuers for anomalies
+  [20] BLOCK all outbound connections to domains with mismatched certificate issuers
+  [21] REVIEW all TLS connections — audit certificate issuers for anomalies
+  [22] BLOCK all outbound connections to domains with mismatched certificate issuers
+  [23] REVIEW all TLS connections — audit certificate issuers for anomalies
+  [24] BLOCK all outbound connections to domains with mismatched certificate issuers
+  [25] REVIEW all TLS connections — audit certificate issuers for anomalies
+  [26] BLOCK all outbound connections to domains with mismatched certificate issuers
+  [27] REVIEW all TLS connections — audit certificate issuers for anomalies
+  [28] BLOCK all outbound connections to domains with mismatched certificate issuers
+  [29] PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings
+  [30] NOTIFY CISO and legal team — assess breach notification obligations
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================

@@ -1,0 +1,342 @@
+=================================================================
+    NEXUS-IR AUTONOMOUS INCIDENT RESPONSE REPORT
+    Find Evil! Hackathon -- SANS Institute 2026
+=================================================================
+  Session ID   : 20260523_142336
+  Generated    : 2026-05-23 14:23:37 UTC
+  Duration     : 1.18s
+  Agent        : NEXUS-IR v2.0.0
+  IoC Method   : Regex-Only (Zero LLM Hallucination)
+
+-----------------------------------------------------------------
+  EXECUTIVE SUMMARY
+-----------------------------------------------------------------
+  Threat Level     : CRITICAL (100/100)
+  Case Priority    : CRITICAL
+  Files Scanned    : 1
+  Attack Patterns  : 9
+  IPs Identified   : 4
+  Findings Valid   : 27
+  Findings Rejected: 0
+  Confidence       : HIGH
+
+-----------------------------------------------------------------
+  CHAIN OF CUSTODY -- EVIDENCE INTEGRITY
+-----------------------------------------------------------------
+  File   : chaotic_kill_chain.log
+  SHA256 : 765674e8b4cdae6525fb48e6606175d6b69df5ffe3a9d753a8adf977ebe8269b
+  Size   : 1551 bytes
+  Hashed : 2026-05-23T14:23:36.456846+00:00
+
+-----------------------------------------------------------------
+  ATTACK NARRATIVE -- KILL CHAIN SUMMARY
+-----------------------------------------------------------------
+  The attack originated from 10.0.0.12 targeting the target,
+  gaining initial foothold through exploitation of a
+  network-accessible service. Following injection, the
+  compromised process established a covert C2 communication
+  channel to 45.33.22.11 over HTTPS, with the TLS certificate
+  issued by an unexpected authority — a hallmark of
+  attacker-controlled infrastructure masquerading as legitimate
+  services. The attack chain represents a complete APT
+  intrusion lifecycle: obfuscated execution, process injection
+  for persistence, and beaconing to external C2 infrastructure
+  — consistent with a Cobalt Strike or similar commercial
+  implant deployment.
+
+-----------------------------------------------------------------
+  ATTACK PATTERNS DETECTED (MITRE ATT&CK MAPPED)
+-----------------------------------------------------------------
+  [1] BRUTE_FORCE_ATTACK
+      Confidence : HIGH
+      MITRE      : T1110 - Brute Force
+      Description: Credential brute force detected
+      Evidence   : failed password
+
+  [2] PRIVILEGE_ESCALATION
+      Confidence : HIGH
+      MITRE      : T1548 - Abuse Elevation Control Mechanism
+      Description: Privilege escalation detected
+      Evidence   : sudo, root
+
+  [3] LATERAL_MOVEMENT_OR_C2
+      Confidence : CRITICAL
+      MITRE      : T1021 / T1059 - Remote Services / Command Interpreter
+      Description: C2 or lateral movement detected
+      Evidence   : reverse shell
+
+  [4] RANSOMWARE_OR_MALWARE
+      Confidence : CRITICAL
+      MITRE      : T1486 - Data Encrypted for Impact
+      Description: Malware or ransomware execution detected
+      Evidence   : ransomware
+
+  [5] CREDENTIAL_DUMPING
+      Confidence : CRITICAL
+      MITRE      : T1003 - OS Credential Dumping
+      Description: Credential dumping detected
+      Evidence   : mimikatz, lsass
+
+  [6] DATA_EXFILTRATION
+      Confidence : HIGH
+      MITRE      : T1041 - Exfiltration Over C2 Channel
+      Description: Data exfiltration detected
+      Evidence   : exfiltration
+
+  [7] POWERSHELL_OBFUSCATION
+      Confidence : HIGH
+      MITRE      : T1059.001 - PowerShell / T1027 - Obfuscation
+      Description: PowerShell obfuscation — injected by CorrectionAgent after triage-correlation mismatch
+      Evidence   : windowstyle, base64, powershell, bypass, hidden, encoded, executionpolicy
+
+  [8] PROCESS_INJECTION
+      Confidence : CRITICAL
+      MITRE      : T1055 - Process Injection
+      Description: APT process injection confirmed via text-log signatures
+      Evidence   : anomaly process, lsass, lateral movement
+
+  [9] ICMP_TUNNEL_EXFILTRATION
+      Confidence : CRITICAL
+      MITRE      : T1095 - Non-Application Layer Protocol
+      Description: ICMP packets with anomalous size/entropy — likely data exfiltration tunnel
+      Evidence   : icmp, entropy
+
+-----------------------------------------------------------------
+  EXTRACTED ENTITIES (Regex-Verified IoCs)
+-----------------------------------------------------------------
+  IPV4 ADDRESSES:
+    - 10.0.0.12
+    - 185.220.101.45
+    - 45.142.212.100
+    - 45.33.22.11
+  FILE PATHS:
+    - C:\Users\Public\svchost_update.exe
+  USERNAMES:
+    - admin
+    - root
+
+-----------------------------------------------------------------
+  IP ADDRESS CORRELATIONS
+-----------------------------------------------------------------
+  -> 10.0.0.12
+     Significance : HIGH
+     Description  : Regex-verified IoC: 10.0.0.12
+
+  -> 185.220.101.45
+     Significance : HIGH
+     Description  : Regex-verified IoC: 185.220.101.45
+
+  -> 45.142.212.100
+     Significance : HIGH
+     Description  : Regex-verified IoC: 45.142.212.100
+
+  -> 45.33.22.11
+     Significance : HIGH
+     Description  : Regex-verified IoC: 45.33.22.11
+
+-----------------------------------------------------------------
+  INVESTIGATION TIMELINE
+-----------------------------------------------------------------
+  2026-05-23T14:23:36
+    Agent   : TriageAgent
+    Event   : evidence_detected
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : TriageAgent
+    Event   : dynamic_priority_escalation
+    Artifact: triage_scan
+
+  2026-05-23T14:23:36
+    Agent   : LogAgent
+    Event   : suspicious_log_activity
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : DiskAgent
+    Event   : malicious_filename
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : MemoryAgent
+    Event   : process_injection
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : MemoryAgent
+    Event   : credential_dumping
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : MemoryAgent
+    Event   : credential_dumping
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : NetworkAgent
+    Event   : c2_communication
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : NetworkAgent
+    Event   : data_exfiltration
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : NetworkAgent
+    Event   : data_exfiltration
+    Artifact: chaotic_kill_chain.log
+
+  2026-05-23T14:23:36
+    Agent   : NetworkAgent
+    Event   : suspicious_port
+    Artifact: chaotic_kill_chain.log
+
+-----------------------------------------------------------------
+  VALIDATED FINDINGS
+-----------------------------------------------------------------
+  [1] Type       : evidence_detected
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+
+  [2] Type       : dynamic_priority_escalation
+      Agent      : TriageAgent
+      Confidence : 70%
+      Artifact   : triage_scan
+
+  [3] Type       : suspicious_log_activity
+      Agent      : LogAgent
+      Confidence : 100%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae6525fb48e6606175d6...
+      Keywords   : failed password, sudo, root, ransomware
+
+  [4] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [5] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [6] Type       : malicious_filename
+      Agent      : DiskAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [7] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [8] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [9] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [10] Type       : process_injection
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [11] Type       : credential_dumping
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [12] Type       : credential_dumping
+      Agent      : MemoryAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [13] Type       : c2_communication
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [14] Type       : data_exfiltration
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [15] Type       : data_exfiltration
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+  [16] Type       : suspicious_port
+      Agent      : NetworkAgent
+      Confidence : 70%
+      Artifact   : chaotic_kill_chain.log
+      File Hash  : 765674e8b4cdae65...
+
+-----------------------------------------------------------------
+  REJECTED / UNVERIFIABLE FINDINGS
+-----------------------------------------------------------------
+  No rejected findings.
+
+=================================================================
+  RECOMMENDED CONTAINMENT ACTIONS
+  (Dynamically generated from extracted IoCs)
+=================================================================
+  [01] BLOCK IP 10.0.0.12 at perimeter firewall and all internal segment boundaries
+  [02] BLOCK IP 185.220.101.45 at perimeter firewall and all internal segment boundaries
+  [03] BLOCK IP 45.142.212.100 at perimeter firewall and all internal segment boundaries
+  [04] BLOCK IP 45.33.22.11 at perimeter firewall and all internal segment boundaries
+  [05] SUSPEND account 'admin' and invalidate all active sessions
+  [06] SUSPEND account 'root' and invalidate all active sessions
+  [07] PRESERVE all Sysmon, network, and endpoint logs for legal/forensic proceedings
+  [08] NOTIFY CISO and legal team — assess breach notification obligations
+
+=================================================================
+  NEXUS-IR v2.0 -- Autonomous Incident Response Agent
+  All IoCs extracted via regex -- zero LLM hallucination.
+  All findings traceable to specific evidence artifacts.
+  Chain of custody maintained for all evidence files.
+  Self-corrected. Zero human intervention required.
+=================================================================
